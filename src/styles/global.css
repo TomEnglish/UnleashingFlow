@@ -1,0 +1,152 @@
+:root {
+  --ivory: #FAF7F2;
+  --ivory-dark: #F0EBE3;
+  --terracotta: #A97967;
+  --terracotta-light: #E8C7A7;
+  --taupe: #BFAE9F;
+  --warm-gray: #7C6E60;
+  --charcoal: #3D3330;
+  --deep-brown: #2A2220;
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Lora', serif;
+
+  --max-width: 1000px;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--ivory);
+  color: var(--charcoal);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+a {
+  color: var(--terracotta);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--charcoal);
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.section {
+  padding: 80px 60px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.section-dark {
+  background: var(--charcoal);
+  color: var(--ivory);
+  padding: 80px 60px;
+}
+
+.section-dark .section-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.section-dark .section-label {
+  color: var(--terracotta-light);
+}
+
+.section-title {
+  font-size: clamp(28px, 5vw, 32px);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--warm-gray);
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+.section-dark .section-desc {
+  color: var(--taupe);
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--terracotta);
+  color: var(--ivory);
+}
+
+.btn-primary:hover {
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--terracotta);
+  border: 2px solid var(--terracotta);
+}
+
+.btn-outline:hover {
+  background: var(--terracotta);
+  color: var(--ivory);
+}
+
+hr.divider {
+  border: none;
+  border-top: 1px solid #E8E0D6;
+  margin: 0 auto;
+  max-width: var(--max-width);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 24px;
+  }
+
+  .section-dark {
+    padding: 48px 24px;
+  }
+}

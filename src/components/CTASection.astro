@@ -1,0 +1,53 @@
+---
+interface Props {
+  heading?: string;
+  subtext?: string;
+}
+
+const {
+  heading = "A thirty-minute discovery call.",
+  subtext = "Free, no pitch. I want to understand what you're trying to fix; you want to know whether I'm the right person for it. If we're a fit, we'll scope a first engagement that produces something measurable in 4–6 weeks. If we're not, I'll usually be able to point you toward someone who is.",
+} = Astro.props;
+---
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-heading">{heading}</h2>
+    <p class="cta-subtext">{subtext}</p>
+    <a href="/contact" class="btn btn-primary">Book a call</a>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    background: var(--charcoal);
+    padding: 80px 60px;
+    text-align: center;
+  }
+
+  .cta-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .cta-heading {
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--ivory);
+    margin-bottom: 20px;
+  }
+
+  .cta-subtext {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--taupe);
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 768px) {
+    .cta-section {
+      padding: 48px 24px;
+    }
+  }
+</style>

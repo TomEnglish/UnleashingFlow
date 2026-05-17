@@ -1,0 +1,114 @@
+---
+const expansions = [
+  {
+    name: 'Throughput Cycle',
+    description: 'Recurring quarterly diagnostic plus a monthly cadence call. We keep finding the next constraint as the business grows — because the constraint always moves.',
+    bullets: [
+      'Quarterly mini-diagnostic',
+      'Monthly operating cadence call',
+      'Async access between sessions',
+      '12-month minimum, renewing',
+    ],
+  },
+  {
+    name: 'Fractional COO Retainer',
+    description: 'Senior operational leadership embedded into your business 15–40 hours per month. Strategic execution, operational improvement, AI tooling — without a $200K hire.',
+    bullets: [
+      'Advisory, Operating, or Embedded tier',
+      'Monthly P&L and pipeline review',
+      'Hiring oversight for key roles',
+      'AI tools built alongside the relationship',
+    ],
+  },
+];
+---
+
+<section class="expansion section">
+  <p class="section-label">After the first piece of work</p>
+  <h2 class="section-title">Two ways we work together long-term</h2>
+  <p class="section-desc">
+    You're not asked to commit to either upfront. The first engagement earns the right to propose the second.
+  </p>
+
+  <div class="expansion-grid">
+    {expansions.map(item => (
+      <div class="expansion-card">
+        <h3 class="expansion-name">{item.name}</h3>
+        <p class="expansion-desc">{item.description}</p>
+        <ul class="expansion-bullets">
+          {item.bullets.map(b => (
+            <li>{b}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <div class="expansion-cta">
+    <a href="/services" class="btn btn-outline">See full service details</a>
+  </div>
+</section>
+
+<style>
+  .expansion-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .expansion-card {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 16px;
+    padding: 36px 32px;
+  }
+
+  .expansion-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+
+  .expansion-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+
+  .expansion-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .expansion-bullets li {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    color: var(--charcoal);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .expansion-bullets li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+
+  .expansion-cta {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .expansion-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

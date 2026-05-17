@@ -1,0 +1,115 @@
+---
+interface Props {
+  tier: string;
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  timeline?: string;
+  featured?: boolean;
+}
+
+const { tier, name, price, description, features, timeline, featured = false } = Astro.props;
+---
+
+<div class:list={['service-card', { featured }]}>
+  <span class="service-tier">{tier}</span>
+  <h3 class="service-name">{name}</h3>
+  <p class="service-price">{price}</p>
+  <p class="service-desc">{description}</p>
+  {timeline && <p class="service-timeline">{timeline}</p>}
+  <ul class="service-features">
+    {features.map(f => (
+      <li>{f}</li>
+    ))}
+  </ul>
+  <a href="/contact" class:list={['btn', featured ? 'btn-primary' : 'btn-outline']}>Get Started</a>
+</div>
+
+<style>
+  .service-card {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 16px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-card.featured {
+    border-color: var(--terracotta);
+    box-shadow: 0 4px 24px rgba(169, 121, 103, 0.12);
+    position: relative;
+  }
+
+  .service-tier {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 8px;
+  }
+
+  .service-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+
+  .service-price {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+    margin-bottom: 20px;
+  }
+
+  .service-timeline {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    color: var(--taupe);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .service-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+    flex-grow: 1;
+  }
+
+  .service-features li {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    color: var(--charcoal);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .service-features li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+
+  .btn {
+    text-align: center;
+    margin-top: auto;
+  }
+</style>

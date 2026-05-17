@@ -1,0 +1,138 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import CalendlyEmbed from '../components/CalendlyEmbed.astro';
+---
+
+<PageLayout
+  title="Contact"
+  description="Book a Throughput Diagnostic or get in touch. Let's find your bottleneck and build the AI that fixes it."
+>
+  <section class="contact-hero section-dark">
+    <div class="section-inner">
+      <p class="section-label">Get In Touch</p>
+      <h1 class="contact-title">Let's find your bottleneck.</h1>
+      <p class="contact-subtitle">
+        Book a discovery call or send a message. Either way, we'll start by understanding your business before talking about AI.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact-content section">
+    <div class="contact-grid">
+      <div class="contact-form-col">
+        <h2 class="col-title">Send a Message</h2>
+        <p class="col-desc">Tell me about your business and what's not working as well as it should. I'll respond within 24 hours.</p>
+        <ContactForm />
+      </div>
+
+      <div class="contact-calendly-col">
+        <h2 class="col-title">Book a Discovery Call</h2>
+        <p class="col-desc">Free 15-minute call. No pitch — just a conversation about where AI might fit in your business.</p>
+        <CalendlyEmbed />
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-direct section-dark">
+    <div class="section-inner direct-inner">
+      <div class="direct-item">
+        <h3>Email</h3>
+        <a href="mailto:elliott@unleashingflow.com">elliott@unleashingflow.com</a>
+      </div>
+      <div class="direct-item">
+        <h3>LinkedIn</h3>
+        <a href="https://linkedin.com/in/elliottenglish" target="_blank" rel="noopener">linkedin.com/in/elliottenglish</a>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .contact-hero {
+    text-align: center;
+    padding: 100px 60px 80px;
+  }
+
+  .contact-title {
+    font-size: clamp(32px, 5vw, 44px);
+    font-weight: 800;
+    color: var(--ivory);
+    margin-bottom: 16px;
+  }
+
+  .contact-subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--taupe);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .col-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .col-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+    margin-bottom: 24px;
+  }
+
+  .direct-inner {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    padding: 48px 0;
+  }
+
+  .direct-item h3 {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .direct-item a {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    color: var(--ivory);
+    text-decoration: none;
+  }
+
+  .direct-item a:hover {
+    color: var(--terracotta-light);
+  }
+
+  @media (max-width: 768px) {
+    .contact-hero {
+      padding: 60px 24px 48px;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .direct-inner {
+      flex-direction: column;
+      gap: 24px;
+      text-align: center;
+    }
+  }
+</style>

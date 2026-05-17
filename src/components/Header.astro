@@ -1,0 +1,174 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/methodology', label: 'Methodology' },
+  { href: '/services', label: 'Services' },
+  { href: '/the-current', label: 'The Current' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo-link" aria-label="Unleashing Flow — Home">
+      <img src="/images/logo-unleashing-flow-light.svg" alt="Unleashing Flow" class="logo" />
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main navigation">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="/contact" class="btn btn-primary nav-cta">Book a Call</a>
+    </nav>
+
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" aria-label="Mobile navigation">
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a href="/contact" class="btn btn-primary nav-cta">Book a Call</a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const mobileNav = document.querySelector('.nav-mobile');
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    mobileNav?.classList.toggle('open');
+    toggle.classList.toggle('open');
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ivory);
+    border-bottom: 1px solid #E8E0D6;
+  }
+
+  .header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 16px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    height: 36px;
+    width: auto;
+  }
+
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-link {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--charcoal);
+  }
+
+  .nav-cta {
+    padding: 10px 24px;
+    font-size: 11px;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--charcoal);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: var(--ivory);
+    border-bottom: 1px solid #E8E0D6;
+  }
+
+  .nav-mobile.open {
+    display: flex;
+  }
+
+  @media (max-width: 768px) {
+    .header-inner {
+      padding: 14px 24px;
+    }
+
+    .nav-desktop {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+  }
+</style>

@@ -1,0 +1,125 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import DigestCard from '../../components/DigestCard.astro';
+import { getCollection } from 'astro:content';
+
+const digests = (await getCollection('digests')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<PageLayout
+  title="The Current"
+  description="AI Profit Digest — daily analysis of how AI is actually making money in real businesses. Stories filtered for credibility, not hype."
+>
+  <section class="current-hero section-dark">
+    <div class="section-inner">
+      <p class="section-label">Newsletter</p>
+      <h1 class="current-title">The Current</h1>
+      <p class="current-subtitle">
+        Daily analysis of how AI is actually making money in real businesses. Every story filtered through an operations lens — not hype, not theory. What's working, what's not, and what it means for your business.
+      </p>
+    </div>
+  </section>
+
+  <section class="digest-archive section">
+    <div class="archive-header">
+      <h2 class="section-title">Recent Digests</h2>
+      <p class="section-desc">
+        Each digest covers the most important AI business stories of the day, verified for credibility and analyzed through the three-prong framework.
+      </p>
+    </div>
+
+    <div class="digest-list">
+      {digests.map(digest => (
+        <DigestCard
+          title={digest.data.title}
+          date={digest.data.date}
+          description={digest.data.description}
+          storyCount={digest.data.storyCount}
+          slug={digest.id}
+          hasAudio={!!digest.data.audioFile}
+        />
+      ))}
+    </div>
+
+    {digests.length === 0 && (
+      <p class="empty-state">No digests published yet. Check back soon.</p>
+    )}
+  </section>
+
+  <section class="subscribe-cta section-dark">
+    <div class="section-inner subscribe-inner">
+      <h2 class="subscribe-title">Get the digest in your inbox</h2>
+      <p class="subscribe-desc">Daily AI business analysis. No fluff. Unsubscribe anytime.</p>
+      <a href="mailto:elliott@unleashingflow.com?subject=Subscribe%20to%20The%20Current" class="btn btn-primary">Subscribe</a>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .current-hero {
+    text-align: center;
+    padding: 100px 60px 80px;
+  }
+
+  .current-title {
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 800;
+    color: var(--ivory);
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+
+  .current-subtitle {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--taupe);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .archive-header {
+    margin-bottom: 32px;
+  }
+
+  .digest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .empty-state {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--taupe);
+    text-align: center;
+    padding: 48px;
+  }
+
+  .subscribe-inner {
+    text-align: center;
+    padding: 60px 0;
+  }
+
+  .subscribe-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ivory);
+    margin-bottom: 10px;
+  }
+
+  .subscribe-desc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--taupe);
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .current-hero {
+      padding: 60px 24px 48px;
+    }
+  }
+</style>

@@ -1,0 +1,120 @@
+---
+const entries = [
+  {
+    number: '01',
+    title: 'Bespoke App',
+    ask: 'You need a specific tool built.',
+    description: 'Production planner, intake form, supplier portal, custom workflow — software designed for the exact way your operation actually runs.',
+    shape: '4–12 week project',
+  },
+  {
+    number: '02',
+    title: 'Dashboard',
+    ask: 'You need to see your business clearly.',
+    description: 'Margin by SKU, throughput by hour, capacity by shift. The view of your operation you should already have but probably don\'t.',
+    shape: '2–6 week project',
+  },
+  {
+    number: '03',
+    title: 'Throughput Diagnostic',
+    ask: 'You know something is leaking but can\'t tell what.',
+    description: 'We find the one binding constraint in your operation, quantify the annual leak, and tell you specifically what to change first.',
+    shape: '2 weeks, written report',
+  },
+  {
+    number: '04',
+    title: 'AI Capability Audit',
+    ask: 'You want to understand what AI can actually do.',
+    description: 'A structured review of where AI would produce real ROI in your business — and where it wouldn\'t — before you spend a dollar.',
+    shape: '2 weeks, written report',
+  },
+];
+---
+
+<section class="entry-doors section">
+  <p class="section-label">How we start</p>
+  <h2 class="section-title">Four ways to begin</h2>
+  <p class="section-desc">
+    You don't sign up for a long engagement. You buy a first piece of work — fixed scope, fixed timeline — and decide what's next from there. Most produce direct ROI you can measure inside a few weeks.
+  </p>
+
+  <div class="door-grid">
+    {entries.map(entry => (
+      <div class="door-card">
+        <span class="door-number">{entry.number}</span>
+        <h3 class="door-title">{entry.title}</h3>
+        <p class="door-ask">{entry.ask}</p>
+        <p class="door-desc">{entry.description}</p>
+        <p class="door-shape">{entry.shape}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .door-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .door-card {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 16px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .door-number {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--terracotta);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .door-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--charcoal);
+  }
+
+  .door-ask {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--warm-gray);
+    margin-bottom: 16px;
+    letter-spacing: 0.3px;
+  }
+
+  .door-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .door-shape {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    padding-top: 16px;
+    border-top: 1px solid #E8E0D6;
+  }
+
+  @media (max-width: 768px) {
+    .door-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

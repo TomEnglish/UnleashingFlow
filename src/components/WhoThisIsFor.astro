@@ -1,0 +1,103 @@
+---
+const fit = [
+  "You're the owner-CEO of a business doing $2M to $20M",
+  "You're working too many hours and most decisions still flow through you",
+  "You believe AI is real but you're skeptical of the people selling it",
+  "You want senior operational counsel, not another vendor",
+];
+
+const notFit = [
+  "You need a full-time C-suite hire on the leadership team",
+  "You're looking for an AI vendor selling a product",
+  "Your business is pre-revenue or experimental",
+];
+---
+
+<section class="who-for section">
+  <p class="section-label">Honest fit</p>
+  <h2 class="section-title">Who this is for</h2>
+  <p class="section-desc">
+    The wrong fit hurts both of us. So we name it sharply.
+  </p>
+
+  <div class="who-grid">
+    <div class="who-card who-card-fit">
+      <h3 class="who-heading">You're a fit if</h3>
+      <ul class="who-list">
+        {fit.map(item => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+    <div class="who-card who-card-not">
+      <h3 class="who-heading">You're probably not a fit if</h3>
+      <ul class="who-list who-list-not">
+        {notFit.map(item => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .who-card {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 16px;
+    padding: 36px 32px;
+  }
+
+  .who-card-fit {
+    border-color: var(--terracotta);
+  }
+
+  .who-heading {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    font-family: var(--font-heading);
+    letter-spacing: 0.3px;
+  }
+
+  .who-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .who-list li {
+    font-size: 15px;
+    color: var(--charcoal);
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .who-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+
+  .who-list-not li::before {
+    content: '\2715';
+    color: var(--warm-gray);
+  }
+
+  @media (max-width: 768px) {
+    .who-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

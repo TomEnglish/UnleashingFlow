@@ -1,0 +1,8 @@
+<svg width="340" height="44" viewBox="0 0 340 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Unleashing Flow logo - for dark backgrounds -->
+  <path d="M4 6 C8 6, 14 10, 20 18 C22 21, 23 22, 26 22 C30 22, 34 16, 38 12 C42 8, 46 6, 50 8" stroke="#E8C7A7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M4 22 C10 22, 16 22, 20 22 C22 22, 23 22, 26 22 C30 22, 34 22, 40 22 C44 22, 48 22, 50 22" stroke="#E8C7A7" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.65"/>
+  <path d="M4 38 C8 38, 14 34, 20 26 C22 23, 23 22, 26 22 C30 22, 34 28, 38 32 C42 36, 46 38, 50 36" stroke="#E8C7A7" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+  <circle cx="26" cy="22" r="2.5" fill="#E8C7A7" opacity="0.3"/>
+  <text y="28" font-family="Montserrat, sans-serif" font-size="22" fill="#FAF7F2" letter-spacing="2"><tspan x="66" font-weight="700">UNLEASHING </tspan><tspan font-weight="300">FLOW</tspan></text>
+</svg>

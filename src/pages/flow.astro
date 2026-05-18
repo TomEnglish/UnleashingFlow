@@ -1,0 +1,401 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import CTASection from '../components/CTASection.astro';
+---
+
+<PageLayout
+  title="Flow & Throughput — Unleashing Flow"
+  description="A business exists to make money — now and growing over time. Throughput measures progress against that goal. Flow is the mechanism that produces it. Here's what those words mean and how they connect."
+>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="hero-label">Foundations</p>
+      <h1 class="hero-title">The goal of a business is to make money — now and over time.</h1>
+      <p class="hero-subtitle">
+        Everything we do — finding constraints, building tools, working alongside owners — exists to serve that goal. The way we measure progress against it is called <em>throughput</em>. The mechanism that produces throughput is called <em>flow</em>.
+      </p>
+    </div>
+  </section>
+
+  <section class="prose-section section">
+    <div class="prose-inner">
+      <p class="section-label">The goal</p>
+      <h2 class="section-title">Profit, growing over time.</h2>
+      <p>
+        A business exists to make money, and to make more of it over time. That's it.
+      </p>
+      <p>
+        Serving customers well, treating employees right, contributing to the community — those matter. But the discipline that keeps the lights on, pays the people, and lets you keep doing all the other things is profitability that grows.
+      </p>
+      <p>
+        Most operational improvement work loses sight of this. Efficiency rates, utilization curves, automations-deployed-per-quarter — these can all rise while the business is making less money. They are activity, not progress. We anchor every decision against the goal itself, not its proxies.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="prose-section section">
+    <div class="prose-inner">
+      <p class="section-label">Throughput</p>
+      <h2 class="section-title">The rate at which the business turns sales into money.</h2>
+
+      <div class="definition-box">
+        <p class="definition-label">Throughput, defined</p>
+        <p class="definition-formula">T = Revenue − Truly Variable Costs</p>
+        <p class="definition-note">
+          Truly variable costs are the costs that genuinely scale with each unit sold: ingredients in a baked good, materials in a manufactured part, third-party fees on a transaction. Not bakers' salaries. Not rent. Not insurance.
+        </p>
+      </div>
+
+      <p>Throughput is <strong>not</strong> the same as:</p>
+      <ul class="prose-list">
+        <li><strong>Gross profit</strong> — which subtracts all cost of goods sold, including fixed labor</li>
+        <li><strong>Net income</strong> — which subtracts everything, including interest and depreciation</li>
+        <li><strong>Revenue</strong> — which doesn't subtract anything</li>
+      </ul>
+
+      <p>
+        In cost-accounting language it's closest to <em>contribution margin</em>. The distinguishing emphasis is the word <em>rate</em> — throughput is per-unit-of-time. How much money the system is generating this hour, this week, this year.
+      </p>
+
+      <p>
+        Throughput matters because, of the three operating measures — throughput, inventory, and operating expense — it's the only one with unlimited upside. You can always sell more. You cannot reduce inventory below zero. You cannot reduce operating expense below the floor of being open at all. Every other lever has a hard limit. Throughput doesn't.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="prose-section section">
+    <div class="prose-inner">
+      <p class="section-label">Flow</p>
+      <h2 class="section-title">The smooth movement of work through your operation.</h2>
+
+      <p>
+        Flow is the unobstructed movement of work from the moment a customer becomes aware of your business through to the moment the money returns to your account.
+      </p>
+
+      <p>
+        A bakery with good flow: orders come in, ingredients are on hand, the team produces in the right sequence, products move to the front of the house, customers buy, the register fills.
+      </p>
+
+      <p>
+        A bakery with broken flow: orders pile up at the only decorator trained on wedding cakes. Production sequence is wrong, so cakes wait while croissants bake. Customers see empty cases at ten on Saturday morning. Money is leaking, and nobody can quite say where.
+      </p>
+
+      <p>
+        Flow is what produces throughput. Where flow is interrupted, money is interrupted too.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="connection-section section">
+    <p class="section-label">How they connect</p>
+    <h2 class="section-title">From goal to lever</h2>
+    <div class="connection-table-wrap">
+      <table class="connection-table">
+        <thead>
+          <tr>
+            <th>Concept</th>
+            <th>What it is</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>The goal</strong></td>
+            <td>Make money, growing over time</td>
+            <td>Anchors every decision</td>
+          </tr>
+          <tr>
+            <td><strong>Throughput</strong></td>
+            <td>Rate of money generated through sales</td>
+            <td>Measures progress against the goal</td>
+          </tr>
+          <tr>
+            <td><strong>Flow</strong></td>
+            <td>Smooth movement of work through the operation</td>
+            <td>The mechanism that produces throughput</td>
+          </tr>
+          <tr>
+            <td><strong>Constraints</strong></td>
+            <td>Where flow is interrupted</td>
+            <td>The leverage points to change throughput</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="connection-summary">
+      The methodology — Theory of Constraints — is the systematic way to identify where flow breaks down, target the fix at that exact point, and recover the throughput.
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="prose-section section">
+    <div class="prose-inner">
+      <p class="section-label">Why this isn't "be more efficient"</p>
+      <h2 class="section-title">Efficiency at the wrong stage is a mirage.</h2>
+
+      <p>
+        Most operational improvement work focuses on efficiency — how fast each stage runs, how busy each resource stays, how little waste each step produces. Efficiency is fine when applied to the right stage. Applied to the wrong stage, efficiency <em>hurts</em> throughput.
+      </p>
+
+      <p>
+        Imagine a bakery whose binding constraint is the decorator's hours. The oven runs at 70% utilization. A consultant who "improves the oven's efficiency" to 90% has done nothing for throughput — the decorator's hours haven't moved, so the system's output hasn't moved. Worse, the bakery has now invested in oven improvements that produce no return.
+      </p>
+
+      <blockquote class="emphasis-quote">
+        An hour saved at a non-constraint is a mirage. An hour gained at the constraint is real money.
+      </blockquote>
+
+      <p>
+        This is what most general improvement work gets wrong. It treats every stage as equally worth optimizing. Theory of Constraints treats them differently: the binding constraint determines throughput; everything else should be in service of the constraint, not optimized in isolation.
+      </p>
+    </div>
+  </section>
+
+  <CTASection
+    heading="Want to know where your flow is breaking?"
+    subtext="A Throughput Diagnostic finds it. Two weeks, fixed fee, a six-to-ten page written report naming the binding constraint, quantifying the annual leak, and recommending the specific change. Yours to keep with no obligation to continue."
+  />
+</PageLayout>
+
+<style>
+  .page-hero {
+    background: var(--charcoal);
+    color: var(--ivory);
+    padding: 80px 60px 64px;
+    text-align: center;
+  }
+
+  .page-hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 4.5vw, 42px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--ivory);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--taupe);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hero-subtitle em {
+    color: var(--terracotta-light);
+    font-style: italic;
+  }
+
+  .prose-section {
+    background: var(--ivory);
+  }
+
+  .prose-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .prose-inner p {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--charcoal);
+    margin-bottom: 18px;
+  }
+
+  .prose-inner p:last-child {
+    margin-bottom: 0;
+  }
+
+  .prose-inner em {
+    color: var(--terracotta);
+    font-style: italic;
+  }
+
+  .prose-inner strong {
+    color: var(--charcoal);
+    font-weight: 700;
+  }
+
+  .prose-list {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+  }
+
+  .prose-list li {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    padding-left: 24px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  .prose-list li::before {
+    content: '\2014';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .definition-box {
+    background: #fff;
+    border: 1px solid var(--terracotta);
+    border-radius: 16px;
+    padding: 32px 32px;
+    margin: 24px 0 28px;
+    text-align: center;
+  }
+
+  .definition-label {
+    font-family: var(--font-heading) !important;
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase;
+    color: var(--terracotta) !important;
+    margin-bottom: 16px !important;
+    font-weight: 600 !important;
+  }
+
+  .definition-formula {
+    font-family: var(--font-heading) !important;
+    font-size: 26px !important;
+    font-weight: 700 !important;
+    color: var(--charcoal) !important;
+    margin-bottom: 16px !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .definition-note {
+    font-family: var(--font-body) !important;
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+    color: var(--warm-gray) !important;
+    margin: 0 !important;
+    text-align: left !important;
+    max-width: 580px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .connection-section {
+    background: #fff;
+    text-align: center;
+  }
+
+  .connection-table-wrap {
+    max-width: 900px;
+    margin: 32px auto 24px;
+    overflow-x: auto;
+  }
+
+  .connection-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--ivory);
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: left;
+  }
+
+  .connection-table th {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    padding: 18px 20px;
+    background: #fff;
+    border-bottom: 1px solid #E8E0D6;
+    font-weight: 700;
+  }
+
+  .connection-table td {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding: 18px 20px;
+    border-bottom: 1px solid #E8E0D6;
+    vertical-align: top;
+  }
+
+  .connection-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .connection-table td:first-child {
+    width: 22%;
+    min-width: 140px;
+  }
+
+  .connection-summary {
+    max-width: 720px;
+    margin: 0 auto;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--charcoal);
+  }
+
+  .emphasis-quote {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--charcoal);
+    border-left: 4px solid var(--terracotta);
+    padding: 8px 0 8px 24px;
+    margin: 28px 0;
+  }
+
+  @media (max-width: 768px) {
+    .page-hero {
+      padding: 56px 24px 40px;
+    }
+
+    .definition-box {
+      padding: 24px 20px;
+    }
+
+    .definition-formula {
+      font-size: 20px !important;
+    }
+
+    .connection-table th,
+    .connection-table td {
+      padding: 14px 14px;
+      font-size: 13px;
+    }
+
+    .emphasis-quote {
+      font-size: 18px;
+      padding-left: 18px;
+    }
+  }
+</style>

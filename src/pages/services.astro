@@ -1,565 +1,451 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import ServiceCard from '../components/ServiceCard.astro';
 import CTASection from '../components/CTASection.astro';
+
+const doors = [
+  {
+    number: '01',
+    name: 'AI Audit',
+    ask: 'Where will AI move our bottom line the most?',
+    body: 'A focused audit of where AI will produce real dollar impact in your business — not just where it\'s technically possible to deploy. We map your operation end-to-end, identify the highest-value AI opportunities, quantify the expected return, and tell you which one to fund first. The output is the shortlist worth your time, not a list of everything possible.',
+    deliverables: [
+      'End-to-end value-stream walkthrough',
+      'Ranked list of AI opportunities by expected dollar impact',
+      'ROI math you can follow — and challenge',
+      'Specific recommendation for the first build',
+      'Honest "do not automate this yet" list',
+      '6–10 page written report, yours to keep',
+    ],
+    shape: '2 weeks · written report',
+  },
+  {
+    number: '02',
+    name: 'Dashboard',
+    ask: 'I need to see my business clearly.',
+    body: 'The view of your operation you should already have but probably don\'t. We build a clean, fast, role-specific dashboard against your real data — margin by SKU, throughput by hour, capacity by shift, cash discrepancy across locations. Designed for the question you\'re actually trying to answer, not generic BI bloat.',
+    deliverables: [
+      'Custom dashboard against your live data',
+      'CEO view (simple version) or multi-user with role-based access (complex version)',
+      'Supabase backend; secure, scalable',
+      'Hosted, monitored, ready for daily use',
+      'Documentation so your team can extend it',
+    ],
+    shape: '2–6 week project',
+  },
+  {
+    number: '03',
+    name: 'App Development — Web, iPhone, Android',
+    ask: 'Build me a tool that\'s mine.',
+    body: 'Custom web applications and native iOS / Android apps — software designed for the exact way your operation actually runs. Production planners, intake forms, supplier portals, custom CRMs, field-data capture tools, cash-tracking apps. We start with the workflow, not the technology, and build until it matches how your business should work, not how an off-the-shelf product wants you to work.',
+    deliverables: [
+      'Web application (Next.js + Supabase) or native iOS/Android app',
+      'Certified Apple developer; TestFlight beta workflow',
+      'OCR, computer vision, or AI integrations as needed',
+      'Secure data architecture (Supabase, role-based auth)',
+      'Documented codebase, deployment, and ongoing-support handoff',
+    ],
+    shape: '4–12 week project',
+  },
+  {
+    number: '04',
+    name: 'AI Upskilling',
+    ask: 'Train my team on AI tools.',
+    body: 'Workshops and hands-on training on the specific AI tools your team needs — built around your actual workflows, not generic prompt-engineering theatre. Half-day or full-day formats, on-site or remote, with a 90-day follow-up to make sure adoption sticks instead of fading after the workshop high wears off.',
+    deliverables: [
+      'Pre-workshop assessment of your team\'s current AI usage',
+      'Custom curriculum built on your tools and workflows',
+      'Hands-on exercises with your real data',
+      'Reference guide team can return to after the session',
+      '90-day follow-up to measure adoption and adjust',
+    ],
+    shape: '1–3 days + 90-day follow-up',
+  },
+];
+
+const expansion = [
+  {
+    name: 'Throughput Cycle',
+    body: 'The constraint always moves. Once you find and resolve it, a new one becomes binding — that\'s not a flaw, it\'s the system working as designed. The Cycle is the recurring engagement that keeps finding the next constraint: quarterly mini-diagnostic plus a monthly cadence call, with async availability in between.',
+    bullets: [
+      'Quarterly constraint review',
+      'Monthly operating cadence call',
+      'Async access between sessions',
+      '12-month minimum, renewing',
+    ],
+  },
+  {
+    name: 'Fractional AI Officer Retainer',
+    body: 'A Chief AI Officer embedded in your business 15–40 hours per month. Senior operational leadership through an AI lens — strategic execution, ongoing throughput improvement, AI tool building, vendor evaluation, team coaching. Without a $200K+ full-time C-suite hire.',
+    bullets: [
+      'Advisory, Operating, or Embedded engagement depth',
+      'Monthly P&L and pipeline review',
+      'AI tools built alongside the relationship',
+      'Hiring oversight for AI-adjacent roles',
+      '6-month minimum, month-to-month thereafter',
+    ],
+  },
+];
 ---
 
 <PageLayout
-  title="Services"
-  description="AI consulting services: Throughput Diagnostic, Bottleneck Implementation, Fractional AI Officer, and Organizational Flow Transformation. Operations-first AI that targets your real constraint."
+  title="Services — Unleashing Flow"
+  description="Fractional AI Officer, AI Audit, custom dashboards, web and mobile app development, and AI upskilling for owner-operated businesses doing $2M to $20M."
 >
-  <section class="services-hero section-dark">
-    <div class="section-inner">
-      <p class="section-label">Services</p>
-      <h1 class="services-title">Every engagement starts with finding the constraint.</h1>
-      <p class="services-subtitle">
-        We don't sell AI solutions looking for a problem. We diagnose your bottleneck first, then build the AI that fixes it.
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="hero-label">Services</p>
+      <h1 class="hero-title">Four ways to begin. Two ways to keep going.</h1>
+      <p class="hero-subtitle">
+        You don't sign up for a long engagement. You buy a first piece of work — fixed scope, fixed timeline — and decide what's next. After the first engagement, most clients want either a recurring cycle or an embedded Fractional AI Officer.
       </p>
     </div>
   </section>
 
-  <!-- Throughput Diagnostic — Featured -->
-  <section class="diagnostic-section section">
-    <p class="section-label">The Starting Point</p>
-    <h2 class="section-title">The Throughput Diagnostic</h2>
+  <section class="entry-doors-section section">
+    <p class="section-label">Where you start</p>
+    <h2 class="section-title">The four entry doors</h2>
     <p class="section-desc">
-      A structured diagnostic that finds where your business's throughput is actually constrained, then identifies which AI solution will have the highest impact on that constraint.
+      Each is a fixed-scope, fixed-fee first engagement. Most produce direct ROI you can measure inside a few weeks. All of them tell you whether ongoing senior operational help is worth the investment.
     </p>
 
-    <div class="diagnostic-detail">
-      <div class="diagnostic-phases">
-        <div class="phase">
-          <span class="phase-number">Phase 1</span>
-          <h3>Map the System</h3>
-          <p>60-90 minute session walking through your business end-to-end. Not "tell me your tech stack" — but "walk me through what happens from the moment a customer finds you to the moment they pay you and come back."</p>
-        </div>
-        <div class="phase">
-          <span class="phase-number">Phase 2</span>
-          <h3>Find the Constraint</h3>
-          <p>Using Theory of Constraints methodology: Where does work pile up? Where do customers wait longest? What's the ONE thing that, if it ran twice as fast, would make the whole business run faster?</p>
-        </div>
-        <div class="phase">
-          <span class="phase-number">Phase 3</span>
-          <h3>Prescribe the AI</h3>
-          <p>Match the constraint to the right solution. Not enough leads? Customer acquisition AI. Operations can't keep up? Automate the bottleneck. Humans overwhelmed? Amplification systems.</p>
-        </div>
-        <div class="phase">
-          <span class="phase-number">Phase 4</span>
-          <h3>Deliver the Roadmap</h3>
-          <p>Branded report with the constraint identified, specific AI solution recommended, expected ROI with math you can follow, implementation timeline, and — critically — what NOT to automate yet and why.</p>
-        </div>
-      </div>
-
-      <div class="diagnostic-pricing">
-        <span class="price-range">$1,500 — $3,000</span>
-        <p class="price-note">Depending on business complexity</p>
-        <a href="/contact" class="btn btn-primary">Book Your Diagnostic</a>
-      </div>
+    <div class="doors-stack">
+      {doors.map(door => (
+        <article class="door-row">
+          <div class="door-row-head">
+            <span class="door-row-num">{door.number}</span>
+            <div>
+              <h3 class="door-row-name">{door.name}</h3>
+              <p class="door-row-ask">{door.ask}</p>
+            </div>
+          </div>
+          <div class="door-row-body">
+            <div class="door-narrative">
+              <p>{door.body}</p>
+              <p class="door-shape-line">{door.shape}</p>
+              <a href="https://calendly.com/elliott-english/discovery-call" target="_blank" rel="noopener" class="btn btn-outline door-cta">Discuss this engagement</a>
+            </div>
+            <div class="door-deliverables">
+              <p class="deliverables-label">What you get</p>
+              <ul class="deliverables-list">
+                {door.deliverables.map(d => <li>{d}</li>)}
+              </ul>
+            </div>
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 
   <hr class="divider" />
 
-  <!-- Other Service Tiers -->
-  <section class="other-services section">
-    <p class="section-label">After Diagnosis</p>
-    <h2 class="section-title">Implementation & Beyond</h2>
+  <section class="expansion-section section">
+    <p class="section-label">After the first piece of work</p>
+    <h2 class="section-title">Two ways we work together long-term</h2>
     <p class="section-desc">
-      The diagnostic naturally generates the project proposal. You'll know exactly what needs to be built, what it costs, and what it returns.
+      You're not asked to commit to either upfront. The first engagement earns the right to propose the second.
     </p>
 
-    <div class="services-grid">
-      <ServiceCard
-        tier="Tier 2"
-        name="Bottleneck Implementation"
-        price="$3,000 - $15,000"
-        description="Build the AI solution for the specific constraint identified in your diagnostic. Scoped by deliverable, not by hours."
-        features={[
-          'Customer acquisition automation ($3K-$8K)',
-          'Operations bottleneck automation ($3K-$10K)',
-          'Human amplification systems ($4K-$15K)',
-          'Custom chatbots trained on your data ($3K-$8K)',
-          'Scoped by deliverable, not hours',
-        ]}
-        timeline="2-6 weeks"
-      />
-      <ServiceCard
-        tier="Tier 3"
-        name="Ongoing Optimization"
-        price="$2,000 - $5,000/mo"
-        description="After implementation, the constraint shifts — it always does. Monthly retainer to find and fix the next bottleneck."
-        features={[
-          'AI system performance monitoring',
-          'Constraint shift detection (Goldratt\'s ongoing improvement)',
-          'Tune and expand the AI solution',
-          'Quarterly re-diagnostic to find the next bottleneck',
-          'Continuous throughput improvement',
-        ]}
-      />
-      <ServiceCard
-        tier="Tier 4"
-        name="Team Training"
-        price="$2,000 - $5,000/session"
-        description="Teach your team to work WITH the AI you've built. Not generic 'how to use ChatGPT' — specific training on your systems."
-        features={[
-          'Custom training on YOUR tools and systems',
-          'Half-day or full-day formats available',
-          'Hands-on exercises with your data',
-          'How to prompt your knowledge base',
-          'When to override the automation',
-        ]}
-      />
+    <div class="expansion-grid">
+      {expansion.map(item => (
+        <div class="expansion-card">
+          <h3 class="expansion-name">{item.name}</h3>
+          <p class="expansion-body">{item.body}</p>
+          <ul class="expansion-bullets">
+            {item.bullets.map(b => <li>{b}</li>)}
+          </ul>
+        </div>
+      ))}
     </div>
   </section>
 
   <hr class="divider" />
 
-  <!-- Organizational Flow Transformation -->
-  <section class="flow-transform section">
-    <p class="section-label">Layer 3 Deep Dive</p>
-    <h2 class="section-title">Organizational Flow Transformation</h2>
-    <p class="section-desc">
-      A standalone engagement for organizations that want to restructure their work environment for flow — so freed capacity goes to deeper, more valuable work instead of more shallow busywork.
-    </p>
-
-    <div class="flow-detail">
-      <div class="flow-includes">
-        <div class="flow-item">
-          <h4>Attention Audit</h4>
-          <p>Where are people actually spending their focus? Map the real allocation vs. the assumed one.</p>
-        </div>
-        <div class="flow-item">
-          <h4>Deep/Shallow Work Assessment</h4>
-          <p>Measure the ratio across the organization. Apply Newport's test: how long would it take a smart recent grad to do this task?</p>
-        </div>
-        <div class="flow-item">
-          <h4>Communication Protocol Redesign</h4>
-          <p>Restructure meetings and messaging to protect deep work blocks. Batch the shallow, ritualize the deep.</p>
-        </div>
-        <div class="flow-item">
-          <h4>AI Tool Interaction Audit</h4>
-          <p>Are existing AI tools supporting or fragmenting attention? Evaluate against the eight conditions of flow.</p>
-        </div>
-        <div class="flow-item">
-          <h4>Deep Work Implementation</h4>
-          <p>Install deep work rituals and scatterfocus practices. Build the organizational muscle for sustained concentration.</p>
-        </div>
-        <div class="flow-item">
-          <h4>90-Day Follow-Up</h4>
-          <p>Measure the shift. Is the freed capacity going to depth or getting swallowed by new shallow work?</p>
-        </div>
-      </div>
-
-      <div class="flow-pricing">
-        <span class="price-range">$5,000 — $15,000</span>
-        <p class="price-note">Based on organization size and scope</p>
-        <a href="/contact" class="btn btn-primary">Learn More</a>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- Fractional AI Officer -->
-  <section class="fractional section-dark">
-    <div class="section-inner">
-      <p class="section-label">The Full Partnership</p>
-      <h2 class="fractional-title">Fractional AI Officer (Chief AI Officer)</h2>
-      <p class="fractional-subtitle">
-        For businesses that need an operations and technology leader — not just a consultant who drops a report and disappears. I embed in your organization, rebuild the systems, then stay on retainer to keep them evolving.
+  <section class="pricing-note section">
+    <div class="pricing-note-inner">
+      <p class="section-label">On pricing</p>
+      <h2 class="section-title">Scoped per engagement, sized to your business.</h2>
+      <p>
+        Engagements are scoped during the discovery call based on business size, complexity, urgency, and data readiness. A $3M owner-operated practice and a $20M multi-location operation should not pay the same price for the same audit — and they don't. We discuss numbers directly on the call, not on a pricing table.
       </p>
-
-      <div class="fractional-layout">
-        <div class="fractional-phases">
-          <div class="frac-phase">
-            <div class="frac-phase-header">
-              <span class="frac-phase-label">Months 1–2</span>
-              <h3>The Build</h3>
-            </div>
-            <p class="frac-phase-desc">Intensive setup period. I operate as a part-time member of your leadership team — not an outside advisor.</p>
-            <ul class="frac-list">
-              <li>Full operational audit — map every process, find every constraint</li>
-              <li>Technology stack assessment and modernization roadmap</li>
-              <li>AI implementation for highest-impact bottlenecks</li>
-              <li>Vendor evaluation and tool selection</li>
-              <li>Team workflow redesign for deep work and flow</li>
-              <li>Build the dashboards and systems you'll actually use</li>
-            </ul>
-          </div>
-
-          <div class="frac-phase">
-            <div class="frac-phase-header">
-              <span class="frac-phase-label">Month 3+</span>
-              <h3>The Retainer</h3>
-            </div>
-            <p class="frac-phase-desc">The constraint always moves. I stay on to find the next one, keep the systems current, and make sure the gains compound.</p>
-            <ul class="frac-list">
-              <li>Regular assessments — process and technology health checks</li>
-              <li>Constraint shift detection and re-prioritization</li>
-              <li>AI system upgrades as models get cheaper and smarter</li>
-              <li>New tool evaluation and integration recommendations</li>
-              <li>Team coaching on new systems and workflows</li>
-              <li>Strategic input on build-vs-buy decisions</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="fractional-sidebar">
-          <div class="frac-pricing-card">
-            <span class="frac-pricing-label">The Build</span>
-            <span class="frac-price">$8,000 — $20,000/mo</span>
-            <p class="frac-price-note">1–2 months, intensive</p>
-          </div>
-          <div class="frac-pricing-card">
-            <span class="frac-pricing-label">The Retainer</span>
-            <span class="frac-price">$3,000 — $8,000/mo</span>
-            <p class="frac-price-note">Ongoing, with regular assessments</p>
-          </div>
-          <p class="frac-fit-note">Best for businesses doing $1M–$20M in revenue that need senior operations + technology leadership but aren't ready for a full-time hire.</p>
-          <a href="/contact" class="btn btn-primary">Let's Talk</a>
-        </div>
-      </div>
     </div>
   </section>
 
   <CTASection
-    heading="Not sure which tier fits?"
-    subtext="Start with the Throughput Diagnostic. It will tell you exactly where AI should go in your business — and which tier makes sense from there."
+    heading="Which door fits your business?"
+    subtext="Thirty-minute discovery call — free, no pitch. We'll talk through what you're trying to fix, which door makes sense as the first engagement, and what comes after. If we're not a fit, I'll usually be able to point you toward someone who is."
   />
 </PageLayout>
 
 <style>
-  .services-hero {
-    text-align: center;
-    padding: 100px 60px 80px;
-  }
-
-  .services-title {
-    font-size: clamp(32px, 5vw, 44px);
-    font-weight: 800;
+  .page-hero {
+    background: var(--charcoal);
     color: var(--ivory);
-    margin-bottom: 16px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 80px 60px 64px;
+    text-align: center;
   }
 
-  .services-subtitle {
-    font-family: var(--font-body);
-    font-size: 18px;
-    line-height: 1.7;
-    color: var(--taupe);
-    max-width: 580px;
+  .page-hero-inner {
+    max-width: 820px;
     margin: 0 auto;
   }
 
-  .diagnostic-detail {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 48px;
-    align-items: start;
+  .hero-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 20px;
+    font-weight: 600;
   }
 
-  .diagnostic-phases {
+  .hero-title {
+    font-size: clamp(28px, 4.5vw, 42px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--ivory);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--taupe);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Doors */
+  .doors-stack {
+    max-width: 1040px;
+    margin: 40px auto 0;
     display: flex;
     flex-direction: column;
     gap: 28px;
   }
 
-  .phase {
-    padding-left: 24px;
-    border-left: 2px solid #E8E0D6;
+  .door-row {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 20px;
+    padding: 36px 36px;
   }
 
-  .phase-number {
+  .door-row-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #E8E0D6;
+  }
+
+  .door-row-num {
     font-family: var(--font-heading);
-    font-size: 11px;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--terracotta);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 56px;
+  }
+
+  .door-row-name {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin: 0 0 6px;
+    line-height: 1.2;
+  }
+
+  .door-row-ask {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--warm-gray);
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  .door-row-body {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  .door-narrative p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+
+  .door-shape-line {
+    font-family: var(--font-heading) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--terracotta) !important;
+    margin: 16px 0 24px !important;
+  }
+
+  .door-cta {
+    display: inline-block;
+  }
+
+  .door-deliverables {
+    background: var(--ivory);
+    border-radius: 16px;
+    padding: 24px 24px;
+  }
+
+  .deliverables-label {
+    font-family: var(--font-heading);
+    font-size: 11px !important;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--terracotta);
-    display: block;
-    margin-bottom: 6px;
+    margin-bottom: 12px !important;
   }
 
-  .phase h3 {
-    font-family: var(--font-heading);
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .phase p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--warm-gray);
-  }
-
-  .diagnostic-pricing {
-    background: var(--charcoal);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    position: sticky;
-    top: 100px;
-  }
-
-  .price-range {
-    font-family: var(--font-heading);
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--ivory);
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .price-note {
-    font-family: var(--font-heading);
-    font-size: 13px;
-    color: var(--taupe);
-    margin-bottom: 24px;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  @media (max-width: 768px) {
-    .services-hero {
-      padding: 60px 24px 48px;
-    }
-
-    .diagnostic-detail {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-
-    .diagnostic-pricing {
-      position: static;
-    }
-
-    .services-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .flow-detail {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-
-    .flow-pricing {
-      position: static;
-    }
-
-    .flow-includes {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* Organizational Flow Transformation */
-  .flow-detail {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 48px;
-    align-items: start;
-  }
-
-  .flow-includes {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .flow-item {
-    padding-left: 20px;
-    border-left: 2px solid #E8E0D6;
-  }
-
-  .flow-item h4 {
-    font-family: var(--font-heading);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--charcoal);
-    margin-bottom: 6px;
-  }
-
-  .flow-item p {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--warm-gray);
-  }
-
-  .flow-pricing {
-    background: var(--charcoal);
-    border-radius: 16px;
-    padding: 36px 28px;
-    text-align: center;
-    position: sticky;
-    top: 100px;
-  }
-
-  /* Fractional AI Officer */
-  .fractional {
-    padding: 80px 60px;
-  }
-
-  .fractional-title {
-    font-size: clamp(28px, 4vw, 36px);
-    font-weight: 800;
-    color: var(--ivory);
-    margin-bottom: 16px;
-  }
-
-  .fractional-subtitle {
-    font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--taupe);
-    max-width: 640px;
-    margin-bottom: 48px;
-  }
-
-  .fractional-layout {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 48px;
-    align-items: start;
-  }
-
-  .fractional-phases {
+  .deliverables-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 8px;
   }
 
-  .frac-phase {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid #4A3F3C;
+  .deliverables-list li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--charcoal);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .deliverables-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+
+  /* Expansion */
+  .expansion-grid {
+    max-width: 1040px;
+    margin: 32px auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .expansion-card {
+    background: #fff;
+    border: 1px solid #E8E0D6;
     border-radius: 16px;
-    padding: 32px 28px;
+    padding: 32px 32px;
   }
 
-  .frac-phase-header {
-    margin-bottom: 12px;
-  }
-
-  .frac-phase-label {
+  .expansion-name {
     font-family: var(--font-heading);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--terracotta-light);
-    display: block;
-    margin-bottom: 4px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin: 0 0 16px;
   }
 
-  .frac-phase h3 {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--ivory);
-  }
-
-  .frac-phase-desc {
+  .expansion-body {
+    font-family: var(--font-body);
     font-size: 15px;
-    line-height: 1.6;
-    color: var(--taupe);
-    margin-bottom: 16px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0 0 24px;
   }
 
-  .frac-list {
+  .expansion-bullets {
     list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
-  .frac-list li {
+  .expansion-bullets li {
     font-family: var(--font-heading);
     font-size: 13px;
-    color: var(--taupe);
+    color: var(--charcoal);
     padding-left: 20px;
     position: relative;
     line-height: 1.5;
   }
 
-  .frac-list li::before {
+  .expansion-bullets li::before {
     content: '\2713';
     position: absolute;
     left: 0;
-    color: var(--terracotta-light);
+    color: var(--terracotta);
     font-weight: 700;
   }
 
-  .fractional-sidebar {
-    position: sticky;
-    top: 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .frac-pricing-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid #4A3F3C;
-    border-radius: 12px;
-    padding: 24px 20px;
+  /* Pricing note */
+  .pricing-note-inner {
+    max-width: 720px;
+    margin: 0 auto;
     text-align: center;
   }
 
-  .frac-pricing-label {
-    font-family: var(--font-heading);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--terracotta-light);
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .frac-price {
-    font-family: var(--font-heading);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--ivory);
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .frac-price-note {
-    font-family: var(--font-heading);
-    font-size: 12px;
-    color: var(--warm-gray);
-  }
-
-  .frac-fit-note {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--taupe);
-    font-style: italic;
-    padding: 0 4px;
-  }
-
-  .fractional-sidebar .btn {
-    text-align: center;
+  .pricing-note-inner p {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--charcoal);
+    margin-top: 16px;
   }
 
   @media (max-width: 768px) {
-    .fractional {
-      padding: 48px 24px;
+    .page-hero {
+      padding: 56px 24px 40px;
     }
 
-    .fractional-layout {
+    .door-row {
+      padding: 24px 22px;
+    }
+
+    .door-row-head {
+      gap: 16px;
+    }
+
+    .door-row-num {
+      font-size: 28px;
+      min-width: 40px;
+    }
+
+    .door-row-name {
+      font-size: 22px;
+    }
+
+    .door-row-body {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 20px;
     }
 
-    .fractional-sidebar {
-      position: static;
+    .expansion-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .expansion-card {
+      padding: 24px 22px;
     }
   }
 </style>

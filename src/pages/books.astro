@@ -1,0 +1,179 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const books = [
+  {
+    title: 'AI Economics',
+    subtitle: 'How the cost curve of AI is rewriting what businesses can afford to do.',
+    description: 'A research-backed look at what AI actually costs, what it actually returns, and how to make the unit-economics calculation that most consultants skip. Closer to a textbook than a business book — original analysis, sources, and the arithmetic underneath the hype.',
+    status: 'Coming Soon',
+  },
+  {
+    title: 'Flow',
+    subtitle: 'Finding what\'s slowing your business down — and the methodology to fix it.',
+    description: 'The operational flow methodology behind every Unleashing Flow engagement: throughput as the metric, the constraint as the lever, AI as the tool. Built for owner-operators, not enterprise consultants. Worked examples from real engagements throughout.',
+    status: 'Coming Soon',
+  },
+];
+---
+
+<PageLayout
+  title="Books — Unleashing Flow"
+  description="Two books in development from Elliott English: AI Economics and Flow. Research-backed, textbook-style, written for owner-operators who want to think clearly about AI and operations."
+>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="hero-label">Books in development</p>
+      <h1 class="hero-title">Two books, written for operators who want to think for themselves.</h1>
+      <p class="hero-subtitle">
+        Neither is AI-generated content rewarmed. They're research-backed, denser than typical business books, closer to textbooks — built from real engagements and original analysis.
+      </p>
+    </div>
+  </section>
+
+  <section class="books-section section">
+    <div class="books-grid">
+      {books.map(book => (
+        <article class="book-card">
+          <span class="book-status">{book.status}</span>
+          <h2 class="book-title">{book.title}</h2>
+          <p class="book-subtitle">{book.subtitle}</p>
+          <p class="book-desc">{book.description}</p>
+          <a href="https://calendly.com/elliott-english/discovery-call" target="_blank" rel="noopener" class="btn btn-outline book-btn">Get notified at release</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <CTASection
+    heading="Want the methodology applied to your business now?"
+    subtext="You don't have to wait for the books. The same methodology runs through every engagement we take on — from a two-week AI Audit to ongoing Fractional AI Officer work. A discovery call is the natural first step."
+  />
+</PageLayout>
+
+<style>
+  .page-hero {
+    background: var(--charcoal);
+    color: var(--ivory);
+    padding: 80px 60px 64px;
+    text-align: center;
+  }
+
+  .page-hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 4.5vw, 42px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--ivory);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--taupe);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .books-section {
+    background: var(--ivory);
+  }
+
+  .books-grid {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .book-card {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 16px;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-status {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ivory);
+    background: var(--terracotta);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  .book-title {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin: 0 0 10px;
+    line-height: 1.15;
+  }
+
+  .book-subtitle {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--terracotta);
+    margin: 0 0 20px;
+  }
+
+  .book-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0 0 28px;
+    flex-grow: 1;
+  }
+
+  .book-btn {
+    align-self: flex-start;
+  }
+
+  @media (max-width: 768px) {
+    .page-hero {
+      padding: 56px 24px 40px;
+    }
+
+    .books-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .book-card {
+      padding: 28px 24px;
+    }
+
+    .book-title {
+      font-size: 26px;
+    }
+  }
+</style>

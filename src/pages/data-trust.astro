@@ -1,0 +1,352 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="How Your Data Is Handled — Unleashing Flow"
+  description="Plain-English explanation of how Unleashing Flow handles client data: storage, access, AI training prohibition, 60-day deletion, and breach notification."
+>
+  <section class="doc-page">
+    <div class="doc-toolbar no-print">
+      <button onclick="window.print()" class="btn btn-primary">Print or Save as PDF</button>
+      <p class="toolbar-note">Use your browser's print dialog and choose "Save as PDF" as the destination if you want a copy on file.</p>
+    </div>
+
+    <article class="doc">
+      <header class="doc-header">
+        <p class="doc-eyebrow">Unleashing Flow — Plain English</p>
+        <h1 class="doc-title">How Your Data Is Handled</h1>
+      </header>
+
+      <p class="doc-lead">
+        Sharing your business data — sales, invoices, payroll, operational documents — is a big deal. This page explains in plain English what I'm doing with it, where it lives, and what happens when we're done. No legalese. If anything here isn't clear, ask me before signing anything.
+      </p>
+
+      <hr class="doc-rule" />
+
+      <h2>What data you'll typically share</h2>
+      <p>For a typical engagement I'll ask for, roughly, the last 12 months of:</p>
+      <ul>
+        <li><strong>Sales data</strong> — exports from your point-of-sale or transaction system</li>
+        <li><strong>Supplier invoices</strong> — PDFs, scans, or photos of paper invoices</li>
+        <li><strong>Payroll</strong> — shift hours, roles, and labor cost (exported from your payroll system)</li>
+        <li><strong>Operational documents</strong> — process docs, floor plans, equipment lists, hours of operation</li>
+        <li><strong>Industry-specific items</strong> — recipes, formulas, protocols, or other proprietary content as relevant</li>
+      </ul>
+
+      <p>I will <em>not</em> ask for, store, or process:</p>
+      <ul>
+        <li>Customer credit-card information</li>
+        <li>Personal medical or HR records beyond what's needed to compute labor cost</li>
+        <li>Tax filings or bank statements (unless we explicitly agree to a financial-flow analysis)</li>
+      </ul>
+
+      <hr class="doc-rule" />
+
+      <h2>Where the data lives</h2>
+
+      <h3>Default — for diagnostics, audits, and one-time engagements</h3>
+      <ul>
+        <li>Your data sits in an encrypted database <strong>on my work machine</strong> — never uploaded to a shared cloud drive or public storage.</li>
+        <li>All file uploads (your invoices, photos, scans) stay local and encrypted at rest.</li>
+        <li>Nothing is shared with vendors or used to train any AI model.</li>
+      </ul>
+
+      <h3>For web-app and dashboard builds where you need ongoing access</h3>
+      <ul>
+        <li>I provision a dedicated <strong>Supabase project</strong> for your engagement, configured under your business name.</li>
+        <li>Supabase is a US-based managed service with SOC 2 Type II compliance.</li>
+        <li>The project runs on the Supabase free tier in most cases — sufficient for small-business workloads for the foreseeable future.</li>
+        <li><strong>At engagement end, I transfer ownership of the Supabase project to you.</strong> You hold the keys; I no longer have access.</li>
+        <li>All data encrypted at rest. Nothing trained on, ever.</li>
+      </ul>
+
+      <p>If you'd prefer the entire analysis to run on a laptop at your business that never connects to the cloud, that's available too — just say the word during onboarding.</p>
+
+      <hr class="doc-rule" />
+
+      <h2>Who sees it</h2>
+      <p>
+        <strong>Only Elliott.</strong> I am the sole person handling your data. I don't use contractors or virtual assistants. My partner Mac runs business development and introductions — he doesn't access client systems or datasets. No part of your data is shared with a third party without your written approval each time.
+      </p>
+      <p>
+        When AI tools (Claude, GPT) help me analyze your data, those tools are configured to <strong>not train on the content you share with me</strong>. This is a contractual obligation between me and the AI providers, not a setting I can forget to toggle.
+      </p>
+
+      <hr class="doc-rule" />
+
+      <h2>What I will NOT do without your written permission</h2>
+      <ul>
+        <li>Post your numbers — even anonymized — on LinkedIn, in a newsletter, on the website, or in a sales deck</li>
+        <li>Use your engagement in marketing material of any kind</li>
+        <li>Share your proprietary content (formulas, recipes, protocols, processes) with anyone, for any purpose, ever, in any form</li>
+        <li>Approach your suppliers, employees, or customers</li>
+        <li>Hire your employees, or recommend them to anyone, for at least 12 months after our engagement ends</li>
+      </ul>
+
+      <hr class="doc-rule" />
+
+      <h2>What happens when we're done</h2>
+      <p>Within <strong>60 days</strong> of engagement end:</p>
+      <ol>
+        <li>All your data is deleted from my working database and from local files on my machine.</li>
+        <li>All uploaded files (invoice PDFs, photos, scans) are deleted from storage.</li>
+        <li>For web-app and dashboard builds: <strong>ownership of the Supabase project is transferred to you</strong>, and I revoke my own access.</li>
+        <li>You receive a signed <strong>Data Destruction Certificate</strong> confirming this is done.</li>
+        <li>The only thing I retain is a high-level engagement summary for my own records — no SKU-level numbers, no proprietary content, no customer or employee data.</li>
+      </ol>
+      <p>If we have an ongoing retainer, deletion happens within 60 days of the retainer ending, not after each monthly cycle.</p>
+
+      <hr class="doc-rule" />
+
+      <h2>If something goes wrong</h2>
+      <p>In the unlikely event of any data breach or unauthorized access affecting your information:</p>
+      <ul>
+        <li>You'll be notified within 24 hours</li>
+        <li>I will fully cooperate with any investigation</li>
+        <li>I carry professional liability (E&amp;O) insurance — certificate available on request</li>
+      </ul>
+
+      <hr class="doc-rule" />
+
+      <h2>In one sentence</h2>
+      <p class="doc-summary">
+        Your data is encrypted, only Elliott touches it, never used for marketing without your written approval each time, and deleted within 60 days of when we finish — with the Supabase project handed over to you if we built one.
+      </p>
+
+      <hr class="doc-rule" />
+
+      <p class="doc-call-to-read">
+        <strong>Read it. Ask questions. Then we can talk about whether the engagement makes sense.</strong>
+      </p>
+
+      <footer class="doc-signoff">
+        <p>Elliott English<br/>
+        <a href="mailto:Elliott@unleashingflow.com">Elliott@unleashingflow.com</a><br/>
+        Unleashing Flow LLC</p>
+      </footer>
+    </article>
+  </section>
+</PageLayout>
+
+<style>
+  .doc-page {
+    background: var(--ivory);
+    padding: 48px 24px 64px;
+  }
+
+  .doc-toolbar {
+    max-width: 760px;
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .toolbar-note {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    color: var(--warm-gray);
+    margin: 0;
+    flex: 1;
+    min-width: 240px;
+    letter-spacing: 0.2px;
+  }
+
+  .doc {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 16px;
+    padding: 60px 64px;
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--charcoal);
+  }
+
+  .doc-header {
+    margin-bottom: 28px;
+  }
+
+  .doc-eyebrow {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+
+  .doc-title {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--charcoal);
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .doc-lead {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.75;
+    margin: 0 0 8px;
+  }
+
+  .doc h2 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin: 36px 0 14px;
+    line-height: 1.25;
+  }
+
+  .doc h3 {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin: 22px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .doc p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+
+  .doc ul,
+  .doc ol {
+    padding-left: 20px;
+    margin: 0 0 16px;
+  }
+
+  .doc li {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .doc strong {
+    color: var(--charcoal);
+    font-weight: 700;
+  }
+
+  .doc em {
+    color: var(--terracotta);
+    font-style: italic;
+  }
+
+  .doc-rule {
+    border: none;
+    border-top: 1px solid #E8E0D6;
+    margin: 32px 0;
+  }
+
+  .doc-summary {
+    background: var(--ivory);
+    border-left: 4px solid var(--terracotta);
+    padding: 16px 20px;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 12px 0 8px;
+  }
+
+  .doc-call-to-read {
+    text-align: center;
+    margin: 28px 0;
+  }
+
+  .doc-signoff {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #E8E0D6;
+  }
+
+  .doc-signoff p {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0;
+  }
+
+  .doc-signoff a {
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .doc {
+      padding: 36px 28px;
+    }
+
+    .doc-title {
+      font-size: 26px;
+    }
+  }
+
+  /* Print styles — hide nav, footer, toolbar; expand content; black on white */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+
+    .doc-page {
+      background: white;
+      padding: 0;
+    }
+
+    .doc {
+      max-width: 100%;
+      padding: 24px 0;
+      border: none;
+      box-shadow: none;
+      background: white;
+    }
+
+    .doc-rule {
+      border-color: #999;
+    }
+
+    .doc-summary {
+      background: #f3f3f3;
+      border-left-color: #555;
+    }
+
+    .doc-eyebrow,
+    .doc em,
+    .doc-signoff a {
+      color: #555;
+    }
+
+    h2, h3 {
+      page-break-after: avoid;
+    }
+
+    ul, ol, p {
+      page-break-inside: avoid;
+    }
+  }
+</style>
+
+<style is:global>
+  @media print {
+    .site-header,
+    .site-footer,
+    .divider {
+      display: none !important;
+    }
+
+    body {
+      background: white !important;
+      color: black !important;
+    }
+  }
+</style>

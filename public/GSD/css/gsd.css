@@ -397,7 +397,7 @@ td strong { font-family: 'Montserrat', sans-serif; font-weight: 700; }
 /* Spec page (scroll) */
 .spec-page {
   padding: 72px 40px 80px;
-  max-width: 900px;
+  max-width: 1060px;
   margin: 0 auto;
   background: var(--ivory);
   color: var(--charcoal);
@@ -489,6 +489,92 @@ td strong { font-family: 'Montserrat', sans-serif; font-weight: 700; }
 }
 .slide.light .arch-diagram { background: var(--ivory-dark); color: var(--warm-gray); }
 
+/* Spec page — three-path layout */
+.spec-page h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 40px 0 16px;
+  text-align: left;
+}
+.path-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 24px 0;
+}
+.path-card {
+  border: 1px solid rgba(124,110,96,0.2);
+  border-radius: 10px;
+  padding: 18px;
+  background: var(--ivory-dark);
+  font-family: 'Lora', serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--warm-gray);
+}
+.path-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 8px;
+}
+.path-card.recommended {
+  border-color: var(--green);
+  box-shadow: 0 0 0 1px var(--green);
+}
+.path-card .path-meta {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 12px;
+  color: var(--charcoal);
+}
+.path-pill {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+.pill-a { background: #E8E4DF; color: var(--warm-gray); }
+.pill-b { background: var(--green-light); color: var(--green); }
+.pill-c { background: #E8D4C8; color: var(--terracotta); }
+.pill-vendor { background: #DDE8F0; color: #4A6670; }
+.pill-custom { background: var(--amber-light); color: #8B6914; }
+.pill-hybrid { background: var(--green-light); color: var(--green); }
+
+.spec-page .table-wrap { margin: 16px 0; }
+.spec-page table { font-size: 12px; }
+.spec-page th { font-size: 9px; }
+.spec-page td { vertical-align: top; }
+.spec-page td:first-child { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 12px; color: var(--charcoal); min-width: 140px; }
+.path-col-a { background: rgba(124,110,96,0.06); }
+.path-col-b { background: rgba(74,124,89,0.08); }
+.path-col-c { background: rgba(169,121,103,0.08); }
+.spec-feature-row td { font-size: 13px; }
+
+.path-block {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(124,110,96,0.12);
+}
+.path-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.path-block-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
 @media (max-width: 900px) {
   .slide { padding: 32px 24px 72px; }
   .grid-2, .grid-3, .pain-grid { grid-template-columns: 1fr; }
@@ -496,4 +582,5 @@ td strong { font-family: 'Montserrat', sans-serif; font-weight: 700; }
   .phase-meta { text-align: left; }
   .chart-row { grid-template-columns: 70px 1fr 60px; font-size: 11px; }
   .top-bar nav { gap: 12px; font-size: 10px; }
+  .path-cards { grid-template-columns: 1fr; }
 }

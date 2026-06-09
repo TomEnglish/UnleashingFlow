@@ -492,17 +492,25 @@ td strong { font-family: 'Montserrat', sans-serif; font-weight: 700; }
   color: var(--charcoal);
   border: 1px solid rgba(124,110,96,0.25);
 }
-.spec-page .arch-diagram {
-  background: #fff;
-  color: var(--charcoal);
-  border: 1px solid rgba(124,110,96,0.28);
+
+/* Spec page code blocks — explicit light theme (no inheritance from slide styles) */
+pre.arch-block,
+.arch-block {
+  display: block;
+  font-family: 'Montserrat', ui-monospace, 'SF Mono', Menlo, monospace;
   font-size: 12px;
-  line-height: 1.65;
-  box-shadow: 0 1px 3px rgba(61,51,48,0.06);
-}
-.spec-body .arch-diagram {
-  margin-top: 8px;
-  margin-bottom: 0;
+  line-height: 1.7;
+  background: #ffffff;
+  color: #2a2220;
+  border: 1px solid #c4b5a8;
+  padding: 18px 22px;
+  border-radius: 8px;
+  max-width: 100%;
+  margin: 8px 0 0;
+  text-align: left;
+  white-space: pre;
+  overflow-x: auto;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Spec page — three-path layout */

@@ -487,7 +487,23 @@ td strong { font-family: 'Montserrat', sans-serif; font-weight: 700; }
   white-space: pre;
   overflow-x: auto;
 }
-.slide.light .arch-diagram { background: var(--ivory-dark); color: var(--warm-gray); }
+.slide.light .arch-diagram {
+  background: #fff;
+  color: var(--charcoal);
+  border: 1px solid rgba(124,110,96,0.25);
+}
+.spec-page .arch-diagram {
+  background: #fff;
+  color: var(--charcoal);
+  border: 1px solid rgba(124,110,96,0.28);
+  font-size: 12px;
+  line-height: 1.65;
+  box-shadow: 0 1px 3px rgba(61,51,48,0.06);
+}
+.spec-body .arch-diagram {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
 
 /* Spec page — three-path layout */
 .spec-page h2 {

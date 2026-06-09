@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Grand Slam CRM — Strategy Walkthrough</title>
+  <link rel="stylesheet" href="/GSD/css/gsd.css">
+</head>
+<body>
+
+<header class="top-bar">
+  <span class="brand">Unleashing Flow · GSD</span>
+  <nav>
+    <a href="/GSD/" class="active">Presentation</a>
+    <a href="/GSD/spec.html">Technical Spec</a>
+    <a href="/GSD/options.html">Options Detail</a>
+  </nav>
+  <span class="confidential">Client Confidential</span>
+</header>
+
+<div class="deck">
+
+  <!-- 1: Title -->
+  <section class="slide dark active title-slide">
+    <div class="eyebrow">Grand Slam Dumpster Rentals</div>
+    <div class="title-name">CRM &amp; <span>AI Strategy</span></div>
+    <div class="title-sub">Build vs. buy — and a phased path to an AI-powered lead machine</div>
+    <div class="title-byline">Houston &amp; Katy, TX · Prepared by Unleashing Flow · June 2026</div>
+    <p class="lead" style="margin-top:32px; font-size:14px;">Use arrow keys or buttons to advance · <a href="/GSD/spec.html" style="color:var(--terracotta-light)">Full technical spec →</a></p>
+  </section>
+
+  <!-- 2: Context -->
+  <section class="slide light align-top">
+    <div class="eyebrow">Where You Are Today</div>
+    <h1>Family-operated, growing fast — buried in admin.</h1>
+    <p class="lead">1–2 trucks today. Gmail, QuickBooks, dispatch software, and Google Sheets. A 10-year vision toward $10M valuation implies 25–35% annual growth — if leads don't slip through the cracks.</p>
+    <div class="pain-grid">
+      <div class="pain-item">
+        <span class="pain-priority">High</span>
+        <span class="pain-text">Phone and email inquiries eating hours every day</span>
+      </div>
+      <div class="pain-item">
+        <span class="pain-priority">High</span>
+        <span class="pain-text">Manual scheduling and dispatch coordination</span>
+      </div>
+      <div class="pain-item">
+        <span class="pain-priority">High</span>
+        <span class="pain-text">Leads going cold — no follow-up sequence</span>
+      </div>
+      <div class="pain-item">
+        <span class="pain-priority">Med</span>
+        <span class="pain-text">Manual QuickBooks invoicing and collections chasing</span>
+      </div>
+      <div class="pain-item">
+        <span class="pain-priority">Med</span>
+        <span class="pain-text">Daily driver coordination by hand</span>
+      </div>
+      <div class="pain-item">
+        <span class="pain-priority">Goal</span>
+        <span class="pain-text">Same/next-day delivery · driveway protection · no payment until delivery — at scale</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3: Decision frame -->
+  <section class="slide dark">
+    <div class="eyebrow">The Decision</div>
+    <h1>Three paths. One north-star spec.</h1>
+    <p class="lead">We evaluated off-the-shelf stacks, a hybrid approach, and a fully custom build. The full technical spec describes where you could land in 2–3 years. <strong style="color:var(--ivory)">You don't have to fund all of it on day one.</strong></p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Path A — Buy &amp; Wire</h3>
+        <p>iCans Plus + Zapier + off-the-shelf AI add-ons. Lowest build cost, highest long-term SaaS drag if you grow.</p>
+      </div>
+      <div class="card recommended">
+        <span class="badge badge-rec">Recommended</span>
+        <h3>Path B — Hybrid</h3>
+        <p>Custom AI layer (inbox, voice, owner's-voice email) + proven dispatch software for routes, driver app, and QB sync.</p>
+      </div>
+      <div class="card">
+        <h3>Path C — Full Custom</h3>
+        <p>Everything in the technical spec — full ownership, highest build effort. Matches the 20-week blueprint.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4: Path A detail -->
+  <section class="slide light align-top">
+    <div class="eyebrow">Path A</div>
+    <h2>All SaaS — configure, don't build</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Component</th><th>Tool</th><th>Role</th></tr>
+        <tr><td>Dispatch &amp; CRM</td><td><strong>iCans Plus</strong></td><td>~$159/mo — routes, driver app, booking</td></tr>
+        <tr><td>Voice AI</td><td><strong>VAPI</strong></td><td>After-hours call answering</td></tr>
+        <tr><td>Automation</td><td><strong>Zapier Pro</strong></td><td>Connect tools, trigger follow-ups</td></tr>
+        <tr><td>AI text</td><td><strong>Claude API</strong> via Zapier</td><td>Email drafts, basic replies</td></tr>
+        <tr><td>Reviews</td><td><strong>NiceJob</strong></td><td>Post-job review requests</td></tr>
+        <tr><td>SMS / Email</td><td><strong>Twilio + SendGrid</strong></td><td>Outbound messaging</td></tr>
+        <tr><td>Accounting</td><td><strong>QuickBooks Plus</strong></td><td>Invoicing (existing)</td></tr>
+        <tr><td>Lead data</td><td><strong>Apollo Basic</strong></td><td>Contractor outreach lists</td></tr>
+      </table>
+    </div>
+    <p class="lead" style="margin-top:20px; font-size:15px;">~25 hours setup · ~$3,750 build · Best if growth stays flat</p>
+  </section>
+
+  <!-- 5: Path B detail -->
+  <section class="slide accent align-top">
+    <div class="eyebrow">Path B — Recommended</div>
+    <h2>Hybrid — custom AI where you differentiate</h2>
+    <div class="grid-2">
+      <div class="card recommended">
+        <h3>Custom layer (we build)</h3>
+        <ul>
+          <li>Unified conversation inbox (email, SMS, voice transcripts)</li>
+          <li>AI reply suggestions with owner's-voice Gmail drafts</li>
+          <li>Knowledge base + RAG for accurate answers</li>
+          <li>Lead scoring, follow-up sequences, campaign engine</li>
+          <li>After-hours voice agent (VAPI) — v1.1</li>
+          <li>Analytics &amp; KPI dashboard</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Keep on proven SaaS</h3>
+        <ul>
+          <li><strong>iCans Plus</strong> — dispatch board, driver app, route optimization</li>
+          <li><strong>QuickBooks</strong> — invoicing &amp; payments (sync via iCans)</li>
+          <li>Option to migrate off iCans in Year 4–5 if needed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:24px;">
+      <strong>Why hybrid wins:</strong> Generic SaaS-bundled AI is mediocre for voice agents and email-in-your-voice. You get the AI differentiator without rebuilding dispatch — the part that's hard and not where customers feel the magic.
+    </div>
+    <p class="lead" style="margin-top:16px; font-size:15px;">~70 hours total · ~$10,500 · v1 pilot (Phases 1–3) ≈ 40–50 hrs / $6K–$7.5K</p>
+  </section>
+
+  <!-- 6: Path C detail -->
+  <section class="slide light align-top">
+    <div class="eyebrow">Path C</div>
+    <h2>Full custom — the complete blueprint</h2>
+    <p class="lead" style="margin-bottom:20px;">Everything in the technical spec: custom dispatch board, driver hub, QuickBooks integration, booking flow, reviews, multi-market webhooks. Built on Next.js + Supabase + OpenRouter.</p>
+    <div class="arch-diagram">Next.js 14 ──► Supabase (Postgres + Auth + Realtime)
+       │
+       ├── OpenRouter (all LLM tasks)
+       ├── VAPI (voice)
+       ├── Twilio + SendGrid (messaging)
+       ├── QuickBooks + Stripe (money)
+       └── 25+ database tables · 25+ API routes</div>
+    <p class="lead" style="margin-top:20px; font-size:15px;">~135 hours · ~$20,250 · Best TCO at 30%+ CAGR over 5 years · Highest execution risk today</p>
+  </section>
+
+  <!-- 7: Build cost comparison -->
+  <section class="slide dark align-top">
+    <div class="eyebrow">Build Investment</div>
+    <h1>One-time build cost</h1>
+    <p class="lead">AI-assisted development (~3.5× productivity vs traditional agency estimates). Bill rate: $150/hr.</p>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Path</th>
+          <th>Hours</th>
+          <th>Build cost</th>
+          <th>v1 pilot scope</th>
+        </tr>
+        <tr>
+          <td><strong>A — SaaS setup</strong></td>
+          <td>~25</td>
+          <td>$3,750</td>
+          <td>Full path (config only)</td>
+        </tr>
+        <tr class="col-rec">
+          <td><strong>B — Hybrid</strong></td>
+          <td>~70 total</td>
+          <td>$10,500</td>
+          <td><strong>Phases 1–3: 40–50 hrs · $6K–$7.5K</strong></td>
+        </tr>
+        <tr>
+          <td><strong>C — Full custom</strong></td>
+          <td>~135</td>
+          <td>$20,250</td>
+          <td>Phases 1–10 over 20 weeks</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 8: TCO chart -->
+  <section class="slide light">
+    <div class="eyebrow">5-Year Total Cost of Ownership</div>
+    <h1>Build + operating costs (30% annual growth assumed)</h1>
+    <div class="chart">
+      <div class="chart-row">
+        <span class="chart-label">Path A</span>
+        <div class="chart-bar-wrap"><div class="chart-bar bar-a" style="width:100%">$78,732</div></div>
+        <span class="chart-value">$78.7K</span>
+      </div>
+      <div class="chart-row">
+        <span class="chart-label">Path B</span>
+        <div class="chart-bar-wrap"><div class="chart-bar bar-b" style="width:91%">$71,739</div></div>
+        <span class="chart-value">$71.7K</span>
+      </div>
+      <div class="chart-row">
+        <span class="chart-label">Path C</span>
+        <div class="chart-bar-wrap"><div class="chart-bar bar-c" style="width:85%">$66,875</div></div>
+        <span class="chart-value">$66.9K</span>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:28px; font-size:15px;">At flat growth, Path A wins forever. Above ~15% CAGR, custom paths win — your stated trajectory is 25–35%.</p>
+  </section>
+
+  <!-- 9: Operating trajectory -->
+  <section class="slide dark align-top">
+    <div class="eyebrow">Operating Costs</div>
+    <h2>Monthly run rate by year</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Year</th><th>Path A</th><th>Path B</th><th>Path C</th></tr>
+        <tr><td>Year 1</td><td>$8,604</td><td class="col-rec">$7,920</td><td>$6,612</td></tr>
+        <tr><td>Year 2</td><td>$10,660</td><td class="col-rec">$8,874</td><td>$6,780</td></tr>
+        <tr><td>Year 3</td><td>$13,713</td><td class="col-rec">$10,923</td><td>$7,929</td></tr>
+        <tr><td>Year 4</td><td>$18,156</td><td>$14,689</td><td class="col-rec">$10,759</td></tr>
+        <tr><td>Year 5</td><td>$23,849</td><td>$18,833</td><td class="col-rec">$14,545</td></tr>
+      </table>
+    </div>
+    <p class="lead" style="margin-top:20px; font-size:14px;">SaaS scales with usage; custom infrastructure stays mostly fixed. LLM costs deflate 2–5× over 3 years — captured most in Paths B &amp; C.</p>
+  </section>
+
+  <!-- 10: Spec map -->
+  <section class="slide light align-top">
+    <div class="eyebrow">The Spec Is a Blueprint</div>
+    <h2>What the full spec covers vs. what v1 includes</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Capability</th><th>v1 Pilot (B)</th><th>v1.1+</th><th>Path C / Year 2+</th></tr>
+        <tr><td>Lead inbox + AI replies</td><td class="check">✓</td><td></td><td></td></tr>
+        <tr><td>Owner's-voice Gmail drafts</td><td class="check">✓</td><td></td><td></td></tr>
+        <tr><td>Knowledge base + RAG</td><td class="check">✓</td><td></td><td></td></tr>
+        <tr><td>Follow-up campaigns</td><td class="partial">Basic</td><td class="check">✓ Full</td><td></td></tr>
+        <tr><td>Voice agent (after-hours)</td><td class="dash">—</td><td class="check">✓</td><td></td></tr>
+        <tr><td>Pipeline kanban</td><td class="partial">Light</td><td class="check">✓</td><td></td></tr>
+        <tr><td>Dispatch + driver hub</td><td class="dash">iCans</td><td class="dash">iCans</td><td class="check">Custom</td></tr>
+        <tr><td>QuickBooks auto-invoice</td><td class="dash">iCans/QB</td><td class="partial">AI dunning</td><td class="check">Full</td></tr>
+        <tr><td>Google reviews automation</td><td class="dash">—</td><td class="check">✓</td><td></td></tr>
+        <tr><td>Multi-market / Zapier app</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+      </table>
+    </div>
+    <p class="lead" style="margin-top:16px;"><a href="/GSD/spec.html" style="color:var(--terracotta)">Browse the full 22-section technical spec →</a></p>
+  </section>
+
+  <!-- 11: Pilot proposal -->
+  <section class="slide accent align-top">
+    <div class="eyebrow">Recommended Start</div>
+    <h1>6-week pilot — Path B, Phases 1–3</h1>
+    <p class="lead">Prove AI saves time and converts leads before funding voice, reviews, or full dispatch rebuild.</p>
+    <div class="phases">
+      <div class="phase-row phase-pilot">
+        <span class="phase-num">P1</span>
+        <div>
+          <div class="phase-title">Foundation (Weeks 1–2)</div>
+          <div class="phase-desc">Supabase + auth · Lead CRUD · CSV import · Today dashboard shell</div>
+        </div>
+        <span class="phase-meta">~15 hrs</span>
+      </div>
+      <div class="phase-row phase-pilot">
+        <span class="phase-num">P2</span>
+        <div>
+          <div class="phase-title">AI Core (Weeks 3–4)</div>
+          <div class="phase-desc">OpenRouter router · Prompt templates · KB editor + embeddings · Outreach generation</div>
+        </div>
+        <span class="phase-meta">~12 hrs</span>
+      </div>
+      <div class="phase-row phase-pilot">
+        <span class="phase-num">P3</span>
+        <div>
+          <div class="phase-title">Conversations (Weeks 5–6)</div>
+          <div class="phase-desc">SendGrid + Twilio · Unified inbox · AI reply suggestions · Gmail owner's-voice drafts</div>
+        </div>
+        <span class="phase-meta">~18 hrs</span>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>Investment:</strong> $6,000–$7,500 one-time · <strong>Decision gate at day 60:</strong> continue to v1.1 if 2 of 4 success metrics hit.
+    </div>
+  </section>
+
+  <!-- 12: Success metrics -->
+  <section class="slide dark">
+    <div class="eyebrow">Pilot Success Criteria</div>
+    <h1>Instrument from day one</h1>
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-val">&lt;5 min</div>
+        <div class="kpi-label">Lead response time</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">5+ hrs</div>
+        <div class="kpi-label">Admin time saved / week</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">↑ 25%</div>
+        <div class="kpi-label">Lead-to-booking (directional)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">Active</div>
+        <div class="kpi-label">Owner uses AI drafts daily</div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:32px;">Six-month north-star: 80%+ calls handled without human · 15+ hrs/week saved · DSO −10 days · 3× review velocity</p>
+  </section>
+
+  <!-- 13: Full roadmap -->
+  <section class="slide light align-top">
+    <div class="eyebrow">Full Roadmap (Path C Blueprint)</div>
+    <h2>10 phases · 20 weeks if building everything custom</h2>
+    <div class="phases">
+      <div class="phase-row"><span class="phase-num">4</span><div><div class="phase-title">Voice</div><div class="phase-desc">VAPI + business-hours routing + call transcripts</div></div><span class="phase-meta">Wk 7–8</span></div>
+      <div class="phase-row"><span class="phase-num">5</span><div><div class="phase-title">Automation &amp; Pipeline</div><div class="phase-desc">Campaigns · Kanban · Lead scoring</div></div><span class="phase-meta">Wk 9–10</span></div>
+      <div class="phase-row"><span class="phase-num">6</span><div><div class="phase-title">Bookings &amp; Dispatch</div><div class="phase-desc">Quotes · Stripe · Driver SMS hub</div></div><span class="phase-meta">Wk 11–12</span></div>
+      <div class="phase-row"><span class="phase-num">7</span><div><div class="phase-title">QuickBooks &amp; Collections</div><div class="phase-desc">Auto-invoice · AI dunning · DSO dashboard</div></div><span class="phase-meta">Wk 13–14</span></div>
+      <div class="phase-row"><span class="phase-num">8–10</span><div><div class="phase-title">Reviews · Analytics · Ecosystem</div><div class="phase-desc">Google reviews · KPI dashboard · Zapier app · permit scrapers</div></div><span class="phase-meta">Wk 15–20</span></div>
+    </div>
+  </section>
+
+  <!-- 14: Open questions -->
+  <section class="slide dark align-top">
+    <div class="eyebrow">Before We Start</div>
+    <h2>Open questions to validate together</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Business assumptions</h3>
+        <ul>
+          <li>Current revenue baseline — is 30% growth realistic?</li>
+          <li>$10M @ 10 years — what's the actual plan?</li>
+          <li>Multi-market (Dallas, Austin) on the horizon?</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Vendor validation</h3>
+        <ul>
+          <li>iCans pricing at 3–5 trucks — need direct quote</li>
+          <li>Current dispatch tool — staying or switching?</li>
+          <li>QuickBooks tier and existing workflows</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15: Next steps -->
+  <section class="slide light title-slide">
+    <div class="eyebrow">Next Steps</div>
+    <h1>Approve the pilot. Measure at 60 days.</h1>
+    <p class="lead">We're not asking you to choose a CRM religion. We're asking you to fund a 6-week test of whether AI actually moves bookings for Grand Slam.</p>
+    <div class="grid-2" style="margin-top:32px; text-align:left;">
+      <div class="card recommended">
+        <h3>Recommended</h3>
+        <p>Path B pilot — Phases 1–3 · $6K–$7.5K · 6 weeks</p>
+      </div>
+      <div class="card">
+        <h3>Reference</h3>
+        <p><a href="/GSD/spec.html" style="color:var(--terracotta)">Technical spec</a> · <a href="/GSD/options.html" style="color:var(--terracotta)">Options detail</a></p>
+      </div>
+    </div>
+    <div class="title-byline" style="margin-top:48px;">unleashingflow.com · Elliott@unleashingflow.com</div>
+  </section>
+
+</div>
+
+<div class="slide-nav">
+  <button id="prev" aria-label="Previous slide">‹</button>
+  <span class="counter" id="counter">1 / 15</span>
+  <button id="next" aria-label="Next slide">›</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  let idx = 0;
+  function show(n) {
+    idx = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    counter.textContent = `${idx + 1} / ${slides.length}`;
+  }
+  document.getElementById('prev').addEventListener('click', () => show(idx - 1));
+  document.getElementById('next').addEventListener('click', () => show(idx + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(idx + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(idx - 1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+  });
+</script>
+
+</body>
+</html>

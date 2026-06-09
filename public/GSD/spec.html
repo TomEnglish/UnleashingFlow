@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Grand Slam CRM — Technical Specification</title>
+  <link rel="stylesheet" href="/GSD/css/gsd.css">
+</head>
+<body>
+
+<header class="top-bar">
+  <span class="brand">Unleashing Flow · GSD</span>
+  <nav>
+    <a href="/GSD/">Presentation</a>
+    <a href="/GSD/spec.html" class="active">Technical Spec</a>
+    <a href="/GSD/options.html">Options Detail</a>
+  </nav>
+  <span class="confidential">Client Confidential</span>
+</header>
+
+<main class="spec-page">
+  <h1>Technical Specification</h1>
+  <p class="subtitle">
+    Version 1.0 — full custom blueprint (Path C). Stack: Next.js 14 + Tailwind + Supabase + OpenRouter.
+    This describes the <strong>north-star system</strong>; the recommended pilot (Path B) implements Phases 1–3 first.
+  </p>
+
+  <div class="callout">
+    <strong>25 database tables</strong> · <strong>25+ API routes</strong> · <strong>16 feature modules</strong> · <strong>10 build phases over 20 weeks</strong>
+  </div>
+
+  <details class="spec-section" open>
+    <summary>1. Business Context &amp; Vision</summary>
+    <div class="spec-body">
+      <ul>
+        <li>10-yard &amp; 20-yard roll-off rentals — Houston &amp; Katy, TX</li>
+        <li>Ideal clients: residential contractors, commercial GCs, disaster restoration, realtors</li>
+        <li>Current tools: Gmail, QuickBooks, dispatch software, Google Sheets</li>
+        <li>10-year goal: $10M business valuation</li>
+        <li>Six KPIs: hours saved, lead response time, conversion rate, DSO, review velocity, monthly revenue</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>2. Core Features (16 modules)</summary>
+    <div class="spec-body">
+      <ul>
+        <li><strong>2.1 Lead acquisition</strong> — CSV, Apollo, Clay, permits, webhooks, duplicate detection, scoring 0–100</li>
+        <li><strong>2.2 AI outreach</strong> — Per-segment prompts, owner's-voice, A/B variants, email/SMS/LinkedIn</li>
+        <li><strong>2.3 Voice agent</strong> — VAPI/Bland, 24/7 qualification &amp; booking, transcripts</li>
+        <li><strong>2.4 Owner's-voice email</strong> — Gmail OAuth drafts, trained on 20–50 past emails</li>
+        <li><strong>2.5 Reply handler</strong> — Multi-channel inbound, RAG, confidence scoring, escalation</li>
+        <li><strong>2.6 Follow-up scheduler</strong> — Per-segment cadence, pause logic, re-engagement</li>
+        <li><strong>2.7 Quotes &amp; booking</strong> — Dynamic pricing, PDF, e-sign, Stripe, ETA notifications</li>
+        <li><strong>2.8 QuickBooks</strong> — OAuth, auto-invoice, customer sync, AI dunning, DSO</li>
+        <li><strong>2.9 Driver hub</strong> — Mobile view, AM dispatch SMS, inbound status parsing</li>
+        <li><strong>2.10 Knowledge base</strong> — Markdown editor, pgvector RAG, test playground</li>
+        <li><strong>2.11 Conversation inbox</strong> — Unified threads, AI suggestions, sentiment colors</li>
+        <li><strong>2.12 Pipeline &amp; dispatch</strong> — Kanban, calendar, driver assignment, SLA alerts</li>
+        <li><strong>2.13 Google reviews</strong> — Post-job SMS sentiment → review link or private feedback</li>
+        <li><strong>2.14 Accounts</strong> — Repeat customers, LTV, tiered contractor pricing</li>
+        <li><strong>2.15 AI model management</strong> — OpenRouter, per-task models, cost caps, fallbacks</li>
+        <li><strong>2.16 Analytics</strong> — Today dashboard, funnel, AI cost per booked job, weekly reports</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>3. Architecture</summary>
+    <div class="spec-body">
+      <p><strong>Frontend:</strong> Next.js 14 App Router, Tailwind, shadcn/ui, TanStack Query, Recharts — deployed on Vercel.</p>
+      <p style="margin-top:12px;"><strong>Backend:</strong> Supabase Postgres 15, Auth, Storage, Edge Functions, pg_cron, pgvector, RLS on every table.</p>
+      <p style="margin-top:12px;"><strong>Integrations:</strong> OpenRouter, VAPI, Twilio, SendGrid, Gmail OAuth, QuickBooks, Stripe, Apollo/Clay, Google Business Profile.</p>
+      <p style="margin-top:12px;"><strong>Jobs:</strong> Supabase Edge Functions + pg_cron; Inngest/Trigger.dev for complex retry chains.</p>
+      <p style="margin-top:12px;"><strong>Observability:</strong> Sentry, PostHog, OpenRouter dashboard.</p>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>4. Database Schema (25 tables)</summary>
+    <div class="spec-body">
+      <ul>
+        <li><code>organizations</code>, <code>org_members</code> — multi-tenant, roles (owner, admin, sales, dispatcher, driver, readonly)</li>
+        <li><code>accounts</code> — repeat customers, LTV, pricing tiers, QB customer ID</li>
+        <li><code>leads</code> — full contact, enrichment, engagement, compliance fields</li>
+        <li><code>tags</code>, <code>lead_tags</code></li>
+        <li><code>conversations</code>, <code>messages</code> — AI metadata, delivery tracking</li>
+        <li><code>call_logs</code> — voice transcripts, embeddings, VAPI IDs</li>
+        <li><code>kb_documents</code>, <code>kb_chunks</code> — vector search</li>
+        <li><code>prompt_templates</code>, <code>ai_model_configs</code>, <code>ai_usage_log</code></li>
+        <li><code>campaigns</code>, <code>campaign_enrollments</code></li>
+        <li><code>quotes</code>, <code>bookings</code> — full rental lifecycle</li>
+        <li><code>invoices</code> — QB sync, dunning steps</li>
+        <li><code>driver_assignments</code>, <code>driver_status_updates</code></li>
+        <li><code>review_requests</code></li>
+        <li><code>kpi_targets</code>, <code>kpi_snapshots</code></li>
+        <li><code>suppression_list</code>, <code>audit_log</code></li>
+        <li><code>webhook_subscriptions</code>, <code>webhook_deliveries</code></li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>5. AI Layer — OpenRouter</summary>
+    <div class="spec-body">
+      <p>Single LLM gateway with per-task model selection, fallback chains, daily cost caps, and usage logging. Model swaps require only a DB row change — no redeploy.</p>
+      <p style="margin-top:12px;"><strong>Task → model examples:</strong> outreach &amp; replies → Claude Sonnet; classification → Gemini Flash; collections → Haiku.</p>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>6. AI Voice Agent (VAPI)</summary>
+    <div class="spec-body">
+      <ul>
+        <li>Business-hours → human; after-hours &amp; overflow → AI</li>
+        <li>Functions: check_availability, quote_price, create_lead, book_job, escalate_to_human</li>
+        <li>Post-call: transcript → conversation inbox → lead/booking creation</li>
+        <li>Recording stored in Supabase Storage</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>7. QuickBooks Integration</summary>
+    <div class="spec-body">
+      <ul>
+        <li>OAuth 2.0 connection</li>
+        <li>Auto-invoice when booking marked complete</li>
+        <li>Bidirectional customer sync</li>
+        <li>Overdue detection → AI dunning sequence (friendly → firm → final)</li>
+        <li>DSO tracking dashboard</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>8. Driver Communication Hub</summary>
+    <div class="spec-body">
+      <ul>
+        <li>Mobile-responsive web view (no separate app)</li>
+        <li>Automated AM dispatch SMS at configurable time</li>
+        <li>Inbound SMS: "delivered" → booking status update</li>
+        <li>Strict separation of driver vs. lead SMS traffic</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>9–11. Lead Acquisition, Inbox, Knowledge Base</summary>
+    <div class="spec-body">
+      <p><strong>Acquisition:</strong> Multi-source import, fuzzy dedup, four segments, permit records (Harris, Fort Bend), enrichment.</p>
+      <p style="margin-top:12px;"><strong>Inbox:</strong> Unified threads, AI-suggested replies, human review queue, escalation triggers (pricing disputes, complaints).</p>
+      <p style="margin-top:12px;"><strong>KB:</strong> Versioned markdown, per-segment overrides, pgvector retrieval, auto-suggestions from repeated questions.</p>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>12. Pipeline, Bookings &amp; Dispatch</summary>
+    <div class="spec-body">
+      <p>Kanban: New → Contacted → Replied → Qualified → Quoted → Booked → Delivered → Completed → Lost</p>
+      <p style="margin-top:12px;">Calendar view, driver assignment, realtime updates (Supabase Realtime), per-stage SLA alerts.</p>
+      <p style="margin-top:12px;">Booking confirmation: email + SMS on create; ETA SMS when driver marks en route.</p>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>13–14. Reviews &amp; Accounts</summary>
+    <div class="spec-body">
+      <p><strong>Reviews:</strong> Post-job SMS sentiment check → positive gets Google link, negative gets private feedback form.</p>
+      <p style="margin-top:12px;"><strong>Accounts:</strong> Auto-link returning customers by phone/email, lifetime value, health view, tiered contractor pricing.</p>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>15–16. Analytics &amp; Background Jobs</summary>
+    <div class="spec-body">
+      <p><strong>Dashboard:</strong> Today view, six KPI cards, funnel per segment, AI cost per job, SLA breach alerts, weekly owner email.</p>
+      <p style="margin-top:12px;"><strong>Jobs:</strong> Follow-up scheduler (hourly), lead scoring (nightly), overdue invoices (daily), AM dispatch (cron), embedding refresh, webhook retries.</p>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>17–18. Frontend &amp; API Endpoints</summary>
+    <div class="spec-body">
+      <p><strong>Key routes:</strong></p>
+      <ul>
+        <li><code>/api/leads</code>, <code>/api/accounts</code>, <code>/api/conversations/[id]/send|suggest</code></li>
+        <li><code>/api/kb/search</code>, <code>/api/ai/test</code>, <code>/api/quotes</code>, <code>/api/bookings</code></li>
+        <li><code>/api/driver/today</code>, <code>/api/analytics/today|kpis</code></li>
+        <li>Webhooks: SendGrid, Twilio, VAPI, Stripe, QuickBooks</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>UI pages:</strong> Today, Inbox, Leads, Pipeline, Dispatch, Bookings, Accounts, KB, Campaigns, Analytics, Settings.</p>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>19–20. Security, Compliance &amp; Webhooks</summary>
+    <div class="spec-body">
+      <ul>
+        <li>Supabase Auth (magic link + Google OAuth), RLS, role-based access</li>
+        <li>CAN-SPAM, TCPA, voice recording consent</li>
+        <li>Webhook signature verification for all inbound providers</li>
+        <li>Public webhook subscriptions for Zapier — 15+ event types, HMAC signing, retry with backoff</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="spec-section" open>
+    <summary>21. Phased Build Plan (10 phases · 20 weeks)</summary>
+    <div class="spec-body">
+      <ul>
+        <li><strong>Phase 1 (Wk 1–2):</strong> Foundation — schema, auth, lead CRUD, CSV import, dashboard shell</li>
+        <li><strong>Phase 2 (Wk 3–4):</strong> AI core — OpenRouter, prompts, KB, outreach, cost logging</li>
+        <li><strong>Phase 3 (Wk 5–6):</strong> Conversations — SendGrid, Twilio, inbox, Gmail drafts</li>
+        <li><strong>Phase 4 (Wk 7–8):</strong> Voice — VAPI, routing, transcripts</li>
+        <li><strong>Phase 5 (Wk 9–10):</strong> Automation — campaigns, kanban, lead scoring</li>
+        <li><strong>Phase 6 (Wk 11–12):</strong> Bookings — quotes, Stripe, dispatch, driver SMS</li>
+        <li><strong>Phase 7 (Wk 13–14):</strong> QuickBooks — auto-invoice, dunning, DSO</li>
+        <li><strong>Phase 8 (Wk 15–16):</strong> Reviews &amp; accounts</li>
+        <li><strong>Phase 9 (Wk 17–18):</strong> Analytics polish, A/B testing, audit log</li>
+        <li><strong>Phase 10 (Wk 19–20):</strong> Ecosystem — Zapier app, permit scrapers, API docs</li>
+      </ul>
+      <p style="margin-top:12px;"><em>Path B pilot = Phases 1–3 only.</em></p>
+    </div>
+  </details>
+
+  <details class="spec-section">
+    <summary>22. Cost Model &amp; Success Definition</summary>
+    <div class="spec-body">
+      <p><strong>Monthly operating (single org):</strong> ~$270–$940/mo (Supabase, Vercel, OpenRouter, VAPI, Twilio, SendGrid, Stripe, Apollo, Sentry, PostHog).</p>
+      <p style="margin-top:12px;"><strong>ROI:</strong> ~1–3 rentals/mo covers the stack; ~20 hrs/week saved ≈ $8K/mo value.</p>
+      <p style="margin-top:12px;"><strong>6-month success targets:</strong></p>
+      <ul>
+        <li>80%+ inbound calls handled without human</li>
+        <li>15+ admin hours saved per week</li>
+        <li>Lead response under 5 minutes</li>
+        <li>25%+ conversion lift</li>
+        <li>DSO −10 days</li>
+        <li>3× Google review velocity</li>
+      </ul>
+    </div>
+  </details>
+
+  <p style="margin-top:48px; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--taupe);">
+    <a href="/GSD/" style="color:var(--terracotta)">← Back to presentation</a>
+    &nbsp;·&nbsp;
+    <a href="/GSD/options.html" style="color:var(--terracotta)">Options comparison</a>
+  </p>
+</main>
+
+</body>
+</html>

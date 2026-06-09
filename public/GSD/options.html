@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Grand Slam CRM — Options Comparison</title>
+  <link rel="stylesheet" href="/GSD/css/gsd.css">
+</head>
+<body>
+
+<header class="top-bar">
+  <span class="brand">Unleashing Flow · GSD</span>
+  <nav>
+    <a href="/GSD/">Presentation</a>
+    <a href="/GSD/spec.html">Technical Spec</a>
+    <a href="/GSD/options.html" class="active">Options Detail</a>
+  </nav>
+  <span class="confidential">Client Confidential</span>
+</header>
+
+<main class="spec-page">
+  <h1>Options Comparison</h1>
+  <p class="subtitle">Build vs. buy analysis for Grand Slam Dumpster Rentals. All costs assume AI-assisted development at $150/hr and 30% annual business growth unless noted.</p>
+
+  <div class="callout">
+    <strong>Recommendation:</strong> Path B (Hybrid). Custom AI for inbox, voice, and owner's-voice email — iCans Plus for dispatch, driver app, and QuickBooks sync. Lowest execution risk with most of the long-term TCO advantage.
+  </div>
+
+  <h2 style="font-size:22px; margin:32px 0 16px;">Side-by-side</h2>
+  <div class="table-wrap" style="margin-top:0;">
+    <table>
+      <tr>
+        <th></th>
+        <th>Path A — All SaaS</th>
+        <th class="col-rec">Path B — Hybrid ★</th>
+        <th>Path C — Full Custom</th>
+      </tr>
+      <tr>
+        <td><strong>What you get</strong></td>
+        <td>Configure existing tools; minimal custom code</td>
+        <td class="col-rec">Custom AI layer + iCans for operations</td>
+        <td>Everything in the technical spec, fully owned</td>
+      </tr>
+      <tr>
+        <td><strong>Build hours</strong></td>
+        <td>~25</td>
+        <td class="col-rec">~70 total · 40–50 for v1 pilot</td>
+        <td>~135</td>
+      </tr>
+      <tr>
+        <td><strong>Build cost</strong></td>
+        <td>$3,750</td>
+        <td class="col-rec">$10,500 · $6K–$7.5K pilot</td>
+        <td>$20,250</td>
+      </tr>
+      <tr>
+        <td><strong>Year 1 operating</strong></td>
+        <td>$8,604</td>
+        <td class="col-rec">$7,920</td>
+        <td>$6,612</td>
+      </tr>
+      <tr>
+        <td><strong>5-year TCO</strong></td>
+        <td>$78,732</td>
+        <td class="col-rec">$71,739</td>
+        <td>$66,875</td>
+      </tr>
+      <tr>
+        <td><strong>LLM cost share</strong></td>
+        <td>~12% of opex</td>
+        <td class="col-rec">~23–27% (captures deflation)</td>
+        <td>~36–42%</td>
+      </tr>
+      <tr>
+        <td><strong>Execution risk</strong></td>
+        <td>Low</td>
+        <td class="col-rec">Low–medium</td>
+        <td>Medium–high</td>
+      </tr>
+      <tr>
+        <td><strong>Best when</strong></td>
+        <td>Flat or slow growth</td>
+        <td class="col-rec">25–35% CAGR (your trajectory)</td>
+        <td>Multi-market, full control, Year 4+</td>
+      </tr>
+      <tr>
+        <td><strong>What stays manual</strong></td>
+        <td>Generic AI quality; Zapier fragility</td>
+        <td class="col-rec">Dispatch UI in iCans (not custom)</td>
+        <td>Nothing — you own it all</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2 style="font-size:22px; margin:40px 0 16px;">Path A — vendor stack</h2>
+  <div class="table-wrap" style="margin-top:0;">
+    <table>
+      <tr><th>Service</th><th>Est. monthly</th><th>Purpose</th></tr>
+      <tr><td>iCans Plus</td><td>~$159</td><td>Dispatch, CRM, driver app, QB sync</td></tr>
+      <tr><td>VAPI</td><td>~$50–300</td><td>Voice AI (usage-based)</td></tr>
+      <tr><td>Zapier Pro</td><td>~$20</td><td>Tool integration</td></tr>
+      <tr><td>Claude API (via Zapier)</td><td>~$20–80</td><td>Text AI</td></tr>
+      <tr><td>NiceJob</td><td>~$75</td><td>Review automation</td></tr>
+      <tr><td>Twilio</td><td>~$30–100</td><td>SMS + voice numbers</td></tr>
+      <tr><td>SendGrid</td><td>~$20</td><td>Email</td></tr>
+      <tr><td>QuickBooks Plus</td><td>~$55</td><td>Accounting (existing)</td></tr>
+      <tr><td>Apollo Basic</td><td>~$50</td><td>Lead lists</td></tr>
+    </table>
+  </div>
+
+  <h2 style="font-size:22px; margin:40px 0 16px;">Path B — what we build vs. buy</h2>
+  <div class="grid-2" style="margin-top:0;">
+    <div class="card recommended" style="background:var(--ivory-dark);">
+      <span class="badge badge-rec">We build</span>
+      <h3 style="color:var(--terracotta);">Custom AI layer</h3>
+      <ul style="color:var(--warm-gray); font-family:Lora,serif; font-size:14px; margin:12px 0 0 18px; line-height:1.6;">
+        <li>Next.js + Supabase + OpenRouter</li>
+        <li>Unified conversation inbox</li>
+        <li>AI reply handler + RAG knowledge base</li>
+        <li>Owner's-voice Gmail drafts</li>
+        <li>Lead scoring + follow-up campaigns</li>
+        <li>Voice agent (VAPI) — v1.1</li>
+        <li>KPI dashboard</li>
+      </ul>
+    </div>
+    <div class="card" style="background:var(--ivory-dark);">
+      <h3 style="color:var(--terracotta);">Keep on SaaS</h3>
+      <ul style="color:var(--warm-gray); font-family:Lora,serif; font-size:14px; margin:12px 0 0 18px; line-height:1.6;">
+        <li>iCans Plus — dispatch, routes, driver app</li>
+        <li>QuickBooks — invoicing (via iCans sync)</li>
+        <li>Twilio + SendGrid — messaging pipes</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 style="font-size:22px; margin:40px 0 16px;">Crossover &amp; sensitivity</h2>
+  <div class="table-wrap" style="margin-top:0;">
+    <table>
+      <tr><th>Scenario</th><th>When</th></tr>
+      <tr><td>Path B catches Path A on TCO</td><td>Mid Year 3</td></tr>
+      <tr><td>Path C catches Path A</td><td>End Year 3 / Year 4</td></tr>
+      <tr><td>Path C catches Path B</td><td>End Year 4</td></tr>
+      <tr><td>Break-even growth (custom beats SaaS)</td><td>~15% CAGR</td></tr>
+    </table>
+  </div>
+  <div class="table-wrap" style="margin-top:16px;">
+    <table>
+      <tr><th>Growth rate</th><th>Best 5-year TCO</th></tr>
+      <tr><td>0% (flat)</td><td>Path A</td></tr>
+      <tr><td>20%</td><td>Path B</td></tr>
+      <tr><td><strong>30% (base case)</strong></td><td><strong>Path C</strong> — but B within $5K with far less risk</td></tr>
+      <tr><td>40%</td><td>Path C</td></tr>
+    </table>
+  </div>
+
+  <h2 style="font-size:22px; margin:40px 0 16px;">Phased investment (Path B)</h2>
+  <div class="table-wrap" style="margin-top:0;">
+    <table>
+      <tr><th>Phase</th><th>Timeline</th><th>Hours</th><th>Cost</th><th>Delivers</th></tr>
+      <tr class="col-rec"><td><strong>Pilot 1–3</strong></td><td>Wk 1–6</td><td>40–50</td><td>$6K–$7.5K</td><td>Leads, inbox, AI drafts, KB, basic follow-up</td></tr>
+      <tr><td>v1.1 Voice + automation</td><td>Wk 7–10</td><td>+15–20</td><td>+$2.25K–$3K</td><td>After-hours voice, full campaigns</td></tr>
+      <tr><td>v1.2 Reviews + analytics</td><td>Wk 11–14</td><td>+10–15</td><td>+$1.5K–$2.25K</td><td>Review flow, KPI dashboard</td></tr>
+      <tr><td>Full spec (Path C)</td><td>20 weeks</td><td>~135</td><td>~$20K</td><td>Custom dispatch, QB, ecosystem</td></tr>
+    </table>
+  </div>
+
+  <h2 style="font-size:22px; margin:40px 0 16px;">Key insights</h2>
+  <ul style="font-family:Lora,serif; font-size:15px; line-height:1.7; color:var(--warm-gray); margin-left:20px;">
+    <li><strong>AI dev productivity</strong> cut build costs ~75% vs traditional estimates — what was $35K–$70K is now $10K–$20K.</li>
+    <li><strong>LLM deflation</strong> is real but partial — only 23–42% of opex; Twilio and QB stay flat or rise.</li>
+    <li><strong>Business growth</strong> is the bigger lever — SaaS scales linearly; custom infra stays mostly fixed.</li>
+    <li><strong>Build now vs. wait 6 months</strong> — operating value of 6 months likely exceeds ~$4K saved on cheaper models later.</li>
+    <li><strong>iCans pricing</strong> is opaque at scale — validate with direct vendor quote before committing.</li>
+  </ul>
+
+  <p style="margin-top:48px; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--taupe);">
+    <a href="/GSD/" style="color:var(--terracotta)">← Back to presentation</a>
+  </p>
+</main>
+
+</body>
+</html>

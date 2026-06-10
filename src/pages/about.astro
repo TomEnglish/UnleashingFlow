@@ -6,7 +6,7 @@ import CTASection from '../components/CTASection.astro';
 
 <PageLayout
   title="About"
-  description="Elliott English — 20 years of operations leadership across the Air Force, Morgan Stanley, healthcare, and government, now building AI systems that target your real constraint."
+  description="Elliott English and Mac Steele — operations leadership and a career of matching technology to real business problems, now building AI systems that target your real constraint."
 >
   <section class="about-hero section-dark">
     <div class="section-inner">
@@ -95,6 +95,38 @@ import CTASection from '../components/CTASection.astro';
     </div>
   </section>
 
+  <hr class="divider" />
+
+  <section class="about-partner section">
+    <div class="story-grid">
+      <div class="photo-placeholder">
+        <span>Photo</span>
+      </div>
+      <div class="story-content">
+        <p class="section-label">The Partner</p>
+        <h2 class="section-title">Mac Steele — new technology, new homes.</h2>
+        <p>
+          "I've spent my whole career selling new technology and finding it a new home.
+        </p>
+        <p>
+          It started at a company that rethought how proxies get tabulated for large institutional investors. That's where I learned the hard part is rarely the technology itself. It's helping people see what it can do for them. From there I moved into inventory control, where we looked at the warehouse through the lens of RFID and showed companies value that was sitting on their shelves the whole time.
+        </p>
+        <p>
+          Then came close to fifteen years at a manufacturer with over 135 years of history, taking proven technology and pushing it into industries that had never used it. The technology built on brick took us to metals, mining, steel, fly ash, and many more. Different customers, same job every time: take what the technology already does well and put it somewhere new where it creates value.
+        </p>
+        <p>
+          That thread has never changed. Find a company's real problem, in whatever industry it lives, match it to technology that solves it, and help them pull value out of it.
+        </p>
+        <p>
+          That's what I'm bringing to Flow."
+        </p>
+        <p class="partner-role">
+          Mac leads business development and partnerships at Unleashing Flow — he's the one who finds the businesses with the right problems. Elliott builds the solutions.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <CTASection
     heading="Let's find your constraint."
     subtext="Book a Throughput Diagnostic and I'll find the ONE thing limiting your business — then build the AI that fixes it."
@@ -147,6 +179,14 @@ import CTASection from '../components/CTASection.astro';
   .story-content p {
     margin-bottom: 16px;
     color: var(--warm-gray);
+  }
+
+  .partner-role {
+    font-size: 14px;
+    color: var(--taupe);
+    border-top: 1px solid #E8E0D6;
+    padding-top: 16px;
+    margin-top: 8px;
   }
 
   .diff-grid {

@@ -1,0 +1,47 @@
+---
+// Google Calendar appointment-schedule embed.
+// Booking link: https://calendar.app.google/L5y5Lhqab7ocFmYL6
+const SCHEDULE_ID = 'AcZssZ2E2YtbVlKZEfrFg6YgBXXaV9ppUQ5UvmsXJLpwWaOrjFkDOEkDqYqK5-9QfBqfi0M5fXAQtdxr';
+
+interface Props {
+  url?: string;
+}
+
+const { url = `https://calendar.google.com/calendar/appointments/schedules/${SCHEDULE_ID}?gv=true` } = Astro.props;
+---
+
+<div class="booking-wrapper">
+  <iframe
+    src={url}
+    style="border: 0"
+    width="100%"
+    height="630"
+    frameborder="0"
+    title="Book a discovery call"
+  ></iframe>
+  <p class="booking-fallback">
+    Calendar not loading? <a href="https://calendar.app.google/L5y5Lhqab7ocFmYL6" target="_blank" rel="noopener">Open the booking page directly</a>.
+  </p>
+</div>
+
+<style>
+  .booking-wrapper {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #E8E0D6;
+  }
+
+  .booking-fallback {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    color: var(--warm-gray);
+    text-align: center;
+    padding: 10px 16px 14px;
+    margin: 0;
+  }
+
+  .booking-fallback a {
+    color: var(--terracotta);
+  }
+</style>

@@ -2,77 +2,35 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import CTASection from '../components/CTASection.astro';
 
-const doors = [
+const discoveryDeliverables = [
+  'Listening session — what you\'re trying to fix, and what "better" looks like',
+  'Data readiness assessment — systems, sources, and whether they can support integrated reporting or AI',
+  'Integration map — what connects today, what doesn\'t, and what would need to',
+  'Team AI skills evaluation — where your people are strong, where they\'re stuck, and whether training would help',
+  'Honest readiness verdict — ready now, ready after a few fixes, or not yet',
+  'Recommended next step — scoped only if Discovery says it\'s worth doing',
+];
+
+const nextSteps = [
   {
-    number: '01',
-    name: 'AI Audit',
-    ask: 'Where will AI move our bottom line the most?',
-    body: 'A focused audit of where AI will produce real dollar impact in your business — not just where it\'s technically possible to deploy. We map your operation end-to-end, identify the highest-value AI opportunities, quantify the expected return, and tell you which one to fund first. The output is the shortlist worth your time, not a list of everything possible.',
-    deliverables: [
-      'End-to-end value-stream walkthrough',
-      'Ranked list of AI opportunities by expected dollar impact',
-      'ROI math you can follow — and challenge',
-      'Specific recommendation for the first build',
-      'Honest "do not automate this yet" list',
-      '6–10 page written report, yours to keep',
-    ],
-    shape: '2 weeks · written report',
+    name: 'Integrated Reporting & Dashboards',
+    ask: 'When Discovery says the data can support it.',
+    body: 'The view of your operation you should already have but probably don\'t — margin, throughput, capacity, cash — built against live systems once they\'re ready to talk to each other.',
   },
   {
-    number: '02',
-    name: 'Dashboard',
-    ask: 'I need to see my business clearly.',
-    body: 'The view of your operation you should already have but probably don\'t. We build a clean, fast, role-specific dashboard against your real data — margin by SKU, throughput by hour, capacity by shift, cash discrepancy across locations. Designed for the question you\'re actually trying to answer, not generic BI bloat.',
-    deliverables: [
-      'Custom dashboard against your live data',
-      'CEO view (simple version) or multi-user with role-based access (complex version)',
-      'Supabase backend; secure, scalable',
-      'Hosted, monitored, ready for daily use',
-      'Documentation so your team can extend it',
-    ],
-    shape: '2–6 week project',
+    name: 'AI Builds & Custom Apps',
+    ask: 'When Discovery finds a constraint worth fixing with software.',
+    body: 'Web apps, native iOS / Android, automations, and AI tools designed for how your operation actually runs — only after we know the data and the workflow can support them.',
   },
   {
-    number: '03',
-    name: 'App Development — Web, iPhone, Android',
-    ask: 'Build me a tool that\'s mine.',
-    body: 'Custom web applications and native iOS / Android apps — software designed for the exact way your operation actually runs. Production planners, intake forms, supplier portals, custom CRMs, field-data capture tools, cash-tracking apps. We start with the workflow, not the technology, and build until it matches how your business should work, not how an off-the-shelf product wants you to work.',
-    deliverables: [
-      'Web application (Next.js + Supabase) or native iOS/Android app',
-      'Certified Apple developer; TestFlight beta workflow',
-      'OCR, computer vision, or AI integrations as needed',
-      'Secure data architecture (Supabase, role-based auth)',
-      'Documented codebase, deployment, and ongoing-support handoff',
-    ],
-    shape: '4–12 week project',
-  },
-  {
-    number: '04',
     name: 'AI Upskilling',
-    ask: 'Train my team on AI tools.',
-    body: 'Workshops and hands-on training on the specific AI tools your team needs — built around your actual workflows, not generic prompt-engineering theatre. Half-day or full-day formats, on-site or remote, with a 90-day follow-up to make sure adoption sticks instead of fading after the workshop high wears off.',
-    deliverables: [
-      'Pre-workshop assessment of your team\'s current AI usage',
-      'Custom curriculum built on your tools and workflows',
-      'Hands-on exercises with your real data',
-      'Reference guide team can return to after the session',
-      '90-day follow-up to measure adoption and adjust',
-    ],
-    shape: '1–3 days + 90-day follow-up',
+    ask: 'When Discovery shows the team is the bottleneck, not the stack.',
+    body: 'Hands-on training on the tools your people actually need, built around your workflows — with follow-up so adoption sticks instead of fading after the workshop.',
   },
   {
-    number: '05',
     name: 'Online Presence Revamp',
-    ask: 'Make sure customers actually find us.',
-    body: 'Your website, Google ranking, and reviews, working together as one system. Most local businesses lose customers before the first phone call — an outdated site, a thin Google Business Profile, a review page nobody answers. We rebuild the whole front door: a fast modern website, local search visibility, and a review engine that turns happy customers into the marketing you\'re not doing.',
-    deliverables: [
-      'Audit of your current site, Google ranking, and review footprint',
-      'Modern, fast website — built or rebuilt, yours to keep',
-      'Google Business Profile and local SEO optimization',
-      'Review generation and response system',
-      'Analytics so you can see what\'s working',
-    ],
-    shape: '3–6 week project',
+    ask: 'When the constraint is how customers find you.',
+    body: 'Website, local search, and reviews working as one system — when Discovery points at the front door rather than the back office.',
   },
 ];
 
@@ -103,48 +61,62 @@ const expansion = [
 
 <PageLayout
   title="Services — Unleashing Flow"
-  description="Fractional AI Officer, AI Audit, custom dashboards, web and mobile app development, AI upskilling, and online presence revamps for owner-operated businesses doing $2M to $20M."
+  description="Every engagement starts with Discovery — a Data Readiness Audit that listens to what you need, checks whether your systems are ready for integrated reporting or AI, and evaluates your team's AI skills."
 >
   <section class="page-hero">
     <div class="page-hero-inner">
       <p class="hero-label">Services</p>
-      <h1 class="hero-title">Five ways to begin. Two ways to keep going.</h1>
+      <h1 class="hero-title">One way in. Discovery first.</h1>
       <p class="hero-subtitle">
-        You don't sign up for a long engagement. You buy a first piece of work — fixed scope, fixed timeline — and decide what's next. After the first engagement, most clients want either a recurring cycle or an embedded Fractional AI Officer.
+        We don't sell a menu of projects and ask you to pick. Every client starts the same way: we listen to what you need, check whether your systems are ready for integrated reporting or AI, and evaluate whether your team needs training. What comes next is decided by what Discovery finds — not by a sales pitch.
       </p>
     </div>
   </section>
 
-  <section class="entry-doors-section section">
-    <p class="section-label">Where you start</p>
-    <h2 class="section-title">The five entry doors</h2>
-    <p class="section-desc">
-      Each is a fixed-scope, fixed-fee first engagement. Most produce direct ROI you can measure inside a few weeks. All of them tell you whether ongoing senior operational help is worth the investment.
+  <section class="discovery-section section">
+    <p class="section-label">The entry door</p>
+    <h2 class="section-title">Discovery</h2>
+    <p class="section-desc discovery-tagline">
+      Data Readiness Audit · Team AI Skills Evaluation
     </p>
 
-    <div class="doors-stack">
-      {doors.map(door => (
-        <article class="door-row">
-          <div class="door-row-head">
-            <span class="door-row-num">{door.number}</span>
-            <div>
-              <h3 class="door-row-name">{door.name}</h3>
-              <p class="door-row-ask">{door.ask}</p>
-            </div>
-          </div>
-          <div class="door-row-body">
-            <div class="door-narrative">
-              <p>{door.body}</p>
-              <p class="door-shape-line">{door.shape}</p>
-              <a href="https://calendar.app.google/L5y5Lhqab7ocFmYL6" target="_blank" rel="noopener" class="btn btn-outline door-cta">Discuss this engagement</a>
-            </div>
-            <div class="door-deliverables">
-              <p class="deliverables-label">What you get</p>
-              <ul class="deliverables-list">
-                {door.deliverables.map(d => <li>{d}</li>)}
-              </ul>
-            </div>
-          </div>
+    <article class="discovery-card">
+      <div class="discovery-card-body">
+        <div class="discovery-narrative">
+          <p class="discovery-lead">
+            Discovery is how we work with every client. You tell us what you're trying to fix. We look at whether your current systems can support integrated reporting or AI — and, at the same time, we evaluate your team's AI skills and whether staff training would actually help.
+          </p>
+          <p>
+            Some businesses are ready to build. Some need a few data fixes first. Some need the team brought up to speed before any tool will stick. Discovery tells you which — honestly — before you fund the wrong next step.
+          </p>
+          <p class="door-shape-line">Fixed-scope first engagement</p>
+          <a href="https://calendar.app.google/L5y5Lhqab7ocFmYL6" target="_blank" rel="noopener" class="btn btn-primary door-cta">Book Discovery</a>
+        </div>
+        <div class="door-deliverables">
+          <p class="deliverables-label">What you get</p>
+          <ul class="deliverables-list">
+            {discoveryDeliverables.map(d => <li>{d}</li>)}
+          </ul>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="next-steps-section section">
+    <p class="section-label">After Discovery</p>
+    <h2 class="section-title">What we build when you're ready</h2>
+    <p class="section-desc">
+      These aren't entry doors. They're the work Discovery may recommend — only when the data, the systems, and the team can support it.
+    </p>
+
+    <div class="next-grid">
+      {nextSteps.map(step => (
+        <article class="next-card">
+          <h3 class="next-name">{step.name}</h3>
+          <p class="next-ask">{step.ask}</p>
+          <p class="next-body">{step.body}</p>
         </article>
       ))}
     </div>
@@ -153,10 +125,10 @@ const expansion = [
   <hr class="divider" />
 
   <section class="expansion-section section">
-    <p class="section-label">After the first piece of work</p>
-    <h2 class="section-title">Two ways we work together long-term</h2>
+    <p class="section-label">Ongoing work</p>
+    <h2 class="section-title">Two ways we stay with you</h2>
     <p class="section-desc">
-      You're not asked to commit to either upfront. The first engagement earns the right to propose the second.
+      You're not asked to commit to either upfront. Discovery earns the right to propose what comes next — including longer-term work when it makes sense.
     </p>
 
     <div class="expansion-grid">
@@ -177,16 +149,16 @@ const expansion = [
   <section class="pricing-note section">
     <div class="pricing-note-inner">
       <p class="section-label">On pricing</p>
-      <h2 class="section-title">Scoped per engagement, sized to your business.</h2>
+      <h2 class="section-title">Scoped after we listen.</h2>
       <p>
-        Engagements are scoped during the discovery call based on business size, complexity, urgency, and data readiness. A $3M owner-operated practice and a $20M multi-location operation should not pay the same price for the same audit — and they don't. We discuss numbers directly on the call, not on a pricing table.
+        Discovery is scoped on the call based on complexity and how many systems we need to look at. What follows — if anything — is priced from what Discovery finds, not from a menu. We discuss numbers directly, not on a pricing table.
       </p>
     </div>
   </section>
 
   <CTASection
-    heading="Which door fits your business?"
-    subtext="Thirty-minute discovery call — free, no pitch. We'll talk through what you're trying to fix, which door makes sense as the first engagement, and what comes after. If we're not a fit, we'll usually be able to point you toward someone who is."
+    heading="Start with Discovery."
+    subtext="Book Discovery and we'll listen to what you need, check whether your systems are ready for integrated reporting or AI, and evaluate your team's AI skills. If we're not a fit, we'll usually be able to point you toward someone who is."
   />
 </PageLayout>
 
@@ -230,67 +202,39 @@ const expansion = [
     margin: 0 auto;
   }
 
-  /* Doors */
-  .doors-stack {
+  .discovery-tagline {
+    font-family: var(--font-heading) !important;
+    font-size: 13px !important;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--terracotta) !important;
+  }
+
+  .discovery-card {
     max-width: 1040px;
     margin: 40px auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  .door-row {
     background: #fff;
-    border: 1px solid #E8E0D6;
+    border: 1px solid var(--terracotta);
     border-radius: 20px;
-    padding: 36px 36px;
+    padding: 40px 40px;
   }
 
-  .door-row-head {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 24px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid #E8E0D6;
-  }
-
-  .door-row-num {
-    font-family: var(--font-heading);
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--terracotta);
-    line-height: 1;
-    flex-shrink: 0;
-    min-width: 56px;
-  }
-
-  .door-row-name {
-    font-family: var(--font-heading);
-    font-size: 26px;
-    font-weight: 800;
-    color: var(--charcoal);
-    margin: 0 0 6px;
-    line-height: 1.2;
-  }
-
-  .door-row-ask {
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-size: 14px;
-    color: var(--warm-gray);
-    margin: 0;
-    letter-spacing: 0.3px;
-  }
-
-  .door-row-body {
+  .discovery-card-body {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 36px;
     align-items: start;
   }
 
-  .door-narrative p {
+  .discovery-lead {
+    font-size: 17px !important;
+    line-height: 1.7 !important;
+    color: var(--charcoal) !important;
+    margin-bottom: 16px !important;
+  }
+
+  .discovery-narrative p {
     font-family: var(--font-body);
     font-size: 15px;
     line-height: 1.7;
@@ -354,7 +298,45 @@ const expansion = [
     font-weight: 700;
   }
 
-  /* Expansion */
+  .next-grid {
+    max-width: 1040px;
+    margin: 32px auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .next-card {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 16px;
+    padding: 28px 28px;
+  }
+
+  .next-name {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin: 0 0 8px;
+  }
+
+  .next-ask {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--warm-gray);
+    margin: 0 0 14px;
+  }
+
+  .next-body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin: 0;
+  }
+
   .expansion-grid {
     max-width: 1040px;
     margin: 32px auto 0;
@@ -412,7 +394,6 @@ const expansion = [
     font-weight: 700;
   }
 
-  /* Pricing note */
   .pricing-note-inner {
     max-width: 720px;
     margin: 0 auto;
@@ -432,28 +413,16 @@ const expansion = [
       padding: 56px 24px 40px;
     }
 
-    .door-row {
+    .discovery-card {
       padding: 24px 22px;
     }
 
-    .door-row-head {
-      gap: 16px;
-    }
-
-    .door-row-num {
-      font-size: 28px;
-      min-width: 40px;
-    }
-
-    .door-row-name {
-      font-size: 22px;
-    }
-
-    .door-row-body {
+    .discovery-card-body {
       grid-template-columns: 1fr;
       gap: 20px;
     }
 
+    .next-grid,
     .expansion-grid {
       grid-template-columns: 1fr;
     }

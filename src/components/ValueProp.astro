@@ -1,131 +1,78 @@
 ---
-const entries = [
+const pillars = [
   {
-    number: '01',
-    title: 'AI Audit',
-    ask: 'Where will AI move our bottom line the most?',
-    description: 'A focused audit of where AI will produce real dollar impact in your business — not just where it\'s technically possible to deploy. We rank the highest-value opportunities, quantify expected return, and tell you which one to fund first. The output is the shortlist worth your time, not a list of everything possible.',
-    shape: '2 weeks, written report',
+    title: 'Listen',
+    body: 'What you\'re trying to fix, what "better" looks like, and where the operation actually hurts — before we talk tools.',
   },
   {
-    number: '02',
-    title: 'Dashboard',
-    ask: 'I need to see my business clearly.',
-    description: 'Margin by SKU, throughput by hour, capacity by shift, cash discrepancy across locations. The view of your operation you should already have but probably don\'t.',
-    shape: '2–6 week project',
+    title: 'Data readiness',
+    body: 'Whether your current systems can support integrated reporting or AI — what connects today, what doesn\'t, and what would need to.',
   },
   {
-    number: '03',
-    title: 'App Development — Web, iPhone, Android',
-    ask: 'Build me a tool that\'s mine.',
-    description: 'Custom web applications and native iOS / Android apps. Production planners, intake forms, supplier portals, custom CRMs, field-data capture, cash tracking — software designed for the exact way your operation actually runs. Certified Apple developer; TestFlight beta workflow; Supabase backend.',
-    shape: '4–12 week project',
-  },
-  {
-    number: '04',
-    title: 'AI Upskilling',
-    ask: 'Train my team on AI tools.',
-    description: 'Workshops and hands-on training on the specific AI tools your team needs — built around your business, not generic prompts. Half-day or full-day formats, with 90-day follow-up to make sure adoption sticks.',
-    shape: '1–3 days + 90-day follow-up',
-  },
-  {
-    number: '05',
-    title: 'Online Presence Revamp',
-    ask: 'Make sure customers actually find us.',
-    description: 'Your website, Google ranking, and reviews, working together as one system. A fast modern site, local search visibility, and a review engine that turns happy customers into the marketing you\'re not doing.',
-    shape: '3–6 week project',
+    title: 'Team AI skills',
+    body: 'Where your people are strong, where they\'re stuck, and whether staff training would help before any build will stick.',
   },
 ];
 ---
 
 <section class="entry-doors section">
   <p class="section-label">How we start</p>
-  <h2 class="section-title">Five ways to begin</h2>
+  <h2 class="section-title">One entry door: Discovery</h2>
   <p class="section-desc">
-    You don't sign up for a long engagement. You buy a first piece of work — fixed scope, fixed timeline — and decide what's next from there. Most produce direct ROI you can measure inside a few weeks.
+    Discovery is a Data Readiness Audit. Every client starts here. We listen to what you need, check whether your systems are ready for integrated reporting or AI, and evaluate your team's AI skills at the same time. What comes next is decided by what we find — not by a menu of projects.
   </p>
 
-  <div class="door-grid">
-    {entries.map(entry => (
-      <div class="door-card">
-        <span class="door-number">{entry.number}</span>
-        <h3 class="door-title">{entry.title}</h3>
-        <p class="door-ask">{entry.ask}</p>
-        <p class="door-desc">{entry.description}</p>
-        <p class="door-shape">{entry.shape}</p>
+  <div class="pillar-grid">
+    {pillars.map(pillar => (
+      <div class="pillar-card">
+        <h3 class="pillar-title">{pillar.title}</h3>
+        <p class="pillar-body">{pillar.body}</p>
       </div>
     ))}
+  </div>
+
+  <div class="discovery-cta">
+    <a href="/services" class="btn btn-outline">See how Discovery works</a>
   </div>
 </section>
 
 <style>
-  .door-grid {
+  .pillar-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    margin-top: 8px;
   }
 
-  .door-card:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-  }
-
-  .door-card {
+  .pillar-card {
     background: #fff;
     border: 1px solid #E8E0D6;
     border-radius: 16px;
     padding: 32px 28px;
-    display: flex;
-    flex-direction: column;
   }
 
-  .door-number {
-    font-family: var(--font-heading);
-    font-size: 12px;
+  .pillar-title {
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--terracotta);
-    display: block;
     margin-bottom: 12px;
-  }
-
-  .door-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
     color: var(--charcoal);
     line-height: 1.25;
   }
 
-  .door-ask {
-    font-family: var(--font-heading);
-    font-size: 13px;
-    font-style: italic;
-    color: var(--warm-gray);
-    margin-bottom: 16px;
-    letter-spacing: 0.3px;
-  }
-
-  .door-desc {
+  .pillar-body {
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--charcoal);
-    margin-bottom: 20px;
-    flex-grow: 1;
+    margin: 0;
   }
 
-  .door-shape {
-    font-family: var(--font-heading);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    padding-top: 16px;
-    border-top: 1px solid #E8E0D6;
+  .discovery-cta {
+    text-align: center;
+    margin-top: 36px;
   }
 
   @media (max-width: 768px) {
-    .door-grid {
+    .pillar-grid {
       grid-template-columns: 1fr;
     }
   }

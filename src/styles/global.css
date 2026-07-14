@@ -20,6 +20,17 @@
   box-sizing: border-box;
 }
 
+/* Smooth-scroll only for in-page link clicks (the link gains focus);
+   initial page loads with a #hash jump straight to the section. */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Keep anchor targets clear of the sticky header. */
+[id] {
+  scroll-margin-top: 84px;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--ivory);

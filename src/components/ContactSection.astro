@@ -1,0 +1,98 @@
+---
+// One-page contact section — replaces the standalone /contact page and the
+// closing CTA banner. Booking embed plus direct email/LinkedIn.
+import BookingEmbed from './BookingEmbed.astro';
+---
+
+<section id="contact" class="contact-section section-dark">
+  <div class="section-inner">
+    <div class="contact-header">
+      <p class="section-label">Get in touch</p>
+      <h2 class="contact-title">Start with Discovery.</h2>
+      <p class="contact-subtext">
+        We listen to what you need, check whether your systems are ready for integrated reporting or AI, and evaluate your team's AI skills. If we're a fit, Discovery scopes what comes next. If we're not, we'll usually be able to point you toward someone who is.
+      </p>
+    </div>
+
+    <div class="booking-col">
+      <BookingEmbed />
+    </div>
+
+    <div class="direct-row">
+      <div class="direct-item">
+        <h3>Email</h3>
+        <a href="mailto:elliott@unleashingflow.com">elliott@unleashingflow.com</a>
+      </div>
+      <div class="direct-item">
+        <h3>LinkedIn</h3>
+        <a href="https://linkedin.com/in/elliottenglish" target="_blank" rel="noopener">linkedin.com/in/elliottenglish</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 40px;
+  }
+
+  .contact-title {
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--ivory);
+    margin-bottom: 16px;
+  }
+
+  .contact-subtext {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--taupe);
+  }
+
+  .booking-col {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .direct-row {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .direct-item {
+    text-align: center;
+  }
+
+  .direct-item h3 {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .direct-item a {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    color: var(--ivory);
+    text-decoration: none;
+  }
+
+  .direct-item a:hover {
+    color: var(--terracotta-light);
+  }
+
+  @media (max-width: 768px) {
+    .direct-row {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+</style>

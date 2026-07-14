@@ -1,0 +1,224 @@
+---
+// One-page "After Discovery" section — condensed next-step cards, the two
+// ongoing engagement paths, and the pricing note from the old Services page.
+const nextSteps = [
+  {
+    name: 'Integrated Reporting & Dashboards',
+    body: 'The live view of margin, throughput, capacity, and cash you should already have — built once the data can support it.',
+  },
+  {
+    name: 'AI Builds & Custom Apps',
+    body: 'Web apps, automations, and AI tools designed for how your operation actually runs.',
+  },
+  {
+    name: 'AI Upskilling',
+    body: 'Hands-on training on the tools your people actually need, with follow-up so adoption sticks.',
+  },
+  {
+    name: 'Online Presence Revamp',
+    body: 'Website, local search, and reviews working as one system — when the constraint is how customers find you.',
+  },
+];
+
+const expansions = [
+  {
+    name: 'Throughput Cycle',
+    description: 'Recurring quarterly diagnostic plus a monthly cadence call. We keep finding the next constraint as the business grows — because the constraint always moves.',
+    bullets: [
+      'Quarterly mini-diagnostic',
+      'Monthly operating cadence call',
+      'Async access between sessions',
+      '12-month minimum, renewing',
+    ],
+  },
+  {
+    name: 'Fractional AI Officer Retainer',
+    description: 'A Chief AI Officer embedded into your business 15–40 hours per month. Senior operational leadership through an AI lens — strategic execution, ongoing throughput improvement, and the custom AI tools that compound the result.',
+    bullets: [
+      'Advisory, Operating, or Embedded tier',
+      'Monthly P&L and pipeline review',
+      'Hiring oversight for key roles',
+      'AI tools built alongside the relationship',
+    ],
+  },
+];
+---
+
+<section id="after-discovery" class="after-section section">
+  <p class="section-label">After Discovery</p>
+  <h2 class="section-title">What we build when you're ready</h2>
+  <p class="section-desc">
+    These aren't entry doors. They're the work Discovery may recommend — only when the data, the systems, and the team can support it.
+  </p>
+
+  <div class="next-grid">
+    {nextSteps.map(step => (
+      <article class="next-card">
+        <h3 class="next-name">{step.name}</h3>
+        <p class="next-body">{step.body}</p>
+      </article>
+    ))}
+  </div>
+
+  <div class="stay-header">
+    <h3 class="stay-title">Two ways we stay with you</h3>
+    <p class="section-desc stay-desc">
+      You're not asked to commit to either upfront. Discovery earns the right to propose what comes next — including longer-term work when it makes sense.
+    </p>
+  </div>
+
+  <div class="expansion-grid">
+    {expansions.map(item => (
+      <div class="expansion-card">
+        <h4 class="expansion-name">{item.name}</h4>
+        <p class="expansion-desc">{item.description}</p>
+        <ul class="expansion-bullets">
+          {item.bullets.map(b => <li>{b}</li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <div class="pricing-note">
+    <p class="pricing-label">On pricing</p>
+    <p class="pricing-body">
+      Discovery is scoped on the call based on complexity and how many systems we need to look at. What follows — if anything — is priced from what Discovery finds, not from a menu. We discuss numbers directly, not on a pricing table.
+    </p>
+  </div>
+</section>
+
+<style>
+  .next-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .next-card {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 16px;
+    padding: 24px 26px;
+  }
+
+  .next-name {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin: 0 0 8px;
+  }
+
+  .next-body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    margin: 0;
+  }
+
+  .stay-header {
+    margin-top: 56px;
+  }
+
+  .stay-title {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 4vw, 26px);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+
+  .stay-desc {
+    margin-bottom: 28px;
+  }
+
+  .expansion-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .expansion-card {
+    background: #fff;
+    border: 1px solid #E8E0D6;
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .expansion-name {
+    font-family: var(--font-heading);
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+  }
+
+  .expansion-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+
+  .expansion-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .expansion-bullets li {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    color: var(--charcoal);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .expansion-bullets li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+
+  .pricing-note {
+    max-width: 640px;
+    margin: 56px auto 0;
+    text-align: center;
+  }
+
+  .pricing-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .pricing-body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--charcoal);
+  }
+
+  @media (max-width: 768px) {
+    .next-grid,
+    .expansion-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .expansion-card {
+      padding: 24px 22px;
+    }
+  }
+</style>

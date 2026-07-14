@@ -1,3 +1,45 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+# One-page site: old page URLs redirect to their section anchor (or home).
+
+[[redirects]]
+  from = "/services"
+  to = "/#how-it-works"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/#about"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/#contact"
+  status = 301
+
+[[redirects]]
+  from = "/flow"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/constraints"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/methodology"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/books"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/the-current/*"
+  to = "/"
+  status = 301

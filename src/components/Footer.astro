@@ -10,23 +10,9 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="footer-links">
-      <div class="footer-col">
-        <h4>Navigate</h4>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/services">Services</a>
-        <a href="/flow">Flow</a>
-        <a href="/constraints">Constraints</a>
-        <a href="/methodology">Methodology</a>
-        <a href="/books">Books</a>
-        <a href="/contact">Contact</a>
-        <a href="/data-trust">Data Trust</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <a href="https://linkedin.com/in/elliottenglish" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:elliott@unleashingflow.com">Email</a>
-      </div>
+      <a href="mailto:elliott@unleashingflow.com">elliott@unleashingflow.com</a>
+      <a href="https://linkedin.com/in/elliottenglish" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/data-trust">How Your Data Is Handled</a>
     </div>
   </div>
 
@@ -39,16 +25,16 @@ const year = new Date().getFullYear();
   .site-footer {
     background: var(--charcoal);
     color: var(--ivory);
-    padding: 60px 60px 24px;
+    padding: 48px 60px 24px;
   }
 
   .footer-inner {
     max-width: var(--max-width);
-    margin: 0 auto;
+    margin: 0 auto 36px;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 40px;
-    margin-bottom: 48px;
   }
 
   .footer-brand {
@@ -70,26 +56,12 @@ const year = new Date().getFullYear();
 
   .footer-links {
     display: flex;
-    gap: 60px;
-  }
-
-  .footer-col {
-    display: flex;
     flex-direction: column;
     gap: 10px;
+    text-align: right;
   }
 
-  .footer-col h4 {
-    font-family: var(--font-heading);
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--terracotta-light);
-    margin-bottom: 4px;
-    font-weight: 600;
-  }
-
-  .footer-col a {
+  .footer-links a {
     font-family: var(--font-heading);
     font-size: 13px;
     color: var(--taupe);
@@ -97,7 +69,7 @@ const year = new Date().getFullYear();
     transition: color 0.2s;
   }
 
-  .footer-col a:hover {
+  .footer-links a:hover {
     color: var(--ivory);
   }
 
@@ -121,11 +93,11 @@ const year = new Date().getFullYear();
 
     .footer-inner {
       flex-direction: column;
-      gap: 32px;
+      gap: 28px;
     }
 
     .footer-links {
-      gap: 40px;
+      text-align: left;
     }
   }
 </style>

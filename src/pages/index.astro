@@ -1,11 +1,11 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Hero from '../components/Hero.astro';
-import TestimonialsPlaceholder from '../components/TestimonialsPlaceholder.astro';
-import ValueProp from '../components/ValueProp.astro';
-import ServicesOverview from '../components/ServicesOverview.astro';
+import AboutSection from '../components/AboutSection.astro';
+import DiscoverySection from '../components/DiscoverySection.astro';
+import AfterDiscovery from '../components/AfterDiscovery.astro';
 import WhoThisIsFor from '../components/WhoThisIsFor.astro';
-import CTASection from '../components/CTASection.astro';
+import ContactSection from '../components/ContactSection.astro';
 ---
 
 <PageLayout
@@ -13,12 +13,12 @@ import CTASection from '../components/CTASection.astro';
   description="Helping businesses unlock their bottom line — and grow faster with AI. Every engagement starts with Discovery: a Data Readiness Audit plus team AI skills evaluation."
 >
   <Hero />
-  <TestimonialsPlaceholder />
+  <AboutSection />
   <hr class="divider" />
-  <ValueProp />
+  <DiscoverySection />
   <hr class="divider" />
-  <ServicesOverview />
+  <AfterDiscovery />
   <hr class="divider" />
   <WhoThisIsFor />
-  <CTASection />
+  <ContactSection />
 </PageLayout>

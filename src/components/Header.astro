@@ -1,12 +1,11 @@
 ---
-const currentPath = Astro.url.pathname;
-
+// Anchor nav for the one-page site. Links use /#id so they also work from
+// standalone pages like /data-trust.
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/flow', label: 'Flow' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/#how-it-works', label: 'How It Works' },
+  { href: '/#who-its-for', label: "Who It's For" },
+  { href: '/#about', label: 'About' },
+  { href: '/#contact', label: 'Contact' },
 ];
 ---
 
@@ -18,12 +17,7 @@ const navLinks = [
 
     <nav class="nav-desktop" aria-label="Main navigation">
       {navLinks.map(link => (
-        <a
-          href={link.href}
-          class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
-        >
-          {link.label}
-        </a>
+        <a href={link.href} class="nav-link">{link.label}</a>
       ))}
       <a href="https://calendar.app.google/L5y5Lhqab7ocFmYL6" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Book Discovery</a>
     </nav>
@@ -37,12 +31,7 @@ const navLinks = [
 
   <nav class="nav-mobile" aria-label="Mobile navigation">
     {navLinks.map(link => (
-      <a
-        href={link.href}
-        class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
-      >
-        {link.label}
-      </a>
+      <a href={link.href} class="nav-link">{link.label}</a>
     ))}
     <a href="https://calendar.app.google/L5y5Lhqab7ocFmYL6" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Book Discovery</a>
   </nav>
@@ -51,11 +40,24 @@ const navLinks = [
 <script>
   const toggle = document.querySelector('.menu-toggle');
   const mobileNav = document.querySelector('.nav-mobile');
+
+  const closeMenu = () => {
+    toggle?.setAttribute('aria-expanded', 'false');
+    mobileNav?.classList.remove('open');
+    toggle?.classList.remove('open');
+  };
+
   toggle?.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!expanded));
     mobileNav?.classList.toggle('open');
     toggle.classList.toggle('open');
+  });
+
+  // Close the mobile menu after an anchor link is tapped, since the page
+  // doesn't reload on same-page navigation.
+  mobileNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
   });
 </script>
 
@@ -102,10 +104,10 @@ const navLinks = [
     color: var(--warm-gray);
     text-decoration: none;
     transition: color 0.2s;
+    white-space: nowrap;
   }
 
-  .nav-link:hover,
-  .nav-link.active {
+  .nav-link:hover {
     color: var(--charcoal);
   }
 
@@ -157,7 +159,7 @@ const navLinks = [
     display: flex;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .header-inner {
       padding: 14px 24px;
     }

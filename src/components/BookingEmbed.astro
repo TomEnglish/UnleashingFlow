@@ -1,13 +1,13 @@
 ---
 // Google Calendar appointment-schedule embed.
-// Booking link: https://calendar.app.google/L5y5Lhqab7ocFmYL6
-const SCHEDULE_ID = 'AcZssZ2E2YtbVlKZEfrFg6YgBXXaV9ppUQ5UvmsXJLpwWaOrjFkDOEkDqYqK5-9QfBqfi0M5fXAQtdxr';
+// Both URLs live in src/config/booking.ts — change the calendar there.
+import { BOOKING_URL, BOOKING_EMBED_URL } from '../config/booking';
 
 interface Props {
   url?: string;
 }
 
-const { url = `https://calendar.google.com/calendar/appointments/schedules/${SCHEDULE_ID}?gv=true` } = Astro.props;
+const { url = BOOKING_EMBED_URL } = Astro.props;
 ---
 
 <div class="booking-wrapper">
@@ -20,7 +20,7 @@ const { url = `https://calendar.google.com/calendar/appointments/schedules/${SCH
     title="Book Discovery"
   ></iframe>
   <p class="booking-fallback">
-    Calendar not loading? <a href="https://calendar.app.google/L5y5Lhqab7ocFmYL6" target="_blank" rel="noopener">Open the booking page directly</a>.
+    Calendar not loading? <a href={BOOKING_URL} target="_blank" rel="noopener">Open the booking page directly</a>.
   </p>
 </div>
 

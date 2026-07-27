@@ -1,0 +1,125 @@
+---
+// Anonymized client roster. Breadth only reads as credible when it is
+// SPECIFIC breadth — hence descriptors with a number attached wherever we
+// have one. No client names without written permission.
+const roster = [
+  '52-shop franchise operator',
+  'Plastics recycling brokerage',
+  'Three-truck hauler at $1.2M revenue',
+  'UK baler manufacturer',
+  'International machinery group',
+  'Construction laydown yard, $80M in tracked POs',
+  'Specialty food manufacturer',
+  'Personal-injury law practice',
+];
+---
+
+<section id="who-we-serve" class="serve section surface-ivory">
+  <div class="section-inner">
+    <div class="serve-layout">
+      <div class="serve-copy reveal">
+        <p class="section-label">Who we work with</p>
+        <h2 class="section-title">
+          Operators between $1M and $100M, where the owner is still the bottleneck
+          and nobody in the building owns the data.
+        </h2>
+        <p class="section-desc">
+          We're not a one-industry shop, and we won't pretend to be. What our
+          clients share isn't a sector — it's a shape. Physical work moving on a
+          schedule. An owner or operator who carries the P&amp;L personally.
+          Numbers living in systems that were never built to talk to each other.
+        </p>
+        <p class="serve-anti">
+          Nobody on this list is a SaaS startup, and nobody is a Fortune 100 with
+          an internal data team. Those firms have other options. These ones
+          mostly have spreadsheets.
+        </p>
+      </div>
+
+      <div class="serve-roster reveal" style="--reveal-delay: 100ms">
+        <p class="roster-label">A cross-section of the work</p>
+        <ul class="roster-list">
+          {roster.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .serve-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(36px, 5vw, 72px);
+    align-items: start;
+  }
+
+  .serve .section-title {
+    font-size: clamp(24px, 2.9vw, 33px);
+    line-height: 1.22;
+  }
+
+  .serve-anti {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--warm-gray);
+    margin-top: var(--space-5);
+    padding-left: var(--space-5);
+    border-left: 2px solid var(--terracotta);
+  }
+
+  .serve-roster {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .roster-label {
+    font-family: var(--font-heading);
+    font-size: var(--step-eyebrow);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: var(--space-5);
+  }
+
+  .roster-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .roster-list li {
+    font-family: var(--font-heading);
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--charcoal);
+    padding: 13px 0 13px 22px;
+    border-bottom: 1px solid var(--hairline);
+    position: relative;
+  }
+
+  .roster-list li:last-child { border-bottom: none; }
+
+  .roster-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 21px;
+    width: 8px;
+    height: 2px;
+    background: var(--terracotta);
+  }
+
+  @media (max-width: 860px) {
+    .serve-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,41 +1,47 @@
 ---
 const fit = [
-  "You're the owner or operator who owns the P&L",
-  "You're working too many hours and most decisions still flow through you",
-  "You believe AI is real but you're skeptical of the people selling it",
-  "You want senior operational counsel, not another vendor",
+  "You own the P&L, and the number at the bottom of it is personally yours",
+  "You are working too many hours, and most decisions still route through you",
+  "You have sat through AI pitches selling governance frameworks, certifications, and maturity models — and noticed none of them ever asked to see your numbers",
+  "You want an operator's judgment, not another vendor's roadmap",
+  "You would rather be told \"don't build that yet\" than be sold something",
 ];
 
 const notFit = [
-  "You need a full-time C-suite hire on the leadership team",
-  "You're looking for an AI vendor selling a product",
-  "You want a tool demo, not Discovery",
+  "You need a full-time executive on the leadership team, in the building, five days a week",
+  "You already know what you want built and just need hands to build it",
+  "You want the recommendation before anyone has looked at the data",
 ];
 ---
 
-<section id="who-its-for" class="who-for section">
-  <p class="section-label">Honest fit</p>
-  <h2 class="section-title">Who this is for</h2>
-  <p class="section-desc">
-    The wrong fit hurts both of us. So we name it sharply.
-  </p>
-
-  <div class="who-grid">
-    <div class="who-card who-card-fit">
-      <h3 class="who-heading">You're a fit if</h3>
-      <ul class="who-list">
-        {fit.map(item => (
-          <li>{item}</li>
-        ))}
-      </ul>
+<section id="who-its-for" class="who section surface-tint">
+  <div class="section-inner">
+    <div class="section-head section-head-center reveal">
+      <p class="section-label">Honest fit</p>
+      <h2 class="section-title">Who this is for</h2>
+      <p class="section-desc">
+        The market is flooded with firms selling AI readiness frameworks to
+        people who cannot get a straight answer about last month's margin. We do
+        the opposite: we look at your actual numbers and tell you where the work
+        is actually blocked. That suits some operators and irritates others.
+        Better to sort it out now.
+      </p>
     </div>
-    <div class="who-card who-card-not">
-      <h3 class="who-heading">You're probably not a fit if</h3>
-      <ul class="who-list who-list-not">
-        {notFit.map(item => (
-          <li>{item}</li>
-        ))}
-      </ul>
+
+    <div class="who-grid">
+      <div class="who-card who-card-fit reveal">
+        <h3 class="who-heading">You're a fit if</h3>
+        <ul class="ticks who-list">
+          {fit.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <div class="who-card who-card-not reveal" style="--reveal-delay: 90ms">
+        <h3 class="who-heading">You're probably not if</h3>
+        <ul class="who-list who-list-not">
+          {notFit.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -43,61 +49,64 @@ const notFit = [
 <style>
   .who-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(20px, 2.6vw, 28px);
+    align-items: start;
   }
 
   .who-card {
-    background: #fff;
-    border: 1px solid #E8E0D6;
-    border-radius: 16px;
-    padding: 36px 32px;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: clamp(28px, 3.2vw, 40px);
+    box-shadow: var(--shadow-sm);
+    transition-delay: var(--reveal-delay, 0ms);
   }
 
   .who-card-fit {
     border-color: var(--terracotta);
+    box-shadow: var(--shadow-md);
   }
 
   .who-heading {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--charcoal);
-    margin-bottom: 20px;
-    font-family: var(--font-heading);
-    letter-spacing: 0.3px;
-  }
-
-  .who-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--hairline);
   }
 
   .who-list li {
     font-size: 15px;
-    color: var(--charcoal);
-    padding-left: 22px;
-    position: relative;
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
-  .who-list li::before {
-    content: '\2713';
-    position: absolute;
-    left: 0;
-    color: var(--terracotta);
-    font-weight: 700;
+  /* The "not a fit" column uses a struck-through rule rather than a tick. */
+  .who-list-not {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .who-list-not li {
+    color: var(--warm-gray);
+    padding-left: 28px;
+    position: relative;
   }
 
   .who-list-not li::before {
-    content: '\2715';
-    color: var(--warm-gray);
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 14px;
+    height: 2px;
+    background: var(--taupe);
   }
 
-  @media (max-width: 768px) {
-    .who-grid {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 860px) {
+    .who-grid { grid-template-columns: 1fr; }
   }
 </style>

@@ -1,24 +1,27 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Hero from '../components/Hero.astro';
-import AboutSection from '../components/AboutSection.astro';
+import ProofBand from '../components/ProofBand.astro';
+import WhoWeServe from '../components/WhoWeServe.astro';
+import FractionalOfficer from '../components/FractionalOfficer.astro';
 import DiscoverySection from '../components/DiscoverySection.astro';
 import AfterDiscovery from '../components/AfterDiscovery.astro';
 import WhoThisIsFor from '../components/WhoThisIsFor.astro';
+import AboutSection from '../components/AboutSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 ---
 
 <PageLayout
-  title="Unleashing Flow — Discovery First"
-  description="Helping businesses unlock their bottom line — and grow faster with AI. Every engagement starts with Discovery: a Data Readiness Audit plus team AI skills evaluation."
+  title="Fractional AI Officer for Operators"
+  description="Your business runs at the speed of whatever is blocking it. We find the constraint in your own numbers, clear it, and build the tools that keep it clear. Discovery from $5,000 — fixed scope, two to three weeks."
 >
   <Hero />
-  <AboutSection />
-  <hr class="divider" />
+  <ProofBand />
+  <WhoWeServe />
+  <FractionalOfficer />
   <DiscoverySection />
-  <hr class="divider" />
   <AfterDiscovery />
-  <hr class="divider" />
   <WhoThisIsFor />
+  <AboutSection />
   <ContactSection />
 </PageLayout>

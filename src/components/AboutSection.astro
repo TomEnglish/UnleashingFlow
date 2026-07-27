@@ -1,114 +1,102 @@
 ---
-// One-page "About" section — replaces the standalone /about page.
-// Elliott's founder note plus a short Mac blurb.
+// Both bios in third person, structurally parallel. Previously Elliott's ran
+// in first person before his name while Mac's ran in third — one voice now.
+const partners = [
+  {
+    name: 'Elliott English',
+    role: 'Co-Founder · Operations & Build',
+    body: [
+      'Elliott spent twenty years running operations inside organizations far larger than the ones he serves now — the Pentagon, Morgan Stanley, healthcare, pharma, and a telehealth division he built from nothing. Derivatives metrics and fraud operations at one end, a Pentagon desk in Qatar at the other.',
+      'The thread through all of it was the same: find where a complex organization is genuinely broken and fix the system rather than the symptom. He does that work at owner-operator scale now for one reason — the blockages are visible, the fixes pay back inside a quarter, and the person who can approve the change is in the room.',
+    ],
+  },
+  {
+    name: 'Mac Steele',
+    role: 'Co-Founder · Business Development',
+    body: [
+      'Mac has spent his career carrying proven technology into industries that had never used it — proxy tabulation for institutional investors, RFID inventory control, and fifteen years moving established manufacturing technology from brick into metals, mining, and steel.',
+      'The job never changed: find a company\'s real problem, match it to technology that actually solves it, and stay long enough to help them pull the value out. He finds the businesses with the right problems. Elliott builds the fix.',
+    ],
+  },
+];
 ---
 
-<section id="about" class="about-section section">
-  <p class="section-label">Who you're working with</p>
-  <h2 class="section-title">The team behind Unleashing Flow</h2>
+<section id="about" class="about section surface-ivory">
+  <div class="section-inner">
+    <div class="section-head section-head-center reveal">
+      <p class="section-label">Who you're working with</p>
+      <h2 class="section-title">Two operators, not an agency.</h2>
+      <p class="section-desc">
+        There is no bench, no account manager, and nobody junior learning on your
+        engagement. The two people who diagnose your operation are the two who
+        build what comes next.
+      </p>
+    </div>
 
-  <div class="note-block">
-    <p class="note-para">
-      I spent twenty years running operations inside organizations much bigger than most — the Pentagon, Morgan Stanley, healthcare, pharma, a telehealth division I built from scratch. I'm doing this work now for one reason: the same operational problems show up at every scale, but the leaks are visible, the fixes pay back faster, and the decision-maker is in the room when the call gets made.
-    </p>
-    <p class="note-para">
-      Most of what's costing your business money isn't visible until someone looks carefully. That's the work. We find it, quantify it, and use AI as the leverage that lets a small senior team deliver what used to require a full-time hire.
-    </p>
-    <cite class="note-cite">
-      <strong>Elliott English</strong>
-      <span>Co-Founder, Unleashing Flow</span>
-    </cite>
-  </div>
-
-  <div class="partner-block">
-    <p class="partner-para">
-      <strong>Mac Steele</strong> has spent his career taking proven technology into industries that had never used it — from proxy tabulation for institutional investors, to RFID inventory control, to fifteen years pushing established manufacturing technology from brick into metals, mining, and steel. The job was the same every time: find a company's real problem, match it to technology that solves it, and help them pull value out of it.
-    </p>
-    <p class="partner-para partner-role">
-      Mac leads business development and partnerships — he finds the businesses with the right problems. Elliott builds the solutions.
-    </p>
+    <div class="partner-grid">
+      {partners.map((p, i) => (
+        <article class="partner-card reveal" style={`--reveal-delay: ${i * 90}ms`}>
+          <header class="partner-head">
+            <h3 class="partner-name">{p.name}</h3>
+            <p class="partner-role">{p.role}</p>
+          </header>
+          {p.body.map(para => <p class="partner-para">{para}</p>)}
+        </article>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
-  .about-section {
-    text-align: center;
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2.6vw, 28px);
   }
 
-  .about-section .section-desc {
-    margin-left: auto;
-    margin-right: auto;
+  .partner-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: clamp(28px, 3.2vw, 40px);
+    box-shadow: var(--shadow-sm);
+    transition-delay: var(--reveal-delay, 0ms);
   }
 
-  .note-block {
-    max-width: 720px;
-    margin: 32px auto 0;
-    background: #fff;
-    border: 1px solid #E8E0D6;
-    border-radius: 16px;
-    padding: 48px 44px;
-    text-align: left;
+  .partner-head {
+    padding-bottom: var(--space-5);
+    margin-bottom: var(--space-5);
+    border-bottom: 1px solid var(--hairline);
   }
 
-  .note-para {
-    font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--charcoal);
-    margin-bottom: 20px;
-  }
-
-  .note-cite {
-    display: flex;
-    flex-direction: column;
-    font-style: normal;
-    margin-top: 28px;
-  }
-
-  .note-cite strong {
-    font-family: var(--font-heading);
-    font-size: 15px;
+  .partner-name {
+    font-size: var(--step-h3);
     font-weight: 700;
     color: var(--charcoal);
+    margin-bottom: var(--space-2);
   }
 
-  .note-cite span {
+  .partner-role {
     font-family: var(--font-heading);
-    font-size: 12px;
-    letter-spacing: 1px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--warm-gray);
-    margin-top: 4px;
-  }
-
-  .partner-block {
-    max-width: 720px;
-    margin: 24px auto 0;
-    text-align: left;
-    padding: 0 12px;
+    color: var(--terracotta);
   }
 
   .partner-para {
     font-family: var(--font-body);
-    font-size: 15px;
+    font-size: 15.5px;
     line-height: 1.75;
     color: var(--charcoal);
-    margin-bottom: 12px;
   }
 
-  .partner-para strong {
-    font-family: var(--font-heading);
-    font-size: 14px;
+  .partner-para + .partner-para {
+    margin-top: var(--space-4);
   }
 
-  .partner-role {
-    color: var(--warm-gray);
-    font-style: italic;
-  }
-
-  @media (max-width: 768px) {
-    .note-block {
-      padding: 32px 24px;
-    }
+  @media (max-width: 860px) {
+    .partner-grid { grid-template-columns: 1fr; }
   }
 </style>

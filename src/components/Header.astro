@@ -2,11 +2,13 @@
 // Anchor nav for the one-page site. Links use /#id so they also work from
 // standalone pages like /data-trust.
 const navLinks = [
-  { href: '/#how-it-works', label: 'How It Works' },
+  { href: '/#fractional', label: 'Fractional AI Officer' },
+  { href: '/#discovery', label: 'Discovery' },
   { href: '/#who-its-for', label: "Who It's For" },
   { href: '/#about', label: 'About' },
-  { href: '/#contact', label: 'Contact' },
 ];
+
+const BOOKING_URL = 'https://calendar.app.google/L5y5Lhqab7ocFmYL6';
 ---
 
 <header class="site-header">
@@ -19,7 +21,9 @@ const navLinks = [
       {navLinks.map(link => (
         <a href={link.href} class="nav-link">{link.label}</a>
       ))}
-      <a href="https://calendar.app.google/L5y5Lhqab7ocFmYL6" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Book Discovery</a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+        Book Discovery
+      </a>
     </nav>
 
     <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -33,11 +37,14 @@ const navLinks = [
     {navLinks.map(link => (
       <a href={link.href} class="nav-link">{link.label}</a>
     ))}
-    <a href="https://calendar.app.google/L5y5Lhqab7ocFmYL6" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Book Discovery</a>
+    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+      Book Discovery
+    </a>
   </nav>
 </header>
 
 <script>
+  const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.menu-toggle');
   const mobileNav = document.querySelector('.nav-mobile');
 
@@ -59,6 +66,14 @@ const navLinks = [
   mobileNav?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
+
+  // Lift the header off the page once it stops sitting on the hero.
+  const onScroll = () => {
+    header?.classList.toggle('is-stuck', window.scrollY > 8);
+  };
+
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 </script>
 
 <style>
@@ -66,44 +81,54 @@ const navLinks = [
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--ivory);
-    border-bottom: 1px solid #E8E0D6;
+    background: rgba(250, 247, 242, 0.86);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+
+  .site-header.is-stuck {
+    border-bottom-color: var(--hairline);
+    box-shadow: 0 1px 20px rgba(61, 51, 48, 0.06);
   }
 
   .header-inner {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 16px 60px;
+    padding: 14px var(--gutter);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-5);
   }
 
   .logo-link {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
   }
 
   .logo {
-    height: 36px;
+    height: 34px;
     width: auto;
   }
 
   .nav-desktop {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: clamp(16px, 2vw, 28px);
   }
 
   .nav-link {
     font-family: var(--font-heading);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 2px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--warm-gray);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.2s var(--ease);
     white-space: nowrap;
   }
 
@@ -112,7 +137,7 @@ const navLinks = [
   }
 
   .nav-cta {
-    padding: 10px 24px;
+    padding: 11px 22px;
     font-size: 11px;
   }
 
@@ -132,7 +157,7 @@ const navLinks = [
     height: 2px;
     background: var(--charcoal);
     border-radius: 2px;
-    transition: all 0.3s;
+    transition: all 0.3s var(--ease);
   }
 
   .menu-toggle.open .bar:nth-child(1) {
@@ -148,22 +173,19 @@ const navLinks = [
   .nav-mobile {
     display: none;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 24px;
+    align-items: stretch;
+    text-align: center;
+    gap: var(--space-5);
+    padding: var(--space-6) var(--gutter) var(--space-7);
     background: var(--ivory);
-    border-bottom: 1px solid #E8E0D6;
+    border-bottom: 1px solid var(--hairline);
   }
 
   .nav-mobile.open {
     display: flex;
   }
 
-  @media (max-width: 900px) {
-    .header-inner {
-      padding: 14px 24px;
-    }
-
+  @media (max-width: 980px) {
     .nav-desktop {
       display: none;
     }

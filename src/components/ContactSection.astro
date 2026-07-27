@@ -1,98 +1,118 @@
 ---
-// One-page contact section — replaces the standalone /contact page and the
-// closing CTA banner. Booking embed plus direct email/LinkedIn.
 import BookingEmbed from './BookingEmbed.astro';
+
+// Both partners are reachable now — Mac's details were missing from the site
+// entirely before this rework.
+const contacts = [
+  {
+    name: 'Elliott English',
+    role: 'Operations & Build',
+    email: 'elliott@unleashingflow.com',
+    linkedin: 'https://linkedin.com/in/elliottenglish',
+    linkedinLabel: 'in/elliottenglish',
+  },
+  {
+    name: 'Mac Steele',
+    role: 'Business Development',
+    email: 'mac@unleashingflow.com',
+    linkedin: null,
+    linkedinLabel: null,
+  },
+];
 ---
 
-<section id="contact" class="contact-section section-dark">
+<section id="contact" class="contact section surface-dark">
   <div class="section-inner">
-    <div class="contact-header">
+    <div class="section-head section-head-center reveal">
       <p class="section-label">Get in touch</p>
-      <h2 class="contact-title">Start with Discovery.</h2>
-      <p class="contact-subtext">
-        We listen to what you need, check whether your systems are ready for integrated reporting or AI, and evaluate your team's AI skills. If we're a fit, Discovery scopes what comes next. If we're not, we'll usually be able to point you toward someone who is.
+      <h2 class="section-title">Start with Discovery.</h2>
+      <p class="section-desc">
+        Two to three weeks, a fixed fee from $5,000, and a written answer about
+        where your operation is actually blocked. If we are not the right people
+        for it, we will usually know someone who is — and we will say so on the
+        first call rather than the fourth.
       </p>
     </div>
 
-    <div class="booking-col">
+    <div class="booking-col reveal">
       <BookingEmbed />
     </div>
 
-    <div class="direct-row">
-      <div class="direct-item">
-        <h3>Email</h3>
-        <a href="mailto:elliott@unleashingflow.com">elliott@unleashingflow.com</a>
-      </div>
-      <div class="direct-item">
-        <h3>LinkedIn</h3>
-        <a href="https://linkedin.com/in/elliottenglish" target="_blank" rel="noopener">linkedin.com/in/elliottenglish</a>
-      </div>
+    <div class="contact-cards reveal">
+      {contacts.map(c => (
+        <div class="contact-card">
+          <h3 class="contact-name">{c.name}</h3>
+          <p class="contact-role">{c.role}</p>
+          <a class="contact-link" href={`mailto:${c.email}`}>{c.email}</a>
+          {c.linkedin && (
+            <a class="contact-link contact-link-sub" href={c.linkedin} target="_blank" rel="noopener">
+              {c.linkedinLabel}
+            </a>
+          )}
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
-  .contact-header {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto 40px;
-  }
-
-  .contact-title {
-    font-size: clamp(28px, 4vw, 36px);
-    font-weight: 700;
-    color: var(--ivory);
-    margin-bottom: 16px;
-  }
-
-  .contact-subtext {
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--taupe);
-  }
-
   .booking-col {
-    max-width: 760px;
+    max-width: 820px;
     margin: 0 auto;
   }
 
-  .direct-row {
-    display: flex;
-    gap: 60px;
-    justify-content: center;
-    margin-top: 40px;
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(18px, 2.4vw, 24px);
+    max-width: 820px;
+    margin: clamp(28px, 3.5vw, 40px) auto 0;
   }
 
-  .direct-item {
+  .contact-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--hairline-dark);
+    border-radius: var(--radius);
+    padding: var(--space-6);
     text-align: center;
   }
 
-  .direct-item h3 {
+  .contact-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ivory);
+    margin-bottom: 6px;
+  }
+
+  .contact-role {
     font-family: var(--font-heading);
-    font-size: 11px;
-    letter-spacing: 3px;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--terracotta-light);
-    margin-bottom: 8px;
-    font-weight: 600;
+    margin-bottom: var(--space-4);
   }
 
-  .direct-item a {
+  .contact-link {
+    display: block;
     font-family: var(--font-heading);
-    font-size: 15px;
+    font-size: 14.5px;
     color: var(--ivory);
     text-decoration: none;
+    transition: color 0.2s var(--ease);
+    word-break: break-word;
   }
 
-  .direct-item a:hover {
-    color: var(--terracotta-light);
+  .contact-link:hover { color: var(--terracotta-light); }
+
+  .contact-link-sub {
+    font-size: 13px;
+    color: var(--taupe);
+    margin-top: 6px;
   }
 
-  @media (max-width: 768px) {
-    .direct-row {
-      flex-direction: column;
-      gap: 24px;
-    }
+  @media (max-width: 640px) {
+    .contact-cards { grid-template-columns: 1fr; }
   }
 </style>

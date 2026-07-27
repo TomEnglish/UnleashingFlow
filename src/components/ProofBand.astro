@@ -1,0 +1,148 @@
+---
+// Proof band — sits directly under the hero on the same dark surface.
+//
+// SOURCING NOTE (internal): every figure below traces to a real engagement doc.
+//   1. EBP/Take 5 Internal Fact Sheet (2026-07-17) — value analysis, time-recovery
+//      table. This is what the diagnostic FOUND in current manual effort, not
+//      banked savings. Wording must stay "found", never "saved".
+//   2. Invenio Field Platform CASE_STUDY.md — agency estimate 655–920 hrs vs
+//      60–94 hrs actual (~90% reduction).
+//   3. Invenio Field Platform CASE_STUDY.md — ~$80M in tracked purchase orders.
+// Clients stay anonymized: descriptors only, no names.
+const proof = [
+  {
+    figure: '$29–48K',
+    unit: 'a year',
+    claim: 'in executive time spent rebuilding the same weekly reports by hand — found in a single diagnostic.',
+    who: '52-shop franchise operator · four systems, none of them talking',
+  },
+  {
+    figure: '~90%',
+    unit: 'below quote',
+    claim: 'Work a development agency scoped at 655–920 hours, delivered in 60–94.',
+    who: 'Industrial asset platform · built in under three weeks',
+  },
+  {
+    figure: '$80M',
+    unit: 'tracked',
+    claim: 'in purchase orders moving through a mobile and dashboard platform we designed and built.',
+    who: 'Construction laydown yard · offline-first field app plus executive reporting',
+  },
+];
+---
+
+<section class="proof surface-dark" aria-label="Client results">
+  <div class="section-inner">
+    <div class="proof-grid">
+      {proof.map((item, i) => (
+        <div class="proof-item reveal" style={`--reveal-delay: ${i * 90}ms`}>
+          <p class="proof-figure">
+            {item.figure}
+            <span class="proof-unit">{item.unit}</span>
+          </p>
+          <p class="proof-claim">{item.claim}</p>
+          <p class="proof-who">{item.who}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="proof-note reveal">
+      Client names withheld by agreement. Engagement documentation available under NDA.
+    </p>
+  </div>
+</section>
+
+<style>
+  .proof {
+    background: var(--deep-brown);
+    padding: clamp(48px, 6vw, 72px) var(--gutter);
+    border-top: 1px solid rgba(232, 199, 167, 0.14);
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(28px, 4vw, 56px);
+  }
+
+  /* Hairline rules between columns rather than boxed cards — keeps the band
+     reading as one continuous statement. */
+  .proof-item {
+    position: relative;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .proof-item + .proof-item::before {
+    content: '';
+    position: absolute;
+    left: calc(clamp(28px, 4vw, 56px) / -2);
+    top: 4px;
+    bottom: 4px;
+    width: 1px;
+    background: rgba(232, 199, 167, 0.16);
+  }
+
+  .proof-figure {
+    font-family: var(--font-heading);
+    font-size: clamp(34px, 4.4vw, 50px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--terracotta-light);
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* These three all sit on --deep-brown, so they use taupe rather than
+     warm-gray — warm-gray only clears about 3:1 on this background. */
+  .proof-unit {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+
+  .proof-claim {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ivory);
+    margin-bottom: var(--space-3);
+  }
+
+  .proof-who {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: var(--taupe);
+  }
+
+  .proof-note {
+    font-family: var(--font-heading);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    color: var(--taupe);
+    margin-top: clamp(32px, 4vw, 48px);
+    padding-top: var(--space-5);
+    border-top: 1px solid rgba(232, 199, 167, 0.12);
+  }
+
+  @media (max-width: 860px) {
+    .proof-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .proof-item + .proof-item {
+      padding-top: var(--space-6);
+      border-top: 1px solid rgba(232, 199, 167, 0.14);
+    }
+
+    .proof-item + .proof-item::before { display: none; }
+  }
+</style>

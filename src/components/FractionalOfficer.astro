@@ -1,0 +1,176 @@
+---
+// The product. Previously buried at the bottom of the page under "two ways we
+// stay with you" — now the first thing after the client roster.
+const triangle = [
+  {
+    title: 'More embedded than a consultant',
+    body: 'We are in your numbers every month, not presenting a deck and leaving you to implement it.',
+  },
+  {
+    title: 'More strategic than a trainer',
+    body: 'We decide what gets built and what does not, then build it. Training is a consequence, not the product.',
+  },
+  {
+    title: 'Far less risk than a hire',
+    body: 'Quarterly terms after the first cycle. No equity, no severance, no nine-month search for a unicorn.',
+  },
+];
+
+const included = [
+  'Monthly operating review — throughput, margin, pipeline',
+  'Quarterly re-diagnostic, because the constraint always moves',
+  'Custom AI tools and dashboards built as the work requires them',
+  'Hiring oversight for data, ops, and technical roles',
+  'Async access to both partners between sessions',
+];
+---
+
+<section id="fractional" class="fractional section surface-tint">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <p class="section-label">The engagement</p>
+      <h2 class="section-title">A Chief AI Officer, without the hire.</h2>
+      <p class="section-desc">
+        A full-time Chief AI Officer runs past $500,000 all-in once you count
+        salary, equity, and the better part of a year spent looking for one.
+        Almost no operator between $1M and $100M needs that person five days a
+        week. What they need is the function — someone senior who owns the data,
+        decides what gets built, and is accountable for whether throughput
+        actually moved.
+      </p>
+    </div>
+
+    <div class="fractional-body">
+      <article class="retainer-card reveal">
+        <div class="retainer-head">
+          <h3 class="retainer-name">Fractional AI Officer</h3>
+          <p class="retainer-shape">15–40 hrs / month · Advisory, Operating, or Embedded</p>
+        </div>
+        <p class="retainer-desc">
+          Senior operational leadership through an AI lens, delivered by the two
+          people who built your systems in the first place. Not a strategy deck
+          handed to a vendor — the same hands stay on the work.
+        </p>
+        <ul class="ticks">
+          {included.map(item => <li>{item}</li>)}
+        </ul>
+        <p class="retainer-gate">
+          Scoped from what Discovery finds. We don't quote a retainer to a
+          business we haven't looked inside.
+        </p>
+      </article>
+
+      <div class="triangle">
+        {triangle.map((item, i) => (
+          <div class="triangle-item reveal" style={`--reveal-delay: ${(i + 1) * 80}ms`}>
+            <h4 class="triangle-title">{item.title}</h4>
+            <p class="triangle-body">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fractional-body {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+  }
+
+  .retainer-card {
+    background: var(--surface);
+    border: 1px solid var(--terracotta);
+    border-radius: var(--radius-lg);
+    padding: clamp(28px, 3.4vw, 44px);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Terracotta cap bar — marks this as the headline offer. */
+  .retainer-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light));
+  }
+
+  .retainer-head {
+    padding-bottom: var(--space-5);
+    margin-bottom: var(--space-5);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .retainer-name {
+    font-size: var(--step-h3);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: var(--space-2);
+  }
+
+  .retainer-shape {
+    font-family: var(--font-heading);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+  }
+
+  .retainer-desc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin-bottom: var(--space-6);
+  }
+
+  .retainer-gate {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--warm-gray);
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--hairline);
+  }
+
+  .triangle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .triangle-item {
+    padding-left: var(--space-5);
+    border-left: 2px solid var(--terracotta-light);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .triangle-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: var(--space-2);
+    line-height: 1.3;
+  }
+
+  .triangle-body {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--warm-gray);
+  }
+
+  @media (max-width: 860px) {
+    .fractional-body {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

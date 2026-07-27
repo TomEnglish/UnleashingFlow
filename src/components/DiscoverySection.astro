@@ -1,183 +1,238 @@
 ---
-// One-page "How it works" section — merges the old ValueProp pillars with the
-// Services-page Discovery card and deliverables checklist.
+// The on-ramp. Every client enters here — and as of this rework, the price is
+// on the page. $5,000 matches the signed EBP scope (Quote UF-2026-0014).
+const BOOKING_URL = 'https://calendar.app.google/L5y5Lhqab7ocFmYL6';
+
 const pillars = [
   {
-    title: 'Listen',
-    body: 'What you\'re trying to fix, what "better" looks like, and where the operation actually hurts — before we talk tools.',
+    n: '01',
+    title: 'We listen',
+    body: 'What you are trying to fix, what "better" would actually look like, and where the operation hurts — before anyone mentions a tool.',
   },
   {
-    title: 'Data readiness',
-    body: 'Whether your current systems can support integrated reporting or AI — what connects today, what doesn\'t, and what would need to.',
+    n: '02',
+    title: 'We read your data',
+    body: 'What your systems hold, what they refuse to share, and whether any of it can support integrated reporting or AI today.',
   },
   {
-    title: 'Team AI skills',
-    body: 'Where your people are strong, where they\'re stuck, and whether staff training would help before any build will stick.',
+    n: '03',
+    title: 'We assess your team',
+    body: 'Where your people are strong, where they are stuck, and whether training has to come before any build will stick.',
   },
 ];
 
 const deliverables = [
-  'Listening session — what you\'re trying to fix, and what "better" looks like',
-  'Data readiness assessment — systems, sources, and whether they can support integrated reporting or AI',
-  'Integration map — what connects today, what doesn\'t, and what would need to',
-  'Team AI skills evaluation — where your people are strong, where they\'re stuck, and whether training would help',
-  'Honest readiness verdict — ready now, ready after a few fixes, or not yet',
-  'Recommended next step — scoped only if Discovery says it\'s worth doing',
+  'A written verdict on where throughput is actually constrained — and why it is that and not the thing you assumed',
+  'What the constraint is costing you, in dollars, with arithmetic you can follow',
+  'An integration map: what connects today, what does not, what would need to',
+  'Team AI skills evaluation across the people who would use what we build',
+  'A sequenced roadmap — what to fix first, and explicitly what not to touch yet',
+  'A costed proposal for the next phase, only if Discovery says one is warranted',
 ];
 ---
 
-<section id="how-it-works" class="discovery-section section">
-  <p class="section-label">How it works</p>
-  <h2 class="section-title">One entry door: Discovery</h2>
-  <p class="section-desc">
-    Discovery is a Data Readiness Audit. Every client starts here. We listen to what you need, check whether your systems are ready for integrated reporting or AI, and evaluate your team's AI skills at the same time. What comes next is decided by what we find — not by a menu of projects.
-  </p>
+<section id="discovery" class="discovery section surface-ivory">
+  <div class="section-inner">
+    <div class="section-head section-head-center reveal">
+      <p class="section-label">The way in</p>
+      <h2 class="section-title">Every engagement starts with Discovery.</h2>
+      <p class="section-desc">
+        We won't quote work we haven't scoped, and you shouldn't buy a fix for a
+        constraint nobody has found yet. Discovery is two to three weeks inside
+        your operation — your data, your systems, your people — and it ends in a
+        written verdict rather than a proposal deck.
+      </p>
+    </div>
 
-  <div class="pillar-grid">
-    {pillars.map(pillar => (
-      <div class="pillar-card">
-        <h3 class="pillar-title">{pillar.title}</h3>
-        <p class="pillar-body">{pillar.body}</p>
-      </div>
-    ))}
-  </div>
+    <div class="pillars">
+      {pillars.map((p, i) => (
+        <div class="pillar reveal" style={`--reveal-delay: ${i * 80}ms`}>
+          <span class="pillar-n">{p.n}</span>
+          <h3 class="pillar-title">{p.title}</h3>
+          <p class="pillar-body">{p.body}</p>
+        </div>
+      ))}
+    </div>
 
-  <article class="discovery-card">
-    <div class="discovery-card-body">
-      <div class="discovery-narrative">
-        <p class="discovery-lead">
-          Some businesses are ready to build. Some need a few data fixes first. Some need the team brought up to speed before any tool will stick. Discovery tells you which — honestly — before you fund the wrong next step.
+    <article class="offer reveal">
+      <div class="offer-main">
+        <p class="offer-eyebrow">Discovery</p>
+
+        <p class="offer-price">
+          <span class="offer-from">from</span>
+          <span class="offer-figure">$5,000</span>
         </p>
-        <p class="door-shape-line">Fixed-scope first engagement</p>
-        <a href="https://calendar.app.google/L5y5Lhqab7ocFmYL6" target="_blank" rel="noopener" class="btn btn-primary">Book Discovery</a>
+
+        <p class="offer-terms">Fixed fee · Fixed scope · Two to three weeks</p>
+
+        <p class="offer-note">
+          Operations running more systems, more sites, or more entities scope
+          higher — and we tell you that number before you commit, not after.
+          Everything past Discovery is priced from what Discovery finds, because
+          until then we would be guessing and so would you.
+        </p>
+
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn btn-primary offer-cta">
+          Book Discovery
+        </a>
       </div>
-      <div class="door-deliverables">
-        <p class="deliverables-label">What you get</p>
-        <ul class="deliverables-list">
+
+      <div class="offer-deliverables">
+        <p class="deliverables-label">What you walk away with</p>
+        <ul class="ticks">
           {deliverables.map(d => <li>{d}</li>)}
         </ul>
       </div>
-    </div>
-  </article>
+    </article>
+  </div>
 </section>
 
 <style>
-  .pillar-grid {
+  .pillars {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 8px;
+    gap: clamp(20px, 2.6vw, 32px);
+    margin-bottom: clamp(36px, 4.5vw, 56px);
   }
 
-  .pillar-card {
-    background: #fff;
-    border: 1px solid #E8E0D6;
-    border-radius: 16px;
-    padding: 32px 28px;
+  .pillar {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: clamp(24px, 2.8vw, 34px);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
+                opacity 0.7s var(--ease);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .pillar:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .pillar-n {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--terracotta);
+    margin-bottom: var(--space-4);
   }
 
   .pillar-title {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: var(--space-3);
     color: var(--charcoal);
-    line-height: 1.25;
   }
 
   .pillar-body {
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--charcoal);
-    margin: 0;
-  }
-
-  .discovery-card {
-    margin-top: 32px;
-    background: #fff;
-    border: 1px solid var(--terracotta);
-    border-radius: 20px;
-    padding: 40px;
-  }
-
-  .discovery-card-body {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 36px;
-    align-items: start;
-  }
-
-  .discovery-lead {
     font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--charcoal);
-    margin-bottom: 16px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--warm-gray);
   }
 
-  .door-shape-line {
+  /* --- The priced offer --- */
+  .offer {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(28px, 4vw, 56px);
+    background: var(--charcoal);
+    border-radius: var(--radius-lg);
+    padding: clamp(32px, 4vw, 56px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .offer-eyebrow {
+    font-family: var(--font-heading);
+    font-size: var(--step-eyebrow);
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: var(--space-5);
+  }
+
+  .offer-price {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: var(--space-3);
+  }
+
+  .offer-from {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+
+  .offer-figure {
+    font-family: var(--font-heading);
+    font-size: clamp(46px, 6vw, 68px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--ivory);
+  }
+
+  .offer-terms {
     font-family: var(--font-heading);
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--terracotta);
-    margin: 16px 0 24px;
+    color: var(--terracotta-light);
+    padding-bottom: var(--space-5);
+    margin-bottom: var(--space-5);
+    border-bottom: 1px solid var(--hairline-dark);
   }
 
-  .door-deliverables {
-    background: var(--ivory);
-    border-radius: 16px;
-    padding: 24px;
+  .offer-note {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--taupe);
+    margin-bottom: var(--space-6);
+  }
+
+  .offer-cta {
+    width: 100%;
+  }
+
+  .offer-deliverables {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--hairline-dark);
+    border-radius: var(--radius);
+    padding: clamp(24px, 2.8vw, 32px);
   }
 
   .deliverables-label {
     font-family: var(--font-heading);
-    font-size: 11px;
+    font-size: var(--step-eyebrow);
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 12px;
+    color: var(--terracotta-light);
+    margin-bottom: var(--space-5);
   }
 
-  .deliverables-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .deliverables-list li {
-    font-family: var(--font-body);
+  .offer-deliverables .ticks li {
+    color: var(--ivory);
     font-size: 14px;
-    line-height: 1.55;
-    color: var(--charcoal);
-    padding-left: 20px;
-    position: relative;
   }
 
-  .deliverables-list li::before {
-    content: '\2713';
-    position: absolute;
-    left: 0;
-    color: var(--terracotta);
-    font-weight: 700;
+  .offer-deliverables .ticks li::before {
+    border-color: var(--terracotta-light);
   }
 
-  @media (max-width: 768px) {
-    .pillar-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .discovery-card {
-      padding: 24px 22px;
-    }
-
-    .discovery-card-body {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
+  @media (max-width: 900px) {
+    .pillars { grid-template-columns: 1fr; }
+    .offer { grid-template-columns: 1fr; }
   }
 </style>

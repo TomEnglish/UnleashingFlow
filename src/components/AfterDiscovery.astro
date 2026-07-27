@@ -1,6 +1,21 @@
 ---
 // What Discovery may recommend. The Fractional AI Officer retainer used to
 // live here at the bottom of the page — it now has its own section above.
+// Lead capability, rendered as a full-width feature above the grid.
+// Grounded in delivered work: GPS and geofencing plus scan-at-handoff capture
+// on the laydown-yard platform, vision-model reading of paper slips on the
+// franchise build.
+const instrumentation = {
+  name: 'Instrumentation — making the missing number exist',
+  body: 'The constraint usually sits in the part of the operation nobody measures, because no system was ever pointed at it. We put sensors and capture software where the work actually happens, so the number you need starts existing instead of being estimated.',
+  examples: [
+    'GPS and geofencing on vehicles and equipment',
+    'A scan at each material handoff, working offline',
+    'Vision models reading the paperwork still filled in by hand',
+    'Feeds pulled off machines that already publish data',
+  ],
+};
+
 const builds = [
   {
     name: 'Integrated reporting & dashboards',
@@ -31,6 +46,16 @@ const builds = [
         and only when the data, the systems, and the team can carry them.
       </p>
     </div>
+
+    <article class="instrument reveal">
+      <div class="instrument-copy">
+        <h3 class="instrument-name">{instrumentation.name}</h3>
+        <p class="instrument-body">{instrumentation.body}</p>
+      </div>
+      <ul class="ticks instrument-list">
+        {instrumentation.examples.map(x => <li>{x}</li>)}
+      </ul>
+    </article>
 
     <div class="build-grid">
       {builds.map((b, i) => (
@@ -65,6 +90,46 @@ const builds = [
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(18px, 2.2vw, 24px);
+  }
+
+  /* Instrumentation leads: it answers the objection the rest of the page
+     invites — "we don't have numbers for that part of the operation." */
+  .instrument {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(24px, 3.4vw, 48px);
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--terracotta);
+    border-radius: var(--radius);
+    padding: clamp(26px, 3.2vw, 38px);
+    box-shadow: var(--shadow-md);
+    margin-bottom: clamp(18px, 2.2vw, 24px);
+  }
+
+  .instrument-name {
+    font-size: var(--step-h3);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: var(--space-4);
+    line-height: 1.25;
+  }
+
+  .instrument-body {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--warm-gray);
+  }
+
+  .instrument-list {
+    background: var(--ivory);
+    border-radius: var(--radius-sm);
+    padding: var(--space-5);
+  }
+
+  @media (max-width: 860px) {
+    .instrument { grid-template-columns: 1fr; }
   }
 
   .build-card {

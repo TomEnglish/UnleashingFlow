@@ -1,15 +1,19 @@
 ---
 // Proof band — sits directly under the hero on the same dark surface.
 //
-// SOURCING NOTE (internal): every figure below traces to a real engagement doc.
+// SOURCING NOTE (internal): every figure below traces to a real engagement doc,
+// and each stat must come from a DIFFERENT client. An earlier version ran two
+// separate stats off the same Invenio platform, which read as three clients
+// when it was two — those are now merged into one.
 //   1. EBP/Take 5 Internal Fact Sheet (2026-07-17) — value analysis, time-recovery
 //      table. This is what the diagnostic FOUND in current manual effort, not
 //      banked savings. Wording must stay "found", never "saved".
 //   2. Invenio Field Platform CASE_STUDY.md — agency estimate 655–920 hrs vs
-//      60–94 hrs actual (~90% reduction).
-//   3. Invenio Field Platform CASE_STUDY.md — ~$80M in purchase orders, and the
-//      MSR dashboard built "for executive visibility" over them. "Made visible"
-//      is the supported claim; avoid tracking/monitoring language site-wide.
+//      60–94 hrs actual (~90%), 1–3 week delivery, ~$80M in purchase orders.
+//   3. AGT_ASSESSMENTS.md — TTM $800.4k sales / $119.9k net / 15.0% margin.
+//      The ~$50k is a conservative sum of the sized "prize" table: pricing the
+//      sell-outs $12–40k, drink attachment $15–30k, card processing $2–4k,
+//      Benny's shared costs ~$4.4k. $50k/$800k ≈ 6% of revenue.
 // Clients stay anonymized: descriptors only, no names.
 const proof = [
   {
@@ -20,18 +24,16 @@ const proof = [
     who: 'High-volume franchise operator · four systems, none of them talking',
   },
   {
-    figure: '~90%',
-    unit: 'below quote',
-    claim: 'Work a development agency scoped at 655–920 hours, delivered in 60–94.',
-    // Case study puts the delivered timeline at 1-3 weeks; "under three weeks"
-    // was shaving the top of that range.
-    who: 'Industrial asset platform · delivered in one to three weeks',
+    figure: '$50K',
+    unit: 'a year',
+    claim: 'in uncaptured margin the business was already producing and not collecting — about 6% of revenue, with no new customers and no new capacity.',
+    who: 'Producer-retailer · found in one profitability review',
   },
   {
-    figure: '$80M',
-    unit: 'made visible',
-    claim: 'in purchase orders moving through a field app and executive dashboard we designed and built.',
-    who: 'Industrial construction, $60B+ energy campus · scan-at-the-handoff capture plus live reporting',
+    figure: '~90%',
+    unit: 'below quote',
+    claim: 'Work a development agency scoped at 655–920 hours, delivered in 60–94 — now carrying $80M in purchase orders.',
+    who: 'Industrial construction, $60B+ energy campus · delivered in one to three weeks',
   },
 ];
 ---

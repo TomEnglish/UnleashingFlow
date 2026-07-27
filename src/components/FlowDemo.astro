@@ -1,0 +1,957 @@
+---
+/**
+ * Interactive max-flow / min-cut demonstration.
+ *
+ * The point it makes: total system throughput equals the capacity of the
+ * minimum cut, so adding capacity anywhere else changes nothing — and the
+ * moment you relieve the constraint, it moves somewhere new. That is the
+ * argument for Discovery and for the Throughput Cycle, in one graphic.
+ *
+ * Node coordinates and edge geometry are static and rendered server-side.
+ * The client script reads the graph back out of the DOM (data-from/data-to on
+ * each edge), so there is no duplicated adjacency list to keep in sync.
+ */
+
+// Center points in viewBox space. Horizontal gaps are set so a 58-wide edge
+// label sits at the midpoint without touching either node box.
+const POS: Record<string, [number, number]> = {
+  S: [58, 160],
+  A: [222, 160],
+  B: [392, 66],
+  C: [392, 254],
+  D: [562, 160],
+  T: [720, 160],
+};
+
+const NODES = [
+  { id: 'S', label: 'Orders', note: 'demand in' },
+  { id: 'A', label: 'Intake', note: '' },
+  { id: 'B', label: 'Machining', note: '' },
+  { id: 'C', label: 'Fabrication', note: '' },
+  { id: 'D', label: 'Assembly', note: '' },
+  { id: 'T', label: 'Shipped', note: 'revenue out' },
+];
+
+// Capacities are units/day. Tuned so the first constraint is Assembly → Ship,
+// and relieving it hands the constraint to the two Assembly feeds.
+const EDGES = [
+  { id: 'S-A', from: 'S', to: 'A', cap: 100, label: 'Orders → Intake' },
+  { id: 'A-B', from: 'A', to: 'B', cap: 60, label: 'Intake → Machining' },
+  { id: 'A-C', from: 'A', to: 'C', cap: 50, label: 'Intake → Fabrication' },
+  { id: 'B-D', from: 'B', to: 'D', cap: 40, label: 'Machining → Assembly' },
+  { id: 'C-D', from: 'C', to: 'D', cap: 45, label: 'Fabrication → Assembly' },
+  { id: 'D-T', from: 'D', to: 'T', cap: 70, label: 'Assembly → Ship' },
+];
+
+const CAP_MAX = 120;
+
+const NODE_W = 96;
+const NODE_H = 46;
+const LABEL_W = 58;
+
+const geo = EDGES.map(e => {
+  const [x1, y1] = POS[e.from];
+  const [x2, y2] = POS[e.to];
+  return { ...e, x1, y1, x2, y2, mx: (x1 + x2) / 2, my: (y1 + y2) / 2 };
+});
+---
+
+<figure class="flow-demo" data-flow-demo>
+  <div class="flow-stage">
+    <div class="flow-canvas">
+    <svg
+      viewBox="0 0 778 320"
+      role="img"
+      aria-label="Diagram of a six-stage operation. Throughput is limited by the tightest link in the chain."
+      class="flow-svg"
+    >
+      <!-- Edges first so the node boxes paint over their endpoints. -->
+      {geo.map(e => (
+        <g class="edge" data-edge={e.id} data-from={e.from} data-to={e.to}>
+          <line class="edge-track" x1={e.x1} y1={e.y1} x2={e.x2} y2={e.y2} />
+          <line class="edge-flow" x1={e.x1} y1={e.y1} x2={e.x2} y2={e.y2} />
+        </g>
+      ))}
+
+      {NODES.map(n => {
+        const [cx, cy] = POS[n.id];
+        return (
+          <g class="node" data-node={n.id}>
+            <rect
+              x={cx - NODE_W / 2}
+              y={cy - NODE_H / 2}
+              width={NODE_W}
+              height={NODE_H}
+              rx="10"
+            />
+            <text x={cx} y={n.note ? cy - 2 : cy + 5} class="node-label">{n.label}</text>
+            {n.note && <text x={cx} y={cy + 14} class="node-note">{n.note}</text>}
+          </g>
+        );
+      })}
+
+      <!-- Edge labels last so they sit above everything. -->
+      {geo.map(e => (
+        <g class="edge-label" data-edge-label={e.id} transform={`translate(${e.mx} ${e.my})`}>
+          <rect x={-LABEL_W / 2} y="-11" width={LABEL_W} height="22" rx="6" />
+          <text x="0" y="4"><tspan data-flow-val>0</tspan> / <tspan data-cap-val>{e.cap}</tspan></text>
+        </g>
+      ))}
+    </svg>
+    </div>
+
+    <ul class="flow-legend">
+      <li>
+        <svg viewBox="0 0 30 14" aria-hidden="true"><line x1="2" y1="7" x2="28" y2="7" stroke="var(--ivory-dark)" stroke-width="11" stroke-linecap="round" /></svg>
+        <span>Thickness is the capacity of that link</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 30 14" aria-hidden="true"><line x1="2" y1="7" x2="28" y2="7" stroke="var(--ivory-dark)" stroke-width="11" stroke-linecap="round" /><line x1="2" y1="7" x2="28" y2="7" stroke="var(--terracotta)" stroke-width="6" stroke-linecap="round" /></svg>
+        <span>The filled core is the flow actually moving through it</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 30 14" aria-hidden="true"><line x1="2" y1="7" x2="28" y2="7" stroke="#D8CBBC" stroke-width="11" stroke-linecap="round" /><line x1="2" y1="7" x2="28" y2="7" stroke="var(--charcoal)" stroke-width="11" stroke-linecap="round" /></svg>
+        <span>Solid dark links are the cut — the binding constraint</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 30 14" aria-hidden="true"><rect x="2" y="1" width="26" height="12" rx="3" fill="#FBF3EC" stroke="var(--terracotta-light)" stroke-width="1.5" /></svg>
+        <span>Tinted stages sit upstream of the cut, in set <em>S</em></span>
+      </li>
+    </ul>
+
+    <div class="flow-readout">
+      <div class="fmax">
+        <p class="fmax-label">Maximum system flow</p>
+        <p class="fmax-value"><span data-fmax>0</span> <span class="fmax-unit">units / day</span></p>
+      </div>
+      <p class="flow-message" data-message aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="flow-controls">
+    <div class="controls-head">
+      <h3 class="controls-title">Add capacity anywhere you like</h3>
+      <button type="button" class="btn-ghost" data-reset>Reset</button>
+    </div>
+
+    <ul class="slider-list">
+      {EDGES.map(e => (
+        <li class="slider-row" data-slider-row={e.id}>
+          <label class="slider-label" for={`cap-${e.id}`}>
+            <span class="slider-name">{e.label}</span>
+            <span class="slider-value"><span data-slider-out={e.id}>{e.cap}</span><span class="slider-unit">/day</span></span>
+          </label>
+          <input
+            type="range"
+            id={`cap-${e.id}`}
+            data-cap-input={e.id}
+            min="0"
+            max={CAP_MAX}
+            step="5"
+            value={e.cap}
+          />
+          <span class="constraint-tag" data-tag={e.id}>Constraint</span>
+        </li>
+      ))}
+    </ul>
+
+    <button type="button" class="btn btn-primary relieve-btn" data-relieve>
+      Relieve the constraint
+    </button>
+    <p class="controls-hint">
+      Adds capacity to every link in the current constraint, and keeps going
+      until throughput actually moves — the only move on this board that
+      changes the answer.
+    </p>
+  </div>
+
+  <details class="flow-math">
+    <summary>The arithmetic underneath</summary>
+    <div class="math-body">
+      <p>
+        Treat the operation as a network <em>G</em> = (<em>V</em>, <em>E</em>):
+        stages are nodes, and the links between them carry a capacity.
+      </p>
+      <ol class="math-list">
+        <li>
+          <strong>Capacity constraint.</strong> Flow across a link never exceeds
+          that link's capacity.
+          <code>0 ≤ f(u,v) ≤ c(u,v)</code>
+        </li>
+        <li>
+          <strong>Flow conservation.</strong> What enters a stage leaves it —
+          anything else is work-in-progress piling up on your floor.
+          <code>Σ f(w,u) = Σ f(u,w)</code>
+        </li>
+        <li>
+          <strong>Maximum system flow.</strong> Total throughput equals the
+          capacity of the tightest cut across the network, not the average
+          capacity and not the sum of it.
+          <code>F<sub>max</sub> = cap(S,T) = min Σ c(u,v)</code>
+        </li>
+      </ol>
+      <p class="math-close">
+        The third line is the whole argument. Spend on any link that is not in
+        that cut and <em>F</em><sub>max</sub> does not move — you have bought
+        capacity the system cannot use. Finding which links are in the cut is
+        what Discovery does, except against your numbers instead of these.
+      </p>
+    </div>
+  </details>
+</figure>
+
+<script>
+  type Edge = {
+    id: string;
+    from: string;
+    to: string;
+    cap: number;
+    flow: number;
+    label: string;
+  };
+
+  const SOURCE = 'S';
+  const SINK = 'T';
+
+  document.querySelectorAll<HTMLElement>('[data-flow-demo]').forEach(root => {
+    const svg = root.querySelector('svg')!;
+    const messageEl = root.querySelector<HTMLElement>('[data-message]')!;
+    const fmaxEl = root.querySelector<HTMLElement>('[data-fmax]')!;
+
+    // Build the edge list from the DOM so there is one source of truth.
+    const edges: Edge[] = [...svg.querySelectorAll<SVGGElement>('.edge')].map(g => {
+      const id = g.dataset.edge!;
+      const input = root.querySelector<HTMLInputElement>(`[data-cap-input="${id}"]`)!;
+      const row = root.querySelector<HTMLElement>(`[data-slider-row="${id}"]`)!;
+      return {
+        id,
+        from: g.dataset.from!,
+        to: g.dataset.to!,
+        cap: Number(input.value),
+        flow: 0,
+        label: row.querySelector('.slider-name')!.textContent!.trim(),
+      };
+    });
+
+    const defaults = new Map(edges.map(e => [e.id, e.cap]));
+
+    /**
+     * Edmonds-Karp. Returns total flow, per-edge flow, the min-cut edge ids,
+     * and the set of nodes on the source side of the cut.
+     */
+    function solve() {
+      const res: Record<string, Record<string, number>> = {};
+      const touch = (u: string, v: string) => {
+        res[u] = res[u] || {};
+        res[v] = res[v] || {};
+        res[u][v] = res[u][v] ?? 0;
+        res[v][u] = res[v][u] ?? 0;
+      };
+
+      edges.forEach(e => {
+        touch(e.from, e.to);
+        res[e.from][e.to] += e.cap;
+      });
+
+      let total = 0;
+
+      for (;;) {
+        // BFS for a shortest augmenting path.
+        const parent: Record<string, string | null> = { [SOURCE]: null };
+        const queue = [SOURCE];
+        let reached = false;
+
+        while (queue.length && !reached) {
+          const u = queue.shift()!;
+          for (const v in res[u] ?? {}) {
+            if (res[u][v] > 0 && !(v in parent)) {
+              parent[v] = u;
+              if (v === SINK) { reached = true; break; }
+              queue.push(v);
+            }
+          }
+        }
+
+        if (!(SINK in parent)) break;
+
+        let bottleneck = Infinity;
+        for (let v = SINK; v !== SOURCE; v = parent[v]!) {
+          bottleneck = Math.min(bottleneck, res[parent[v]!][v]);
+        }
+        for (let v = SINK; v !== SOURCE; v = parent[v]!) {
+          res[parent[v]!][v] -= bottleneck;
+          res[v][parent[v]!] += bottleneck;
+        }
+        total += bottleneck;
+      }
+
+      edges.forEach(e => { e.flow = e.cap - res[e.from][e.to]; });
+
+      // Nodes still reachable from the source in the residual graph form S.
+      const sSide = new Set<string>([SOURCE]);
+      const q2 = [SOURCE];
+      while (q2.length) {
+        const u = q2.shift()!;
+        for (const v in res[u] ?? {}) {
+          if (res[u][v] > 0 && !sSide.has(v)) { sSide.add(v); q2.push(v); }
+        }
+      }
+
+      const cut = edges
+        .filter(e => sSide.has(e.from) && !sSide.has(e.to))
+        .map(e => e.id);
+
+      return { total, cut, sSide };
+    }
+
+    const trackWidth = (cap: number) => 4 + cap * 0.13;
+
+    const canvas = root.querySelector<HTMLElement>('.flow-canvas')!;
+    let lastCutKey = '';
+
+    /**
+     * On narrow screens the chain scrolls, and the constraint is frequently
+     * off-screen — which is the one thing worth looking at. Bring it into view
+     * when it moves, but never while the user is mid-drag on an unchanged cut.
+     */
+    function revealCut(cut: string[]) {
+      const key = [...cut].sort().join(',');
+      if (key === lastCutKey) return;
+      lastCutKey = key;
+
+      if (!cut.length || canvas.scrollWidth <= canvas.clientWidth) return;
+
+      const label = svg.querySelector<SVGGElement>(`[data-edge-label="${cut[0]}"]`);
+      if (!label) return;
+
+      const lr = label.getBoundingClientRect();
+      const cr = canvas.getBoundingClientRect();
+      const left = canvas.scrollLeft + (lr.left - cr.left) + lr.width / 2 - cr.width / 2;
+
+      // Assigned directly rather than via scrollTo({behavior}) — the easing
+      // comes from scroll-behavior on .flow-canvas, which also respects the
+      // reduced-motion override in CSS instead of duplicating that check here.
+      canvas.scrollLeft = Math.max(0, left);
+    }
+
+    function render(result: ReturnType<typeof solve>) {
+      const cutSet = new Set(result.cut);
+
+      edges.forEach(e => {
+        const g = svg.querySelector<SVGGElement>(`.edge[data-edge="${e.id}"]`)!;
+        const track = g.querySelector<SVGLineElement>('.edge-track')!;
+        const fill = g.querySelector<SVGLineElement>('.edge-flow')!;
+        const tw = trackWidth(e.cap);
+
+        track.style.strokeWidth = `${tw}`;
+        fill.style.strokeWidth =
+          e.cap > 0 && e.flow > 0 ? `${Math.max(2, tw * (e.flow / e.cap))}` : '0';
+
+        g.classList.toggle('is-cut', cutSet.has(e.id));
+        g.classList.toggle('is-saturated', e.cap > 0 && e.flow >= e.cap);
+
+        const label = svg.querySelector<SVGGElement>(`[data-edge-label="${e.id}"]`)!;
+        label.querySelector('[data-flow-val]')!.textContent = String(e.flow);
+        label.querySelector('[data-cap-val]')!.textContent = String(e.cap);
+        label.classList.toggle('is-cut', cutSet.has(e.id));
+
+        root.querySelector(`[data-slider-out="${e.id}"]`)!.textContent = String(e.cap);
+        root.querySelector(`[data-tag="${e.id}"]`)!.classList.toggle('is-on', cutSet.has(e.id));
+        root.querySelector(`[data-slider-row="${e.id}"]`)!
+          .classList.toggle('is-cut', cutSet.has(e.id));
+      });
+
+      // Tint the partition so cap(S,T) is visible as a split, not just a number.
+      svg.querySelectorAll<SVGGElement>('.node').forEach(n => {
+        n.classList.toggle('is-source-side', result.sSide.has(n.dataset.node!));
+      });
+
+      fmaxEl.textContent = String(result.total);
+      revealCut(result.cut);
+    }
+
+    function cutNames(cut: string[]) {
+      const names = cut.map(id => edges.find(e => e.id === id)!.label);
+      if (names.length === 1) return names[0];
+      return `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+    }
+
+    const sameCut = (a: string[], b: string[]) =>
+      a.length === b.length && a.every(id => b.includes(id));
+
+    /** "the constraint has moved to X" vs "X is still the constraint". */
+    function whereNow(before: string[], after: string[]) {
+      return sameCut(before, after)
+        ? `${cutNames(after)} is still the constraint`
+        : `the constraint has moved to ${cutNames(after)}`;
+    }
+
+    let previous = solve();
+    render(previous);
+    messageEl.textContent =
+      `The constraint is ${cutNames(previous.cut)}. Every other stage has capacity to spare.`;
+
+    // The first render runs before the canvas has its final width, so the
+    // scroll check above sees a container that cannot scroll yet. Retry once
+    // layout has settled, and again whenever the column is resized.
+    requestAnimationFrame(() => {
+      lastCutKey = '';
+      revealCut(previous.cut);
+    });
+
+    if ('ResizeObserver' in window) {
+      let first = true;
+      new ResizeObserver(() => {
+        if (first) { first = false; return; }
+        lastCutKey = '';
+        revealCut(previous.cut);
+      }).observe(canvas);
+    }
+
+    function update(changedId: string | null) {
+      const before = previous;
+      const after = solve();
+      render(after);
+
+      if (changedId) {
+        const edge = edges.find(e => e.id === changedId)!;
+        const wasConstraint = before.cut.includes(changedId);
+
+        if (after.total > before.total) {
+          messageEl.textContent =
+            `Throughput up to ${after.total}/day, and ${whereNow(before.cut, after.cut)}.`;
+          messageEl.dataset.tone = 'good';
+        } else if (after.total < before.total) {
+          messageEl.textContent =
+            `Throughput down to ${after.total}/day. You have tightened ${edge.label} past what the system could carry.`;
+          messageEl.dataset.tone = 'bad';
+        } else if (!wasConstraint) {
+          messageEl.textContent =
+            `You added capacity at ${edge.label} and throughput did not move. It was never the constraint — the system still stops at ${cutNames(after.cut)}.`;
+          messageEl.dataset.tone = 'flat';
+        } else {
+          messageEl.textContent =
+            `Still ${after.total}/day. ${cutNames(after.cut)} is carrying the constraint.`;
+          messageEl.dataset.tone = 'flat';
+        }
+      }
+
+      previous = after;
+    }
+
+    root.querySelectorAll<HTMLInputElement>('[data-cap-input]').forEach(input => {
+      input.addEventListener('input', () => {
+        const id = input.dataset.capInput!;
+        edges.find(e => e.id === id)!.cap = Number(input.value);
+        update(id);
+      });
+    });
+
+    root.querySelector<HTMLButtonElement>('[data-relieve]')!.addEventListener('click', () => {
+      const before = previous;
+
+      // A cut can contain several links, and raising only one of them buys
+      // nothing — the others still hold the line. Raise every link in the
+      // current cut, and keep going until throughput genuinely moves, since
+      // relieving one cut can immediately expose another of equal size.
+      const raised = new Set<string>();
+      let target = previous.cut;
+      let result = previous;
+
+      for (let guard = 0; guard < 40; guard++) {
+        if (!target.length) break;
+
+        let bumped = false;
+        target.forEach(id => {
+          const edge = edges.find(e => e.id === id)!;
+          const input = root.querySelector<HTMLInputElement>(`[data-cap-input="${id}"]`)!;
+          const ceiling = Number(input.max);
+          if (edge.cap < ceiling) {
+            edge.cap = Math.min(ceiling, edge.cap + 15);
+            input.value = String(edge.cap);
+            raised.add(id);
+            bumped = true;
+          }
+        });
+
+        if (!bumped) break; // every link in the cut is already maxed out
+
+        result = solve();
+        if (result.total > before.total) break;
+        target = result.cut;
+      }
+
+      render(result);
+      previous = result;
+
+      if (result.total > before.total) {
+        messageEl.textContent =
+          `Raised ${cutNames([...raised])}. Throughput up to ${result.total}/day, and ${whereNow(before.cut, result.cut)}.`;
+        messageEl.dataset.tone = 'good';
+      } else {
+        messageEl.textContent =
+          `Every link is at its ceiling. At this point the operation needs more than capacity — it needs a different process.`;
+        messageEl.dataset.tone = 'flat';
+      }
+    });
+
+    root.querySelector<HTMLButtonElement>('[data-reset]')!.addEventListener('click', () => {
+      edges.forEach(e => {
+        e.cap = defaults.get(e.id)!;
+        root.querySelector<HTMLInputElement>(`[data-cap-input="${e.id}"]`)!.value = String(e.cap);
+      });
+      previous = solve();
+      render(previous);
+      messageEl.textContent =
+        `Back to the starting operation. The constraint is ${cutNames(previous.cut)}.`;
+      messageEl.dataset.tone = 'flat';
+    });
+  });
+</script>
+
+<style>
+  .flow-demo {
+    margin: 0;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    padding: clamp(20px, 3vw, 36px);
+    box-shadow: var(--shadow-md);
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: clamp(24px, 3.4vw, 44px);
+    align-items: stretch;
+  }
+
+  /* The controls column is the taller of the two. Let the diagram column fill
+     that height and push its readout to the bottom rather than leaving a gap. */
+  .flow-stage {
+    display: flex;
+    flex-direction: column;
+    /* Grid and flex items default to min-width:auto, which refuses to shrink
+       below the SVG's min-width and pushes the whole page sideways. */
+    min-width: 0;
+  }
+
+  /* --- Diagram --- */
+  /* Grows into whatever height the controls column dictates and centres the
+     diagram in it. Below the min-width the chain is scrolled rather than
+     shrunk — squeezed to phone width the node labels render around 5px. */
+  .flow-canvas {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+  }
+
+  .flow-svg {
+    width: 100%;
+    min-width: 520px;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  .edge-track {
+    stroke: var(--ivory-dark);
+    stroke-linecap: round;
+    transition: stroke-width 0.35s var(--ease), stroke 0.35s var(--ease);
+  }
+
+  .edge-flow {
+    stroke: var(--terracotta);
+    stroke-linecap: round;
+    transition: stroke-width 0.35s var(--ease), stroke 0.35s var(--ease);
+  }
+
+  /* The cut is the whole point, so it gets the darkest ink on the board. */
+  .edge.is-cut .edge-track { stroke: #D8CBBC; }
+  .edge.is-cut .edge-flow { stroke: var(--charcoal); }
+
+  .node rect {
+    fill: var(--surface);
+    stroke: var(--hairline);
+    stroke-width: 1.5;
+    transition: stroke 0.35s var(--ease), fill 0.35s var(--ease);
+  }
+
+  .node.is-source-side rect {
+    fill: #FBF3EC;
+    stroke: var(--terracotta-light);
+  }
+
+  .node-label {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--charcoal);
+    text-anchor: middle;
+  }
+
+  .node-note {
+    font-family: var(--font-heading);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    fill: var(--warm-gray);
+    text-anchor: middle;
+  }
+
+  .edge-label rect {
+    fill: var(--surface);
+    stroke: var(--hairline);
+    stroke-width: 1;
+    transition: fill 0.35s var(--ease), stroke 0.35s var(--ease);
+  }
+
+  .edge-label text {
+    font-family: var(--font-heading);
+    font-size: 11.5px;
+    font-weight: 600;
+    fill: var(--warm-gray);
+    text-anchor: middle;
+  }
+
+  .edge-label.is-cut rect {
+    fill: var(--charcoal);
+    stroke: var(--charcoal);
+  }
+
+  .edge-label.is-cut text { fill: var(--ivory); }
+
+  /* --- Legend --- */
+  .flow-legend {
+    list-style: none;
+    margin-top: var(--space-5);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px clamp(16px, 2vw, 28px);
+  }
+
+  .flow-legend li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: var(--warm-gray);
+  }
+
+  .flow-legend svg {
+    flex: none;
+    width: 30px;
+    height: 14px;
+  }
+
+  .flow-legend em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+
+  /* --- Readout --- */
+  .flow-readout {
+    margin-top: auto;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    align-items: baseline;
+    gap: clamp(16px, 2.5vw, 32px);
+    flex-wrap: wrap;
+  }
+
+  .fmax-label {
+    font-family: var(--font-heading);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 4px;
+  }
+
+  .fmax-value {
+    font-family: var(--font-heading);
+    font-size: clamp(34px, 4.4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--charcoal);
+    white-space: nowrap;
+  }
+
+  .fmax-unit {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  .flow-message {
+    flex: 1 1 260px;
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--charcoal);
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--hairline);
+    min-height: 3em;
+  }
+
+  .flow-message[data-tone='good'] { border-left-color: var(--terracotta); }
+  .flow-message[data-tone='flat'] { border-left-color: var(--taupe); }
+  .flow-message[data-tone='bad']  { border-left-color: var(--charcoal); }
+
+  /* --- Controls --- */
+  .controls-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  .controls-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+
+  .btn-ghost {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    transition: color 0.2s var(--ease);
+  }
+
+  .btn-ghost:hover { color: var(--terracotta); }
+
+  .slider-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .slider-row {
+    position: relative;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+
+  .slider-row.is-cut {
+    background: var(--ivory);
+    border-color: var(--hairline);
+  }
+
+  .slider-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  .slider-name {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+
+  .slider-value {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--terracotta);
+    white-space: nowrap;
+  }
+
+  .slider-unit {
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--warm-gray);
+    margin-left: 2px;
+  }
+
+  .constraint-tag {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    font-family: var(--font-heading);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    background: var(--charcoal);
+    padding: 3px 7px;
+    border-radius: 4px;
+  }
+
+  .constraint-tag.is-on { display: block; }
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--ivory-dark);
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    border: 2px solid var(--surface);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+  }
+
+  input[type='range']::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    border: 2px solid var(--surface);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    border-color: var(--surface);
+  }
+
+  input[type='range']:focus-visible {
+    outline: 2px solid var(--terracotta);
+    outline-offset: 4px;
+  }
+
+  .relieve-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 11px;
+  }
+
+  .controls-hint {
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--warm-gray);
+    margin-top: var(--space-3);
+  }
+
+  /* --- Math disclosure --- */
+  .flow-math {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--hairline);
+    padding-top: var(--space-5);
+  }
+
+  .flow-math summary {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .flow-math summary::-webkit-details-marker { display: none; }
+
+  .flow-math summary::after {
+    content: ' +';
+    color: var(--warm-gray);
+  }
+
+  .flow-math[open] summary::after { content: ' –'; }
+
+  .math-body {
+    margin-top: var(--space-5);
+    max-width: 68ch;
+  }
+
+  .math-body p {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--warm-gray);
+  }
+
+  .math-list {
+    margin: var(--space-4) 0;
+    padding-left: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .math-list li {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--warm-gray);
+  }
+
+  .math-list strong { color: var(--charcoal); }
+
+  .math-list code {
+    display: block;
+    margin-top: 8px;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 13px;
+    color: var(--charcoal);
+    background: var(--ivory);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 8px 12px;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .math-close { margin-top: var(--space-4); }
+
+  @media (max-width: 900px) {
+    .flow-demo { grid-template-columns: 1fr; }
+    .flow-readout { margin-top: var(--space-5); }
+    /* Stacked, there is no sibling column to match — let it size naturally. */
+    .flow-canvas { flex: none; }
+  }
+
+  @media (max-width: 560px) {
+    .flow-legend { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .edge-track, .edge-flow, .node rect, .edge-label rect { transition: none; }
+    .flow-canvas { scroll-behavior: auto; }
+  }
+</style>

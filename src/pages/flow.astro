@@ -1,0 +1,80 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import FlowDemo from '../components/FlowDemo.astro';
+---
+
+<PageLayout
+  title="Where Throughput Actually Stops"
+  description="An interactive demonstration of maximum system flow: total throughput equals the capacity of the tightest cut, so capacity added anywhere else buys nothing."
+>
+  <section class="section surface-tint">
+    <div class="section-inner">
+      <div class="section-head section-head-center">
+        <p class="section-label">The idea in one graphic</p>
+        <h1 class="section-title">Where throughput actually stops.</h1>
+        <p class="section-desc">
+          Every operation is a chain of stages, each able to carry only so much.
+          Total throughput is not the average of those capacities and it is not
+          the sum of them — it is whatever the tightest link will pass. Add
+          capacity anywhere else and nothing happens. Move the tight link and
+          the whole system moves with it.
+        </p>
+      </div>
+
+      <FlowDemo />
+
+      <div class="flow-aside">
+        <h2 class="aside-title">Why this is the entire argument</h2>
+        <p>
+          Drag any slider and watch the number at the bottom. Most of the time
+          it will not move, which is the uncomfortable part: capacity bought
+          away from the constraint is capacity the system cannot use. It shows
+          up as work-in-progress, not as revenue.
+        </p>
+        <p>
+          Then press <strong>Relieve the constraint</strong>. Throughput rises —
+          and the constraint immediately reappears somewhere else. That is not a
+          flaw in the model. It is why a diagnostic is a repeating exercise
+          rather than a one-off report, and it is what the Throughput Cycle and
+          the Fractional AI Officer retainer are both built around.
+        </p>
+        <p class="aside-close">
+          The board above uses invented numbers. Discovery runs the same
+          arithmetic against yours.
+        </p>
+        <a href="/#discovery" class="btn btn-primary">See what Discovery covers</a>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .flow-aside {
+    max-width: 68ch;
+    margin: clamp(40px, 5vw, 64px) auto 0;
+    text-align: left;
+  }
+
+  .aside-title {
+    font-size: var(--step-h3);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: var(--space-4);
+  }
+
+  .flow-aside p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--warm-gray);
+    margin-bottom: var(--space-4);
+  }
+
+  .flow-aside strong { color: var(--charcoal); }
+
+  .aside-close {
+    padding-left: var(--space-5);
+    border-left: 2px solid var(--terracotta);
+    margin-bottom: var(--space-6);
+  }
+</style>

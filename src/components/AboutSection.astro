@@ -1,4 +1,25 @@
 ---
+// The experience argument, which used to be only implied. Every competitor in
+// this space sells a framework with a trademark on it — maturity models,
+// governance baselines, accreditation cycles — and none of them has run the
+// function they are advising on. That is the one claim a competitor cannot
+// copy by rewriting their homepage next week, so it gets made outright rather
+// than left to be inferred from two bios.
+//
+// "Forty years" is the defensible number and is deliberately understated:
+// Elliott's twenty plus Mac from 2005 lands nearer forty-one. Do not round it
+// up. Any buyer checks that on LinkedIn in ninety seconds, and the credibility
+// argument is the thing that breaks.
+//
+// The discipline list stays inside the sentence. Seven competencies from two
+// people, set out as a bulleted panel, reads generalist; inside a sentence,
+// following the claim that we ran them, it reads as range.
+const argument = [
+  'Forty years between us of running the jobs we now help people fix. Operations, sales, marketing, leadership, finance, logistics, and the data underneath all of it. Not studied. Run, with the P&L attached.',
+  'Experience is the hardest thing left to buy. Most of what gets sold as AI consulting comes from people whose entire operating history is the deck they are showing you. When we walk into a plant or a yard or a back office, we are not learning the business for the first time. We have been the person on the other side of the desk, and usually with the same problem.',
+  'There is no bench, no account manager, and nobody junior learning on your engagement. The two people who diagnose your operation are the two who build what comes next.',
+];
+
 // Both bios in third person, structurally parallel. Previously Elliott's ran
 // in first person before his name while Mac's ran in third — one voice now.
 const partners = [
@@ -7,7 +28,7 @@ const partners = [
     role: 'Co-Founder · Operations & Build',
     body: [
       'Elliott spent twenty years running operations inside organizations far larger than the ones he serves now — the Pentagon, Morgan Stanley, healthcare, pharma, and a telehealth division he built from nothing. Derivatives metrics and fraud operations at one end, a Pentagon desk in Qatar at the other.',
-      'The thread through all of it was the same: find where a complex organization is genuinely broken and fix the system rather than the symptom. He does that work at owner-operator scale now for one reason — the blockages are visible, the fixes pay back inside a quarter, and the person who can approve the change is in the room.',
+      'The thread through all of it was the same: find where a complex organization is genuinely broken and fix the system rather than the symptom. He does that work at owner-operator scale now for one reason — the blockages are visible, the fixes pay back inside a quarter, and the person who can approve the change is in the room. He has run the reports you are running by hand, at a scale where doing it by hand was not an option.',
     ],
   },
   {
@@ -15,7 +36,12 @@ const partners = [
     role: 'Co-Founder · Business Development',
     body: [
       'Mac has spent his career carrying proven technology into industries that had never used it — proxy tabulation for institutional investors, RFID inventory control, and fifteen years moving established manufacturing technology from brick into metals, mining, and steel.',
-      'The job never changed: find a company\'s real problem, match it to technology that actually solves it, and stay long enough to help them pull the value out. He finds the businesses with the right problems. Elliott builds the fix.',
+      // The memo's line ended "carrying the number at the bottom of the page
+      // personally." That phrase already does work twice on this page — the
+      // roster section has "carries the P&L personally" and the fit list has
+      // "the number at the bottom of it is personally yours" — so the tail is
+      // reworded here. The ownership claim itself is confirmed.
+      'The job never changed: find a company\'s real problem, match it to technology that actually solves it, and stay long enough to help them pull the value out. Twenty years of it as an owner and an operator, carrying the losses himself when he got it wrong. He finds the businesses with the right problems. Elliott builds the fix.',
     ],
   },
 ];
@@ -26,11 +52,10 @@ const partners = [
     <div class="section-head section-head-center reveal">
       <p class="section-label">Who you're working with</p>
       <h2 class="section-title">Two operators, not an agency.</h2>
-      <p class="section-desc">
-        There is no bench, no account manager, and nobody junior learning on your
-        engagement. The two people who diagnose your operation are the two who
-        build what comes next.
-      </p>
+    </div>
+
+    <div class="about-argument reveal" style="--reveal-delay: 60ms">
+      {argument.map(para => <p class="argument-para">{para}</p>)}
     </div>
 
     <div class="partner-grid">
@@ -48,6 +73,34 @@ const partners = [
 </section>
 
 <style>
+  /* Centred column, left-aligned text. Three centred paragraphs at lead size
+     is more centred prose than the eye will carry. */
+  .about-argument {
+    max-width: var(--measure);
+    margin: 0 auto clamp(36px, 4.5vw, 56px);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .argument-para {
+    font-family: var(--font-body);
+    font-size: 16.5px;
+    line-height: 1.78;
+    color: var(--charcoal);
+  }
+
+  .argument-para:first-child {
+    font-size: var(--step-lead);
+    line-height: 1.65;
+  }
+
+  .argument-para + .argument-para {
+    margin-top: var(--space-5);
+  }
+
+  .argument-para:last-child {
+    color: var(--warm-gray);
+  }
+
   .partner-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

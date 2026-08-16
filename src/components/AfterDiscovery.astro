@@ -1,7 +1,8 @@
 ---
-// What Discovery may recommend. The Fractional AI Officer retainer used to
-// live here at the bottom of the page — it now has its own section above.
-// Lead capability, rendered as a full-width feature above the grid.
+// What Discovery may recommend, whichever branch of the fork you took — we
+// build these, or we teach your team to. The Throughput Cycle used to close
+// this section; it now sits beside the retainer it contrasts against.
+// Instrumentation leads, rendered as a full-width feature above the grid.
 // Grounded in delivered work: GPS and geofencing plus scan-at-handoff capture
 // on the laydown-yard platform, vision-model reading of paper slips on the
 // franchise build.
@@ -47,6 +48,28 @@ const builds = [
       </p>
     </div>
 
+    <div class="sequence reveal">
+      <h3 class="sequence-title">The path is the same. What sits inside it is not.</h3>
+      <p class="sequence-para">
+        Data integration comes first, almost without exception. Not because it
+        is exciting, but because nothing above it works until the systems can
+        talk. Then dashboards and KPIs, which is usually the first time a
+        business writes its own rules down in a form anyone else can read. Only
+        then does the consulting get useful, because now we are both looking at
+        the same numbers instead of arguing about whose gut is right.
+      </p>
+      <p class="sequence-para">
+        That last part gets more specific to your business the further in we go.
+        The first module looks broadly similar across a franchise operator and a
+        machinery manufacturer. The last one does not look like anybody else's.
+      </p>
+      <p class="sequence-claim">
+        The sequence does not change. The names always do. By the time you see
+        your roadmap it is written in your language, about your operation, and
+        the only thing borrowed from anyone else is the order we do it in.
+      </p>
+    </div>
+
     <article class="instrument reveal">
       <div class="instrument-copy">
         <h3 class="instrument-name">{instrumentation.name}</h3>
@@ -66,26 +89,52 @@ const builds = [
       ))}
     </div>
 
-    <div class="cycle reveal">
-      <div class="cycle-copy">
-        <h3 class="cycle-name">Throughput Cycle</h3>
-        <p class="cycle-body">
-          The lighter ongoing option, for operators who want the discipline
-          without the retainer. A quarterly re-diagnostic and a monthly cadence
-          call — because once you clear the first constraint, the bottleneck
-          moves somewhere else. It always does. Finding out where is the work.
-        </p>
-      </div>
-      <ul class="ticks cycle-list">
-        <li>Quarterly mini-diagnostic</li>
-        <li>Monthly operating cadence call</li>
-        <li>Async access between sessions</li>
-      </ul>
-    </div>
   </div>
 </section>
 
 <style>
+  /* The three-module sequence is already the spine of every proposal written
+     so far — data first, then the view, then the tools and the judgment on
+     top — arrived at independently each time. Naming it here is what lets the
+     closing line land: competitors sell a named framework and ask the client
+     to learn it; we do the reverse. */
+  .sequence {
+    max-width: var(--measure);
+    margin: 0 auto clamp(32px, 4vw, 48px);
+    text-align: center;
+  }
+
+  .sequence-title {
+    font-size: var(--step-h3);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: var(--space-5);
+    line-height: 1.3;
+  }
+
+  .sequence-para {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--warm-gray);
+    text-align: left;
+  }
+
+  .sequence-para + .sequence-para {
+    margin-top: var(--space-4);
+  }
+
+  .sequence-claim {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--charcoal);
+    text-align: left;
+    margin-top: var(--space-5);
+    padding-left: var(--space-5);
+    border-left: 2px solid var(--terracotta);
+  }
+
   .build-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -163,34 +212,7 @@ const builds = [
     color: var(--warm-gray);
   }
 
-  .cycle {
-    display: grid;
-    grid-template-columns: 1.4fr 0.6fr;
-    gap: clamp(24px, 4vw, 56px);
-    align-items: center;
-    margin-top: clamp(28px, 3.5vw, 40px);
-    padding: clamp(28px, 3.4vw, 40px);
-    background: var(--ivory-dark);
-    border-radius: var(--radius);
-    border: 1px solid var(--hairline);
-  }
-
-  .cycle-name {
-    font-size: var(--step-h3);
-    font-weight: 700;
-    color: var(--charcoal);
-    margin-bottom: var(--space-3);
-  }
-
-  .cycle-body {
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--warm-gray);
-  }
-
   @media (max-width: 860px) {
     .build-grid { grid-template-columns: 1fr; }
-    .cycle { grid-template-columns: 1fr; }
   }
 </style>

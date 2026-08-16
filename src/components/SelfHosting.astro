@@ -1,0 +1,60 @@
+---
+// The advanced end of the practice, and the natural next question for any
+// client who actually adopts what we build. Nobody in the competitive set is
+// having this conversation.
+//
+// SOURCING NOTE (internal): posted as a conversation we have, not a
+// productized offering — the copy promises judgment and arithmetic, both of
+// which we can deliver today. It does not promise a deliverable that would
+// have to be invented on the spot. The live worked example (per-seat licence
+// cost against hardware, with servers freeing up during a platform migration)
+// stays internal. Economics refreshed monthly.
+//
+// One thing this block must never say, in any form: "we will save you money
+// on AI." The honest framing is that we tell you when to switch and when not
+// to, and most of the time the answer is not yet.
+const paras = [
+  'Most companies are fine paying per token. Some are not, and the crossover arrives faster than people expect once a tool gets real adoption across a workforce. We have watched clients go from a few hundred dollars a month to a number that makes the CFO ask questions, without anyone deciding to spend more.',
+  'There is a point where owning the hardware and running open models beats renting the API, and there is a point well before that where it is a distraction. We will tell you which side of it you are on, with the arithmetic attached. Usually the answer is a split: your own model handling the routine internal volume, commercial models where the quality genuinely matters.',
+  'We run this analysis for our own business first. You are getting a recommendation we have already had to live with.',
+];
+---
+
+<section id="self-hosting" class="hosting section section-narrow surface-tint">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <p class="section-label">The conversation nobody else is having</p>
+      <h2 class="section-title">When renting the models stops making sense.</h2>
+    </div>
+
+    <div class="hosting-prose reveal" style="--reveal-delay: 90ms">
+      {paras.map(p => <p class="hosting-para">{p}</p>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hosting-prose {
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .hosting-para {
+    font-family: var(--font-body);
+    font-size: 16.5px;
+    line-height: 1.78;
+    color: var(--charcoal);
+  }
+
+  .hosting-para + .hosting-para {
+    margin-top: var(--space-5);
+  }
+
+  /* The last line is the credibility move — it gets the rule. */
+  .hosting-para:last-child {
+    margin-top: var(--space-6);
+    padding-left: var(--space-5);
+    border-left: 2px solid var(--terracotta);
+    font-size: 16px;
+    color: var(--warm-gray);
+  }
+</style>

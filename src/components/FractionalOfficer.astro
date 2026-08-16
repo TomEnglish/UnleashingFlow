@@ -1,6 +1,8 @@
 ---
-// The product. Previously buried at the bottom of the page under "two ways we
-// stay with you" — now the first thing after the client roster.
+// One of three ways to work, not the destination. This section used to open
+// the page directly after the client roster, which made a monthly retainer
+// look like the only thing we sell. It now sits below the build-or-teach fork
+// and the module list, as the ongoing mode that can follow either branch.
 const triangle = [
   {
     title: 'More embedded than a consultant',
@@ -25,18 +27,19 @@ const included = [
 ];
 ---
 
-<section id="fractional" class="fractional section surface-tint">
+<section id="fractional" class="fractional section surface-ivory">
   <div class="section-inner">
     <div class="section-head reveal">
-      <p class="section-label">The engagement</p>
+      <p class="section-label">The ongoing mode</p>
       <h2 class="section-title">A Chief AI Officer, without the hire.</h2>
       <p class="section-desc">
-        A full-time Chief AI Officer runs past $500,000 all-in once you count
-        salary, equity, and the better part of a year spent looking for one.
-        Almost no operator between $1M and $100M needs that person five days a
-        week. What they need is the function — someone senior who owns the data,
-        decides what gets built, and is accountable for whether throughput
-        actually moved.
+        Whether we built it or your team did, the constraint moves and somebody
+        has to keep watching. A full-time Chief AI Officer runs past $500,000
+        all-in once you count salary, equity, and the better part of a year
+        spent looking for one. Almost no operator between $1M and $100M needs
+        that person five days a week. What they need is the function — someone
+        senior who owns the data, decides what gets built, and is accountable
+        for whether throughput actually moved.
       </p>
     </div>
 
@@ -68,6 +71,23 @@ const included = [
           </div>
         ))}
       </div>
+    </div>
+
+    <div class="cycle reveal">
+      <div class="cycle-copy">
+        <h3 class="cycle-name">Throughput Cycle</h3>
+        <p class="cycle-body">
+          The lighter ongoing option, for operators who want the discipline
+          without the retainer. A quarterly re-diagnostic and a monthly cadence
+          call — because once you clear the first constraint, the bottleneck
+          moves somewhere else. It always does. Finding out where is the work.
+        </p>
+      </div>
+      <ul class="ticks cycle-list">
+        <li>Quarterly mini-diagnostic</li>
+        <li>Monthly operating cadence call</li>
+        <li>Async access between sessions</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -168,9 +188,39 @@ const included = [
     color: var(--warm-gray);
   }
 
+  /* The lighter ongoing option, moved here from the module list so the
+     "without the retainer" contrast has the retainer directly above it. */
+  .cycle {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: clamp(24px, 4vw, 56px);
+    align-items: center;
+    margin-top: clamp(28px, 3.5vw, 40px);
+    padding: clamp(28px, 3.4vw, 40px);
+    background: var(--ivory-dark);
+    border-radius: var(--radius);
+    border: 1px solid var(--hairline);
+  }
+
+  .cycle-name {
+    font-size: var(--step-h3);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: var(--space-3);
+  }
+
+  .cycle-body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--warm-gray);
+  }
+
   @media (max-width: 860px) {
     .fractional-body {
       grid-template-columns: 1fr;
     }
+
+    .cycle { grid-template-columns: 1fr; }
   }
 </style>

@@ -1,0 +1,144 @@
+---
+// The objection nobody in the competitive set answers. Every rival wants a
+// clean modern stack and a governance framework; every real operating business
+// is the opposite, and the owner is quietly braced to be told his systems are
+// a mess.
+//
+// SOURCING NOTE (internal, stays off the page): this block is written from
+// delivered work, not positioning. One client runs Sage 300 into Intacct
+// alongside Procore, Builder, P6, SharePoint and macro-enabled workbooks
+// carrying undocumented rules; another runs AutoPoll, Qlik, Workday and
+// QuickBooks with a point-of-sale migration in flight; a third prints a
+// purchase order and retypes it into Word. No client is identifiable here.
+//
+// DELIVERY OBLIGATION: the adapter paragraph is the one claim on this page
+// that commits us to an architecture for every future client, not just the one
+// it was built for. It is already the shape of the current construction build.
+// The promise is deliberately parallel running rather than "everything keeps
+// working" — the first is something we control and can demonstrate, the second
+// is an absolute a client can hold us to on a day we are not in the building.
+const beats = [
+  {
+    lead: null,
+    body: 'Most operating businesses we walk into are running an accounting package from a decade ago, a CRM somebody bought in 2019, a project system that came with a hire, three or four spreadsheets doing load-bearing work, and at least one process that involves printing something out and typing it back in somewhere else.',
+  },
+  {
+    lead: null,
+    body: 'None of that happened because anyone made a bad decision. Each piece was bought at a different time, by a different person, to solve a real problem in front of them. It is what growth looks like from the inside.',
+  },
+  {
+    lead: null,
+    body: 'The trouble is that none of it talks. So the numbers that would tell you where your money is actually going live in five places, and the only way to see them together is for somebody to spend Monday morning assembling them by hand. By the time the picture exists, it is already old.',
+  },
+  {
+    lead: 'We do not come in and tell you to replace it.',
+    body: 'Ripping out working software is expensive, slow, and it costs you every bit of institutional knowledge baked into the way your people already work. We would rather leave your systems where they are and build the connections between them.',
+  },
+  {
+    lead: null,
+    body: 'That includes the spreadsheets. Especially the spreadsheets. The workbook nobody wants to touch usually has ten years of hard-won business rules living inside it that were never written down anywhere else. We read those rules out, write them down properly, and put them somewhere they can survive the person who built them.',
+  },
+  {
+    lead: 'And if you are mid-migration, that is not a reason to wait.',
+    body: 'Half the businesses we work with are changing something when we arrive. A new ERP going live in the fall, a point-of-sale switch the franchisor is forcing, an accounting move that has been on the list for two years.',
+  },
+  {
+    lead: null,
+    body: 'We build against a stable structure with adapters behind it. When the new system arrives, we point a second adapter at it and run both in parallel until you are comfortable with the new one. Then the old one retires and what you rely on carries straight on. Your migration does not become our excuse, and it does not become your delay.',
+  },
+];
+---
+
+<section id="legacy-systems" class="legacy section surface-tint">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <p class="section-label">What we actually walk into</p>
+      <h2 class="section-title">Your systems are a museum. That is normal, and it is fine.</h2>
+    </div>
+
+    <div class="legacy-body">
+      <div class="legacy-prose reveal">
+        {beats.map(b => (
+          <p class="legacy-para">
+            {b.lead && <strong class="legacy-lead">{b.lead}</strong>}
+            {b.body}
+          </p>
+        ))}
+      </div>
+
+      <aside class="legacy-outcome reveal" style="--reveal-delay: 120ms">
+        <p class="outcome-label">Where it ends up</p>
+        <p class="outcome-body">
+          One place where the numbers live, that you own, that keeps working
+          when a vendor changes something, and that answers questions in the
+          language your business actually uses.
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .legacy-body {
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: clamp(32px, 4.5vw, 64px);
+    align-items: start;
+  }
+
+  .legacy-para {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.78;
+    color: var(--charcoal);
+  }
+
+  .legacy-para + .legacy-para {
+    margin-top: var(--space-5);
+  }
+
+  /* Lead sentences sit on their own line so the four beats stay findable in a
+     block this long. */
+  .legacy-lead {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.4;
+    margin-bottom: var(--space-3);
+  }
+
+  .legacy-outcome {
+    position: sticky;
+    top: 96px;
+    background: var(--surface);
+    border: 1px solid var(--terracotta);
+    border-radius: var(--radius);
+    padding: clamp(24px, 2.8vw, 32px);
+    box-shadow: var(--shadow-md);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .outcome-label {
+    font-family: var(--font-heading);
+    font-size: var(--step-eyebrow);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: var(--space-4);
+  }
+
+  .outcome-body {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--charcoal);
+  }
+
+  @media (max-width: 900px) {
+    .legacy-body { grid-template-columns: 1fr; }
+    .legacy-outcome { position: static; }
+  }
+</style>

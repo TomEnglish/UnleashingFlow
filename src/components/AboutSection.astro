@@ -45,6 +45,56 @@ const partners = [
     ],
   },
 ];
+
+// Board experience, placed after the bios. The least copyable thing on the
+// site, and it matters because of who we actually sell to: nearly the whole
+// book is family-owned or owner-operated — a family firm with a board of
+// managing directors, a Sheffield family manufacturer, and a run of
+// owner-operated businesses behind them.
+//
+// BOUNDARY TO HOLD: this says we understand the dynamics. It does not say we
+// sell succession planning or governance consulting. Do not let it drift into
+// services we do not deliver, or the first person who asks for a family
+// charter puts us in an awkward spot.
+//
+// The named chairmanship carries more weight than the list of seats — keep it
+// specific. The closing line is the one that gets a reaction: it gives the
+// owner permission to raise the thing he was not going to raise, which is
+// usually the real bottleneck.
+//
+// "Mac on the board, Elliott in front of it" is load-bearing and accurate:
+// Mac has held director and chairman seats, Elliott's board exposure is
+// nonprofit service and presenting to investment subcommittees. An unqualified
+// "the room we have spent our careers in" would have claimed director seats
+// for both, and a buyer checks that on LinkedIn in ninety seconds.
+// Cross-border operations. Deliberately NOT an eighth service line — the page
+// already carries seven disciplines, three delivery models, three modules,
+// hardware, legacy systems and board experience, and one more offer would make
+// us look like a shop that does everything. It goes on as proof instead.
+//
+// It earns the space because cross-border operations create exactly the
+// problem we already solve: subsidiaries on different systems, different
+// currencies, different reporting calendars, and nobody at the top able to see
+// one consolidated picture.
+//
+// BOUNDARY TO HOLD: this is not a market-entry advisory offer. No
+// route-to-market studies, no distributor searches, no export compliance. The
+// block claims operational experience across borders and stops there.
+//
+// The closing line is the argument — anyone can claim international
+// experience; having sat on both ends of the same reporting request is
+// specific and true, and it is what a European MD looking at the US wants to
+// hear. The German is a hard credential to fake, which is why it stays in.
+const borders = [
+  'Mac spent twenty years running commercial operations across the US, Europe, Australia and South America, pulling subsidiaries onto one framework so a business that size could see itself as one company. Saudi Arabia, Australia, Germany, Latin America. Fluent German, working Spanish, and a fairly clear-eyed view of what actually goes wrong when a company crosses an ocean.',
+  'If you are a European manufacturer looking at North America, or a North American company trying to build a position in Europe, the operational problems are the ones we already work on. Systems that were never designed to consolidate. Pricing that drifts between regions because nobody can compare it directly. A subsidiary that reports on a different calendar in a different currency and takes six weeks to become a number anyone trusts. Local teams solving the same problem three different ways because nobody has ever seen all three.',
+];
+
+const board = [
+  'Mac has served on boards for most of his career, including as chairman of an international manufacturer with operations on four continents, alongside director seats across manufacturing and construction materials. Most of our clients are family-owned or owner-operated, and that is not a coincidence.',
+  'The hardest problems in a family business are usually not operational. They are about who decides, what the next generation is owed, what gets said at the table and what gets said in the parking lot afterward. A recommendation that ignores all of that is a recommendation that does not get implemented.',
+  'We know what a board needs to see before it will approve something. We know why a good idea sits for two years. And we know how to write a proposal that survives a room full of directors who have never met us, because that is the room we have spent our careers in — Mac on the board, Elliott in front of it.',
+];
 ---
 
 <section id="about" class="about section surface-ivory">
@@ -69,6 +119,31 @@ const partners = [
         </article>
       ))}
     </div>
+
+    <section class="beyond reveal" aria-labelledby="beyond-heading">
+      <p class="beyond-label" id="beyond-heading">What we bring beyond the build</p>
+
+      <div class="beyond-grid">
+      <article class="beyond-part">
+        <h3 class="beyond-title">We have sat on the other side of the table.</h3>
+        {board.map(para => <p class="beyond-para">{para}</p>)}
+        <p class="beyond-close">
+          You can talk to us about the business and about the family, and
+          neither conversation will surprise us.
+        </p>
+      </article>
+
+      <article class="beyond-part">
+        <h3 class="beyond-title">Across borders</h3>
+        {borders.map(para => <p class="beyond-para">{para}</p>)}
+        <p class="beyond-close">
+          We have been the parent company trying to get one honest picture, and
+          we have been the subsidiary being asked for it. Both jobs are harder
+          than they look from the other side.
+        </p>
+      </article>
+      </div>
+    </section>
   </div>
 </section>
 
@@ -149,7 +224,85 @@ const partners = [
     margin-top: var(--space-4);
   }
 
+  /* Board experience and cross-border operations share one frame rather than
+     stacking as two more panels. Both are claims about the pair rather than
+     either partner, both need the bios read first to land, and neither is a
+     service — the shared label is what stops them reading as offers. */
+  .beyond {
+    margin: clamp(28px, 3.5vw, 40px) auto 0;
+    padding: clamp(28px, 3.4vw, 40px);
+    background: var(--ivory-dark);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+  }
+
+  .beyond-label {
+    font-family: var(--font-heading);
+    font-size: var(--step-eyebrow);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Two columns, echoing the bio grid directly above. Stacked, these two run
+     past 1200px of panel and leave half the width empty. */
+  .beyond-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 3.4vw, 44px);
+    align-items: start;
+  }
+
+  .beyond-part + .beyond-part {
+    padding-left: clamp(28px, 3.4vw, 44px);
+    border-left: 1px solid var(--hairline);
+  }
+
+  .beyond-title {
+    font-size: var(--step-h3);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: var(--space-5);
+    line-height: 1.3;
+  }
+
+  .beyond-para {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--warm-gray);
+  }
+
+  .beyond-para + .beyond-para {
+    margin-top: var(--space-4);
+  }
+
+  /* Each part closes on its argument — the line that gives the owner
+     permission to raise what he was not going to raise, and the line that
+     makes the international claim specific rather than a boast. */
+  .beyond-close {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin-top: var(--space-5);
+    padding-left: var(--space-5);
+    border-left: 2px solid var(--terracotta);
+  }
+
   @media (max-width: 860px) {
     .partner-grid { grid-template-columns: 1fr; }
+
+    .beyond-grid { grid-template-columns: 1fr; }
+
+    /* Stacked, the divider has to run horizontally instead. */
+    .beyond-part + .beyond-part {
+      padding-left: 0;
+      border-left: none;
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--hairline);
+    }
   }
 </style>
